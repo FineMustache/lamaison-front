@@ -40,12 +40,16 @@ main {
   height: max-content;
 }
 
-header {
+header{
   background: rgb(0, 0, 0);
+}
+
+.header-wrap {
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
 }
 
 header img {
@@ -459,6 +463,8 @@ border: none;
   display: flex;
   flex-direction: column;
   gap: 5px;
+  height: 55px;
+  justify-content: center;
 }
 
 #prodPrecoOr{

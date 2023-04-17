@@ -11,101 +11,104 @@
 </head>
 <body>
     <header>
-        <a href="#"><img src="../assets/logo/icon.png" alt="La Maison" /></a>
-        <nav>
-            <ul>
-                <li><a href="#">Produtos</a></li>
-                <li><a href="#">Sobre Nós</a></li>
-                <li><a href="#">Contato</a></li>
-                <li class="cart">
-                  <div class="cart-button" onclick="toggleCart()">
-                    <button><i class="fa-solid fa-cart-shopping"></i></button>
-                    <div class="cart-length">
-                      <span>3</span>
-                    </div>
-                  </div>
-                  <div class="cart-container escondido">
-                    <div class="cart-items">
-                      <div class="cart-item">
-                        <div class="cart-item-img">
-                          <img src="./img/prod1.png" alt="">
-                        </div>
-                        <div class="cart-item-info">
-                          <p id="ciNome">Pintura Abstrata Fria</p>
-                          <div class="ci-preco">
-                            <span id="ciPrecoOr">R$ 300,00</span>
-                            <span id="ciPreco">R$ 260,00</span>
-                          </div>
-                          <div class="ci-qtde">
-                            <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
-                            <div id="ciQtde"><span>1</span></div>
-                            <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
-                          </div>
-                          <div class="ci-add-fav">
-                            <span>Adicionar à lista de desejos</span>
-                            <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)" id="ciItemFav" class="fa-regular fa-heart"></i>
-                          </div>
-                        </div>
-                        <div class="cart-item-right">
-                          <span><i class="fa-solid fa-trash"></i></span>
-                        </div>
-                      </div>
-                      <div class="cart-item">
-                        <div class="cart-item-img">
-                          <img src="./img/prod2.png" alt="">
-                        </div>
-                        <div class="cart-item-info">
-                          <p id="ciNome">Vaso Dourado Moderno</p>
-                          <div class="ci-preco">
-                            <span id="ciPreco">R$ 260,00</span>
-                          </div>
-                          <div class="ci-qtde">
-                            <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
-                            <div id="ciQtde"><span>1</span></div>
-                            <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
-                          </div>
-                          <div class="ci-add-fav">
-                            <span>Adicionar à lista de desejos</span>
-                            <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)" id="ciItemFav" class="fa-regular fa-heart"></i>
-                          </div>
-                        </div>
-                        <div class="cart-item-right">
-                          <span><i class="fa-solid fa-trash"></i></span>
-                        </div>
-                      </div>
-                      <div class="cart-item">
-                        <div class="cart-item-img">
-                          <img src="./img/prod3.png" alt="">
-                        </div>
-                        <div class="cart-item-info">
-                          <p id="ciNome">Vaso Texturizado Rochoso</p>
-                          <div class="ci-preco">
-                            <span id="ciPrecoOr">R$ 300,00</span>
-                            <span id="ciPreco">R$ 260,00</span>
-                          </div>
-                          <div class="ci-qtde">
-                            <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
-                            <div id="ciQtde"><span>1</span></div>
-                            <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
-                          </div>
-                          <div class="ci-add-fav">
-                            <span>Adicionar à lista de desejos</span>
-                            <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)" id="ciItemFav" class="fa-regular fa-heart"></i>
-                          </div>
-                        </div>
-                        <div class="cart-item-right">
-                          <span><i class="fa-solid fa-trash"></i></span>
-                        </div>
+        <div class="header-wrap">
+          <a href="#"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
+          <nav>
+              <ul>
+                  <li><a href="#">Produtos</a></li>
+                  <li><a href="#">Sobre Nós</a></li>
+                  <li><a href="#">Contato</a></li>
+                  <li class="cart">
+                    <div class="cart-button" onclick="toggleCart()">
+                      <button><i class="fa-solid fa-cart-shopping"></i></button>
+                      <div class="cart-length">
+                        <span>3</span>
                       </div>
                     </div>
-                    <div class="cart-total">
-                      <span>TOTAL:</span> <span>R$ <span id="cartTotal">780,00</span></span>
+                    <div class="cart-container escondido">
+                      <div class="cart-items">
+                        <div class="cart-item">
+                          <div class="cart-item-img">
+                            <img src="./img/prod1.png" alt="">
+                          </div>
+                          <div class="cart-item-info">
+                            <p id="ciNome">Pintura Abstrata Fria</p>
+                            <div class="ci-preco">
+                              <span id="ciPrecoOr">R$ 300,00</span>
+                              <span id="ciPreco">R$ 260,00</span>
+                            </div>
+                            <div class="ci-qtde">
+                              <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
+                              <div id="ciQtde"><span>1</span></div>
+                              <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
+                            </div>
+                            <div class="ci-add-fav">
+                              <span>Adicionar à lista de desejos</span>
+                              <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)" id="ciItemFav" class="fa-regular fa-heart"></i>
+                            </div>
+                          </div>
+                          <div class="cart-item-right">
+                            <span><i class="fa-solid fa-trash"></i></span>
+                          </div>
+                        </div>
+                        <div class="cart-item">
+                          <div class="cart-item-img">
+                            <img src="./img/prod2.png" alt="">
+                          </div>
+                          <div class="cart-item-info">
+                            <p id="ciNome">Vaso Dourado Moderno</p>
+                            <div class="ci-preco">
+                              <span id="ciPreco">R$ 260,00</span>
+                            </div>
+                            <div class="ci-qtde">
+                              <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
+                              <div id="ciQtde"><span>1</span></div>
+                              <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
+                            </div>
+                            <div class="ci-add-fav">
+                              <span>Adicionar à lista de desejos</span>
+                              <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)" id="ciItemFav" class="fa-regular fa-heart"></i>
+                            </div>
+                          </div>
+                          <div class="cart-item-right">
+                            <span><i class="fa-solid fa-trash"></i></span>
+                          </div>
+                        </div>
+                        <div class="cart-item">
+                          <div class="cart-item-img">
+                            <img src="./img/prod3.png" alt="">
+                          </div>
+                          <div class="cart-item-info">
+                            <p id="ciNome">Vaso Texturizado Rochoso</p>
+                            <div class="ci-preco">
+                              <span id="ciPrecoOr">R$ 300,00</span>
+                              <span id="ciPreco">R$ 260,00</span>
+                            </div>
+                            <div class="ci-qtde">
+                              <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
+                              <div id="ciQtde"><span>1</span></div>
+                              <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
+                            </div>
+                            <div class="ci-add-fav">
+                              <span>Adicionar à lista de desejos</span>
+                              <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)" id="ciItemFav" class="fa-regular fa-heart"></i>
+                            </div>
+                          </div>
+                          <div class="cart-item-right">
+                            <span><i class="fa-solid fa-trash"></i></span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="cart-total">
+                        <span>TOTAL:</span> <span>R$ <span id="cartTotal">780,00</span></span>
+                      </div>
+                      <button class="btn-finalizar">FINALIZAR COMPRA</button>
                     </div>
-                    <button class="btn-finalizar">FINALIZAR COMPRA</button>
-                  </div>
-                </li>
-            </ul>
-        </nav>
+                  </li>
+              </ul>
+          </nav>
+        </div>
+        
     </header>
     <main>
         <div class="prod-page">

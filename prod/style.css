@@ -42,10 +42,16 @@ button {
 
 header {
     background: rgb(0, 0, 0);
-    padding: 20px;
+    
+  }
+
+  .header-wrap{
+    padding: 20px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 900px;
+    margin: 0 auto;
   }
   
   header img {
@@ -248,7 +254,8 @@ nav button{
 
 main{
     min-height: calc(100vh - 100px);
-    width: 100%;
+    width: 900px;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     padding-top: 50px;
@@ -256,7 +263,7 @@ main{
 
 .prod-page{
     min-height: 100%;
-    padding: 0 25%;
+    width: 100%;
 }
 
 .prod-tags{

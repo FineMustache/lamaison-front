@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../font/kaneda/stylesheet.css">
-    <link rel="stylesheet" href="../font/airwaves/stylesheet.css">
-    <link rel="stylesheet" href="style.css" />
-    <title>La Maison</title>
-  </head>
 
-  <body>
-    <header>
-      <a href="#"><img src="../assets/logo/icon.png" alt="La Maison" /></a>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../font/kaneda/stylesheet.css">
+  <link rel="stylesheet" href="../font/airwaves/stylesheet.css">
+  <link rel="stylesheet" href="style.css" />
+  <title>La Maison</title>
+</head>
+
+<body>
+  <header>
+    <div class="header-wrap">
+      <a href="#"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
       <nav>
         <ul>
           <li><a href="#">Produtos</a></li>
@@ -44,7 +46,8 @@
                     </div>
                     <div class="ci-add-fav">
                       <span>Adicionar à lista de desejos</span>
-                      <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)" id="ciItemFav" class="fa-regular fa-heart"></i>
+                      <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)"
+                        id="ciItemFav" class="fa-regular fa-heart"></i>
                     </div>
                   </div>
                   <div class="cart-item-right">
@@ -67,7 +70,8 @@
                     </div>
                     <div class="ci-add-fav">
                       <span>Adicionar à lista de desejos</span>
-                      <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)" id="ciItemFav" class="fa-regular fa-heart"></i>
+                      <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)"
+                        id="ciItemFav" class="fa-regular fa-heart"></i>
                     </div>
                   </div>
                   <div class="cart-item-right">
@@ -91,7 +95,8 @@
                     </div>
                     <div class="ci-add-fav">
                       <span>Adicionar à lista de desejos</span>
-                      <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)" id="ciItemFav" class="fa-regular fa-heart"></i>
+                      <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)"
+                        id="ciItemFav" class="fa-regular fa-heart"></i>
                     </div>
                   </div>
                   <div class="cart-item-right">
@@ -105,212 +110,218 @@
               <button class="btn-finalizar">FINALIZAR COMPRA</button>
             </div>
           </li>
-      </ul>
+        </ul>
       </nav>
-    </header>
+    </div>
 
-    <main>
-        <div class="carousel">
-            <div class="slides">
-              <div class="slide active">
-                <img src="img/slide1.png" alt="Slide 1">
-              </div>
-              <div class="slide">
-                <img src="img/slideBusiness.jpg" alt="Slide 2">
-              </div>
-              <div class="slide">
-                <img src="img/slideOffice.png" alt="Slide 3">
-              </div>
-            </div>
-            <div class="slide-info">
-              <p id="carouselText">Transforme os ares da sua casa</p>
+  </header>
 
-              <button class="slide-button">Inspire-se</button>
+  <main>
+    <div class="carousel">
+      <div class="slides">
+        <div class="slide active">
+          <img src="img/slide1.png" alt="Slide 1">
+        </div>
+        <div class="slide">
+          <img src="img/slideBusiness.jpg" alt="Slide 2">
+        </div>
+        <div class="slide">
+          <img src="img/slideOffice.png" alt="Slide 3">
+        </div>
+      </div>
+      <div class="slide-info">
+        <p id="carouselText">Transforme os ares da sua casa</p>
+
+        <button class="slide-button">Inspire-se</button>
+      </div>
+      <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
+      <a class="next" onclick="changeSlide(1)">&#10095;</a>
+    </div>
+    <div class="page">
+      <div class="item-section itens-destaque">
+        <div class="section-top">
+          <span>Itens em Destaque</span>
+          <div class="h-line"></div>
+        </div>
+        <div class="section-items">
+          <div class="item-card">
+            <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
+            <div class="item-card-image">
+              <img src="img/prod1.png" alt="">
             </div>
-            <a class="prev" onclick="changeSlide(-1)">&#10094;</a>
-            <a class="next" onclick="changeSlide(1)">&#10095;</a>
-          </div>
-          <div class="page">
-            <div class="item-section itens-destaque">
-              <div class="section-top">
-                <span>Itens em Destaque</span>
-                <div class="h-line"></div>
+            <div class="item-card-info">
+              <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
+              <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
+              <div class="prod-tags">
+                <span class="tag">Quadro</span>
+                <span class="tag">Pintura</span>
+                <span class="tag">Parede</span>
               </div>
-              <div class="section-items">
-                <div class="item-card">
-                  <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-                  <div class="item-card-image">
-                    <img src="img/prod1.png" alt="">
-                  </div>
-                  <div class="item-card-info">
-                    <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-                    <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-                    <div class="prod-tags">
-                      <span class="tag">Quadro</span>
-                      <span class="tag">Pintura</span>
-                      <span class="tag">Parede</span>
-                    </div>
-                    <div class="prod-preco">
-                      <span id="prodPrecoOr">R$ 300,00</span>
-                      <span id="prodPreco">R$ 260,00</span>
-                    </div>
-                    <div class="button">
-                      <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="item-card">
-                  <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-                  <div class="item-card-image">
-                    <img src="img/prod2.png" alt="">
-                  </div>
-                  <div class="item-card-info">
-                    <span onclick="window.location.href='../prod/index.html'" id="prodNome">Vaso Dourado Moderno</span>
-                    <p id="prodDesc">Ideal para representar riqueza e extravagância na sua sala.</p>
-                    <div class="prod-tags">
-                      <span class="tag">Vaso</span>
-                      <span class="tag">Metálico</span>
-                      <span class="tag">Dourado</span>
-                      <span class="tag">Superfície</span>
-                    </div>
-                    <div class="prod-preco">
-                      <span id="prodPrecoOr">R$ 300,00</span>
-                      <span id="prodPreco">R$ 260,00</span>
-                    </div>
-                    <div class="button">
-                      <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="item-card">
-                  <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-                  <div class="item-card-image">
-                    <img src="img/prod3.png" alt="">
-                  </div>
-                  <div class="item-card-info">
-                    <span onclick="window.location.href='../prod/index.html'" id="prodNome">Vaso Texturizado Rochoso</span>
-                    <p id="prodDesc">Sua aparência de "pedra" trará uma estética natural ao ambiente.</p>
-                    <div class="prod-tags">
-                      <span class="tag">Vaso</span>
-                      <span class="tag">Barro</span>
-                      <span class="tag">Natural</span>
-                      <span class="tag">Superfície</span>
-                    </div>
-                    <div class="prod-preco">
-                      <span id="prodPrecoOr">R$ 300,00</span>
-                      <span id="prodPreco">R$ 260,00</span>
-                    </div>
-                    <div class="button">
-                      <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="item-card">
-                  <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-                  <div class="item-card-image">
-                    <img src="img/prod4.png" alt="">
-                  </div>
-                  <div class="item-card-info">
-                    <span onclick="window.location.href='../prod/index.html'" id="prodNome">Conjunto de Vasos de Barro</span>
-                    <p id="prodDesc">Dois vasos idênticos em aparência, mas diferentes em escala.</p>
-                    <div class="prod-tags">
-                      <span class="tag">Vaso</span>
-                      <span class="tag">Barro</span>
-                      <span class="tag">Minimalista</span>
-                      <span class="tag">Superfície</span>
-                    </div>
-                    <div class="prod-preco">
-                      <span id="prodPrecoOr">R$ 300,00</span>
-                      <span id="prodPreco">R$ 260,00</span>
-                    </div>
-                    <div class="button">
-                      <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="item-card">
-                  <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-                  <div class="item-card-image">
-                    <img src="img/prod5.png" alt="">
-                  </div>
-                  <div class="item-card-info">
-                    <span onclick="window.location.href='../prod/index.html'" id="prodNome">Vaso de Boca Estreita</span>
-                    <p id="prodDesc">Cores modernas em um design clássico, de formato cônico.</p>
-                    <div class="prod-tags">
-                      <span class="tag">Vaso</span>
-                      <span class="tag">Porcelana</span>
-                      <span class="tag">Estreito</span>
-                      <span class="tag">Superfície</span>
-                    </div>
-                    <div class="prod-preco">
-                      <span id="prodPrecoOr">R$ 300,00</span>
-                      <span id="prodPreco">R$ 260,00</span>
-                    </div>
-                    <div class="button">
-                      <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="item-card">
-                  <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-                  <div class="item-card-image">
-                    <img src="img/prod6.png" alt="">
-                  </div>
-                  <div class="item-card-info">
-                    <span onclick="window.location.href='../prod/index.html'" id="prodNome">Decoração de Parede SANDS Azul</span>
-                    <p id="prodDesc">A cor azul é conhecida por trazer tranquilidade e confiança para os ambientes.</p>
-                    <div class="prod-tags">
-                      <span class="tag">Quadro</span>
-                      <span class="tag">Pintura</span>
-                      <span class="tag">Parede</span>
-                    </div>
-                    <div class="prod-preco">
-                      <span id="prodPrecoOr">R$ 300,00</span>
-                      <span id="prodPreco">R$ 260,00</span>
-                    </div>
-                    <div class="button">
-                      <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-                    </div>
-                  </div>
-                </div>
+              <div class="prod-preco">
+                <span id="prodPrecoOr">R$ 300,00</span>
+                <span id="prodPreco">R$ 260,00</span>
               </div>
-            </div>
-            <div class="area-escolha">
-              <div class="escolha escolha-top">
-                <div class="escolha-img">
-                  <img src="img/escolhaVaso.png" alt="">
-                </div>
-                <div class="escolha-info">
-                  <div class="ei-container">
-                    <p>
-                      Transforme sua casa em um lar acolhedor e charmoso com decorações para mesas e prateleiras!<br>
-                      Nossos vasos, porta-retratos e outros acessórios decorativos vão adicionar personalidade e estilo ao seu ambiente.
-                    </p>
-                    <button class="cta">Explorar</button>
-                  </div>
-                </div>
-              </div>
-              <div class="escolha escolha-wall">
-                <div class="escolha-img">
-                  <img src="img/escolhaQuadro.png" alt="">
-                </div>
-                <div class="escolha-info">
-                  <div class="ei-container">
-                    <p>
-                      Faça das suas paredes verdadeiras obras de arte com nossas decorações exclusivas!<br>
-                      Adicione personalidade e elegância aos seus espaços com nossas decorações de parede. Acesse agora e confira nossas opções!
-                    </p>
-                    <button class="cta">Explorar</button>
-                  </div>
-                </div>
+              <div class="button">
+                <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
               </div>
             </div>
           </div>
-        
-          
-    </main>
-    <footer></footer>
-    <script src="https://kit.fontawesome.com/c68ccb89e7.js" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-  </body>
+          <div class="item-card">
+            <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
+            <div class="item-card-image">
+              <img src="img/prod2.png" alt="">
+            </div>
+            <div class="item-card-info">
+              <span onclick="window.location.href='../prod/index.html'" id="prodNome">Vaso Dourado Moderno</span>
+              <p id="prodDesc">Ideal para representar riqueza e extravagância na sua sala.</p>
+              <div class="prod-tags">
+                <span class="tag">Vaso</span>
+                <span class="tag">Metálico</span>
+                <span class="tag">Dourado</span>
+                <span class="tag">Superfície</span>
+              </div>
+              <div class="prod-preco">
+                <span id="prodPrecoOr">R$ 300,00</span>
+                <span id="prodPreco">R$ 260,00</span>
+              </div>
+              <div class="button">
+                <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="item-card">
+            <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
+            <div class="item-card-image">
+              <img src="img/prod3.png" alt="">
+            </div>
+            <div class="item-card-info">
+              <span onclick="window.location.href='../prod/index.html'" id="prodNome">Vaso Texturizado Rochoso</span>
+              <p id="prodDesc">Sua aparência de "pedra" trará uma estética natural ao ambiente.</p>
+              <div class="prod-tags">
+                <span class="tag">Vaso</span>
+                <span class="tag">Barro</span>
+                <span class="tag">Natural</span>
+                <span class="tag">Superfície</span>
+              </div>
+              <div class="prod-preco">
+                <span id="prodPrecoOr">R$ 300,00</span>
+                <span id="prodPreco">R$ 260,00</span>
+              </div>
+              <div class="button">
+                <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="item-card">
+            <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
+            <div class="item-card-image">
+              <img src="img/prod4.png" alt="">
+            </div>
+            <div class="item-card-info">
+              <span onclick="window.location.href='../prod/index.html'" id="prodNome">Conjunto de Vasos de Barro</span>
+              <p id="prodDesc">Dois vasos idênticos em aparência, mas diferentes em escala.</p>
+              <div class="prod-tags">
+                <span class="tag">Vaso</span>
+                <span class="tag">Barro</span>
+                <span class="tag">Minimalista</span>
+                <span class="tag">Superfície</span>
+              </div>
+              <div class="prod-preco">
+                <span id="prodPrecoOr">R$ 300,00</span>
+                <span id="prodPreco">R$ 260,00</span>
+              </div>
+              <div class="button">
+                <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="item-card">
+            <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
+            <div class="item-card-image">
+              <img src="img/prod5.png" alt="">
+            </div>
+            <div class="item-card-info">
+              <span onclick="window.location.href='../prod/index.html'" id="prodNome">Vaso de Boca Estreita</span>
+              <p id="prodDesc">Cores modernas em um design clássico, de formato cônico.</p>
+              <div class="prod-tags">
+                <span class="tag">Vaso</span>
+                <span class="tag">Porcelana</span>
+                <span class="tag">Estreito</span>
+                <span class="tag">Superfície</span>
+              </div>
+              <div class="prod-preco">
+                <span id="prodPrecoOr">R$ 300,00</span>
+                <span id="prodPreco">R$ 260,00</span>
+              </div>
+              <div class="button">
+                <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+          <div class="item-card">
+            <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
+            <div class="item-card-image">
+              <img src="img/prod6.png" alt="">
+            </div>
+            <div class="item-card-info">
+              <span onclick="window.location.href='../prod/index.html'" id="prodNome">Decoração de Parede SANDS
+                Azul</span>
+              <p id="prodDesc">A cor azul é conhecida por trazer tranquilidade e confiança para os ambientes.</p>
+              <div class="prod-tags">
+                <span class="tag">Quadro</span>
+                <span class="tag">Pintura</span>
+                <span class="tag">Parede</span>
+              </div>
+              <div class="prod-preco">
+                <span id="prodPrecoOr">R$ 300,00</span>
+                <span id="prodPreco">R$ 260,00</span>
+              </div>
+              <div class="button">
+                <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="area-escolha">
+        <div class="escolha escolha-top">
+          <div class="escolha-img">
+            <img src="img/escolhaVaso.png" alt="">
+          </div>
+          <div class="escolha-info">
+            <div class="ei-container">
+              <p>
+                Transforme sua casa em um lar acolhedor e charmoso com decorações para mesas e prateleiras!<br>
+                Nossos vasos, porta-retratos e outros acessórios decorativos vão adicionar personalidade e estilo ao seu
+                ambiente.
+              </p>
+              <button class="cta">Explorar</button>
+            </div>
+          </div>
+        </div>
+        <div class="escolha escolha-wall">
+          <div class="escolha-img">
+            <img src="img/escolhaQuadro.png" alt="">
+          </div>
+          <div class="escolha-info">
+            <div class="ei-container">
+              <p>
+                Faça das suas paredes verdadeiras obras de arte com nossas decorações exclusivas!<br>
+                Adicione personalidade e elegância aos seus espaços com nossas decorações de parede. Acesse agora e
+                confira nossas opções!
+              </p>
+              <button class="cta">Explorar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </main>
+  <footer></footer>
+  <script src="https://kit.fontawesome.com/c68ccb89e7.js" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
+</body>
+
 </html>
