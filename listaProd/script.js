@@ -1,6 +1,24 @@
 const urlTag = new URLSearchParams(window.location.search).get('tag')
 const curPage = new URLSearchParams(window.location.search).get('page') ? new URLSearchParams(window.location.search).get('page') : 1
 
+carregarCategorias()
+
+function carregarCategorias() {
+  const options = {method: 'GET'};
+
+  fetch('http://10.87.207.16:5000/categoria', options)
+    .then(response => response.json())
+    .then(response => {
+      response.forEach(c => {
+        let cat = document.querySelector('.categorias').querySelector('.modelo').cloneNode(true)
+        cat.innerHTML = c.nome
+        cat.classList.remove('modelo')
+        document.querySelector('.categorias').appendChild(cat)
+      })
+    })
+    .catch(err => console.error(err));
+}
+
 if (urlTag !== null) {
   document.querySelector('#mtTag').innerHTML = urlTag 
 } else {
