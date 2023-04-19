@@ -41,18 +41,7 @@ function setFav(el){
   el.classList.toggle('item-fav-on')
 }
 
-// const options = {method: 'GET'};
 
-// fetch('http://10.87.207.16:5000/arquivos/quadro-terroso-1681383833155.jpg', options)
-//   .then(response => response.blob())
-//   .then(response => {
-//     var urlCreator = window.URL || window.webkitURL;
-//     var imageUrl = urlCreator.createObjectURL(response);
-//     let img = document.createElement('img')
-//     img.src = imageUrl
-//     document.body.appendChild(img)
-//   })
-//   .catch(err => console.error(err));
 
 
 function hoverFav(index, el) {

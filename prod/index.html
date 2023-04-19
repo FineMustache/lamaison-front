@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Pintura Abstrata Fria - La Maison</title>
 </head>
-<body>
+<body onload="carregar()">
     <header>
         <div class="header-wrap">
           <a href="#"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
@@ -113,13 +113,10 @@
     <main>
         <div class="prod-page">
             <div class="prod-tags">
-                <span class="tag">Quadro</span>
-                <span class="tag">Pintura</span>
-                <span class="tag">Parede</span>
             </div>
             <div class="prod-section">
                 <div class="prod-image">
-                    <img src="img/prod1.png" alt="">
+                    <img id="curProdImage" src="" alt="">
                 </div>
                 <div class="prod-info-container">
                     <div class="prod-info">
@@ -135,9 +132,9 @@
                     <div class="prod-med">
                         <span>Medidas:</span>
                         <div>
-                            <span>X: <span>50 cm</span></span>
-                            <span>Y: <span>80 cm</span></span>
-                            <span>Z: <span>3 cm</span></span>
+                            <span>X: <span id="curX">50 cm</span></span>
+                            <span>Y: <span id="curY">80 cm</span></span>
+                            <span>Z: <span id="curZ">3 cm</span></span>
                         </div>
                         
                     </div>

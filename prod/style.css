@@ -292,6 +292,7 @@ main{
   .prod-section {
     display: flex;
     margin-top: 15px;
+    margin-bottom: 15px;
   }
 
   .prod-preco{
@@ -317,19 +318,52 @@ main{
   }
 
   .prod-image{
+    position: relative;
     height: 600px;
-    width: 600px;
+    width: 450px;
+  }
+
+  .prod-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #e1e1e1; /* Cor de fundo do esqueleto */
+    animation: pulse 1.5s infinite ease-in-out;
+  }
+  
+  @keyframes pulse {
+    0% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.6;
+    }
+    100% {
+      opacity: 0.4;
+    }
   }
 
   .prod-image > img{
     height: 100%;
-    width: 100%;
+    width: 450px;
+    display: none;
     object-fit: cover;
+  }
+
+  .prod-image img.loaded {
+    display: block;
   }
 
   .prod-info{
     display: flex;
     flex-direction: column;
+  }
+
+  .prod-image.loaded::before {
+    display: none;
   }
 
 .prod-info-container{
