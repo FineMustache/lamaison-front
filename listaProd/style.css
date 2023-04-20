@@ -267,6 +267,15 @@ main {
   font-size: 24pt;
 }
 
+.no-products{
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  font-size: 26pt;
+  color: #BBB;
+}
+
 .prod-section {
   display: flex;
   flex-wrap: wrap;
@@ -287,7 +296,33 @@ main {
 }
 
 .item-card-image {
+  height: calc(500px * 60 / 100);
   width: 100%;
+  position: relative;
+  background-color: #e6e6e6;
+  overflow: hidden;
+}
+
+.item-card-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(-10px - 500px * 60 / 100 * 2);
+  right: 0;
+  bottom: 0;
+  width: 200%;
+  background: rgb(2,0,36);
+  background: linear-gradient(125deg, rgba(2,0,36,0) 25%, rgba(255,255,255,.5) 50%, rgba(0,212,255,0) 75%);
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    left: calc(-10px - 500px * 60 / 100 * 2);
+  }
+  100% {
+    left: calc(10px + 500px * 60 / 100 * 2);
+  }
 }
 
 .item-card-image > img {
@@ -295,6 +330,16 @@ main {
   width: 100%;
   object-fit: cover;
   cursor: pointer;
+  display: none;
+}
+
+
+.item-card-image img.loaded {
+  display: block;
+}
+
+.item-card-image.loaded::before {
+  display: none;
 }
 
 .item-card-info {
@@ -407,6 +452,7 @@ main {
   justify-content: center;
   width: 100%;
   padding: 0;
+  margin: 0;
 }
 
 .cur-page span {

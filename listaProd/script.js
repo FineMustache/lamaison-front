@@ -1,4 +1,4 @@
-const urlTag = new URLSearchParams(window.location.search).get('tag')
+var urlTag = new URLSearchParams(window.location.search).get('tag')
 var curPage = new URLSearchParams(window.location.search).get('page') ? new URLSearchParams(window.location.search).get('page') : 1
 var count
 var minPrec
@@ -53,19 +53,25 @@ function carregarProdutos() {
 
   document.querySelector('.prod-section').appendChild(model)
 
-  fetch(`http://10.87.207.16:5000/produto/page/${curPage}?minPrec=${minPrec}&maxPrec=${maxPrec}&sortPrec=${sortPrec}&desconto=${desconto}`, {method: 'GET'})
+  fetch(`http://localhost:5000/produto/page/${curPage}?minPrec=${minPrec}&maxPrec=${maxPrec}&sortPrec=${sortPrec}&desconto=${desconto}&tag=${urlTag}`, {method: 'GET'})
     .then(response => response.json())
     .then(response => {
       console.log(response)
       getCount(response.count)
       response.produtos.forEach(async p => {
         console.log(p.nome, p.desconto)
-        await fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, {method: 'GET'})
+        let card = document.querySelector('.prod-section').querySelector('.modelo').cloneNode(true)
+        fetch('http://localhost:5000/arquivos/' + p.imagem, {method: 'GET'})
         .then(response => response.blob())
-        .then(img => {
-          let card = document.querySelector('.prod-section').querySelector('.modelo').cloneNode(true)
-          card.classList.remove('modelo')
+        .then(img => {  
           card.querySelector('img').src = montaImagem(img)
+          card.querySelector('img').classList.add('loaded')
+          card.querySelector('img').parentNode.classList.add('loaded')
+        })
+        .catch(err => {return "aiaiai"});
+        
+          card.classList.remove('modelo')
+          
           card.querySelector('#prodNome').innerHTML = p.nome
           card.querySelector('#prodDesc').innerHTML = p.descricao
           if (p.desconto > 0) {
@@ -83,14 +89,28 @@ function carregarProdutos() {
             tag.addEventListener('click', () => {
               window.location.href = '../listaProd/index.html?tag=' + c.categoria.nome.toLowerCase().replace(' ', '_')
             })
+            tag.addEventListener('click', () => {
+              console.log("a")
+              let query = window.location.href.split('?')[1]
+              let location = window.location.href.split('?')[0] + "?"
+              query.split('&').forEach(q => {
+                if (q.startsWith('tag')) {
+                  q = "tag=" + c.nome.toLowerCase().replace(' ', '_')
+                  location = location + q + "&"
+                }
+              })
+              window.location.href = location
+            })
             card.querySelector('.prod-tags').appendChild(tag)
           })
           document.querySelector('.prod-section').appendChild(card)
-        })
-        .catch(err => {return "aiaiai"});
-        
       })
-      document.querySelector('.paginacao').querySelectorAll('li').item(curPage-1).classList.add('cur-page')
+      if (response.count !== 0) {
+        document.querySelector('.no-products').classList.add('escondido')
+        document.querySelector('.paginacao').querySelectorAll('li').item(curPage-1).classList.add('cur-page') 
+      } else {
+        document.querySelector('.no-products').classList.remove('escondido')
+      }
     })
     .catch(err => console.error(err));
 }
@@ -98,13 +118,29 @@ function carregarProdutos() {
 function carregarCategorias() {
   const options = {method: 'GET'};
 
-  fetch('http://10.87.207.16:5000/categoria', options)
+  fetch('http://localhost:5000/categoria', options)
     .then(response => response.json())
     .then(response => {
       response.forEach(c => {
         let cat = document.querySelector('.categorias').querySelector('.modelo').cloneNode(true)
         cat.innerHTML = c.nome
         cat.classList.remove('modelo')
+        cat.addEventListener('click', () => {
+          let query = window.location.href.split('?')[1]
+          let location = window.location.href.split('?')[0] + "?"
+          if (query !== undefined) {
+            query.split('&').forEach(q => {
+              if (q.startsWith('tag')) {
+                q = "tag=" + c.nome.toLowerCase().replace(' ', '_')
+                location = location + q + "&"
+              }
+            })
+          } else {
+            location = location + "tag=" + c.nome.toLowerCase().replace(' ', '_')
+          }
+          
+          window.location.href = location
+        })
         document.querySelector('.categorias').appendChild(cat)
       })
     })
@@ -112,8 +148,9 @@ function carregarCategorias() {
 }
 
 if (urlTag !== null) {
-  document.querySelector('#mtTag').innerHTML = urlTag 
+  document.querySelector('#mtTag').innerHTML = urlTag[0].toUpperCase() + urlTag.slice(1).replace('_', ' ')
 } else {
+  urlTag = "all"
   document.querySelector('.main-title').classList.add('escondido')
 }
 
