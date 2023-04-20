@@ -1,5 +1,10 @@
 const urlTag = new URLSearchParams(window.location.search).get('tag')
-const curPage = new URLSearchParams(window.location.search).get('page') ? new URLSearchParams(window.location.search).get('page') : 1
+var curPage = new URLSearchParams(window.location.search).get('page') ? new URLSearchParams(window.location.search).get('page') : 1
+var count
+var minPrec
+var maxPrec
+var sortPrec
+var desconto
 
 OmRangeSlider.init({ 
   inputValueStyle: OmRangeSliderInputValueStyles.DEFAULT_COMMA_SEPARATED
@@ -8,28 +13,54 @@ OmRangeSlider.init({
 carregarCategorias()
 
 function carregar(){
+  minPrec = document.querySelector('#inputPieces').value.split(',')[0]
+  maxPrec = document.querySelector('#inputPieces').value.split(',')[1]
+  sortPrec = document.querySelector('#selOrderBy').value
+  desconto = document.querySelector('#cbDesc').checked
+  carregarProdutos()
+}
+
+function getCount(count){
+    document.querySelector('.paginacao').innerHTML = ""
+    const pagenum = Math.ceil(count / 15)
+    for (let i = 1; i <= pagenum; i++) {
+      let li = document.createElement('li')  
+      let span = document.createElement('span')
+      span.innerHTML = i
+      span.addEventListener('click', () => {
+        curPage = i
+        document.querySelector('.paginacao').querySelectorAll('li').forEach(s => s.classList.remove('cur-page'))
+        carregarProdutos()
+      })
+      li.appendChild(span)
+      document.querySelector('.paginacao').appendChild(li)
+    }
+}
+
+function aplicarFiltros() {
+  minPrec = document.querySelector('#inputPieces').value.split(',')[0]
+  maxPrec = document.querySelector('#inputPieces').value.split(',')[1]
+  sortPrec = document.querySelector('#selOrderBy').value
+  desconto = document.querySelector('#cbDesc').checked
+  curPage = 1
   carregarProdutos()
 }
 
 function carregarProdutos() {
-  const minPrec = document.querySelector('#inputPieces').value.split(',')[0]
-  const maxPrec = document.querySelector('#inputPieces').value.split(',')[1]
-  const sortPrec = document.querySelector('#selOrderBy').value
-  const desconto = document.querySelector('#cbDesc').checked
-
   let model = document.querySelector('.prod-section').querySelector('.modelo').cloneNode(true)
 
   document.querySelector('.prod-section').innerHTML = ""
 
   document.querySelector('.prod-section').appendChild(model)
 
-  fetch(`http://localhost:5000/produto/page/${curPage}?minPrec=${minPrec}&maxPrec=${maxPrec}&sortPrec=${sortPrec}&desconto=${desconto}`, {method: 'GET'})
+  fetch(`http://10.87.207.16:5000/produto/page/${curPage}?minPrec=${minPrec}&maxPrec=${maxPrec}&sortPrec=${sortPrec}&desconto=${desconto}`, {method: 'GET'})
     .then(response => response.json())
     .then(response => {
-      console.log(response.length)
-      response.forEach(async p => {
+      console.log(response)
+      getCount(response.count)
+      response.produtos.forEach(async p => {
         console.log(p.nome, p.desconto)
-        await fetch('http://localhost:5000/arquivos/' + p.imagem, {method: 'GET'})
+        await fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, {method: 'GET'})
         .then(response => response.blob())
         .then(img => {
           let card = document.querySelector('.prod-section').querySelector('.modelo').cloneNode(true)
@@ -59,6 +90,7 @@ function carregarProdutos() {
         .catch(err => {return "aiaiai"});
         
       })
+      document.querySelector('.paginacao').querySelectorAll('li').item(curPage-1).classList.add('cur-page')
     })
     .catch(err => console.error(err));
 }
@@ -66,7 +98,7 @@ function carregarProdutos() {
 function carregarCategorias() {
   const options = {method: 'GET'};
 
-  fetch('http://localhost:5000/categoria', options)
+  fetch('http://10.87.207.16:5000/categoria', options)
     .then(response => response.json())
     .then(response => {
       response.forEach(c => {

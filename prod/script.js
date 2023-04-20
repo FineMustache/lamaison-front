@@ -5,7 +5,7 @@ if (idUrl == null) {
 
 var prod
 
-fetch('http://localhost:5000/produto/' + idUrl, {method: 'GET'})
+fetch('http://10.87.207.16:5000/produto/' + idUrl, {method: 'GET'})
   .then(response => response.json())
   .then(response => prod = response)
   .catch(err => console.error(err));
@@ -16,8 +16,7 @@ function carregar() {
 }
 
 function carregarProduto() {
-
-  fetch('http://localhost:5000/arquivos/' + prod.imagem, {method: 'GET'})
+  fetch('http://10.87.207.16:5000/arquivos/' + prod.imagem, {method: 'GET'})
     .then(response => response.blob())
     .then(response => {
       var urlCreator = window.URL || window.webkitURL;

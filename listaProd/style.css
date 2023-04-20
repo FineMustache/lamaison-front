@@ -409,13 +409,14 @@ main {
   padding: 0;
 }
 
-.cur-page a {
+.cur-page span {
   font-family: "kaneda_gothic_medium";
   color: #000 !important;
 }
 
-.paginacao a {
+.paginacao span {
   color: #444;
+  cursor: pointer;
 }
 
 footer {
@@ -526,4 +527,8 @@ select {
   font-family: "kaneda_gothic";
   letter-spacing: 1px;
   margin-top: 25px;
+}
+
+.paginacao span{
+  text-decoration: underline;
 }
