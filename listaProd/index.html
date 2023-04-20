@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../om-javascript-range-slider-main/src/om-javascript-range-slider.css" />
+  <script src="../om-javascript-range-slider-main/src/om-javascript-range-slider.js"></script>
   <link rel="stylesheet" href="../font/kaneda/stylesheet.css">
   <link rel="stylesheet" href="../font/airwaves/stylesheet.css">
   <link rel="stylesheet" href="style.css" />
@@ -117,23 +119,36 @@
 
   <main>
     <div class="aside">
-      <div class="orderBy">
-        <label>Ordenar Por:</label>
-        <select name="orderBy" id="selOrderBy">
-          <option value="asc">Menor Preço</option>
-          <option value="desc">Maior Preço</option>
-        </select>
+      <div class="aside-wrapper">
+        <div class="orderBy">
+          <label>Ordenar Por:</label>
+          <select name="orderBy" id="selOrderBy">
+            <option value="asc">Menor Preço</option>
+            <option value="desc">Maior Preço</option>
+          </select>
+        </div>
+        <div class="aside-filters">
+          <div class="filter-preco">
+            <span>Intervalo de Preço:</span>
+            <section class="range-slider">
+              <input type="range" name="pieces" id="inputPieces" multiple value="0,5000 " min="0" max="9951" unit="" />
+            </section>
+          </div>
+          <div class="filter-desconto">
+            <label for="filterDesc">Somente Desconto</label>
+            <input type="checkbox" name="filterDesc" id="cbDesc">
+          </div>
+          <button onclick="carregarProdutos()" class="apply-filters">Aplicar Filtros</button>
+        </div>
       </div>
-      <div class="aside-filters">
-        
-      </div>
+      
     </div>
     <div class="categorias">
       <span class="modelo tag">Vasos</span>
     </div>
     <p class="main-title">Produtos categorizados como <span id="mtTag"></span></p>
     <div class="prod-section">
-      <div class="item-card">
+      <div class="item-card modelo">
         <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
         <div class="item-card-image">
           <img src="img/prod1.png" alt="">
@@ -142,320 +157,9 @@
           <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
           <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
           <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
           </div>
           <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr">R$ 300,00</span>
-            <span id="prodPreco">R$ 260,00</span>
-          </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
-        </div>
-      </div>
-      <div class="item-card">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
-        <div class="item-card-image">
-          <img src="img/prod1.png" alt="">
-        </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-            <span class="tag">Quadro</span>
-            <span class="tag">Pintura</span>
-            <span class="tag">Parede</span>
-          </div>
-          <div class="prod-preco">
-            <!-- <span id="prodPrecoOr">R$ 300,00</span> -->
+            <span id="prodPrecoOr" class="escondido">R$ 300,00</span>
             <span id="prodPreco">R$ 260,00</span>
           </div>
           <div class="button">
@@ -476,6 +180,8 @@
   </main>
   <footer></footer>
   <script src="https://kit.fontawesome.com/c68ccb89e7.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
   <script src="script.js"></script>
 </body>
 

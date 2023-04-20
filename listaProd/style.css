@@ -271,6 +271,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   row-gap: 20px;
+  position: relative;
 }
 
 .item-card {
@@ -278,14 +279,14 @@ main {
   flex-direction: column;
   width: calc((100% / 3) - 10px);
   position: relative;
+  height: 600px;
 }
 
-.item-card:nth-child(3n-13) {
+.item-card:nth-child(3n-12) {
   margin: 0 15px;
 }
 
 .item-card-image {
-  height: 60%;
   width: 100%;
 }
 
@@ -301,10 +302,18 @@ main {
   flex-direction: column;
   gap: 10px;
   padding-top: 10px;
+  flex: 1;
+  position: relative;
 }
 
 #prodDesc {
   margin: 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 48px;
 }
 
 #prodNome {
@@ -336,6 +345,8 @@ main {
   gap: 5px;
   height: 55px;
   justify-content: center;
+  flex: 1;
+  padding-bottom: 48px;
 }
 
 #prodPrecoOr {
@@ -355,6 +366,9 @@ main {
   font-size: 18pt;
   padding: 10px;
   border: none;
+  justify-self: end;
+  position: absolute;
+  bottom: 0;
 }
 
 #itemFav {
@@ -410,7 +424,7 @@ footer {
   margin-top: 50px;
 }
 
-.categorias{
+.categorias {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -420,34 +434,96 @@ footer {
   gap: 5px;
 }
 
-.categorias span{
+.categorias span {
   font-size: 16pt;
 }
 
-.modelo{
+.modelo {
   display: none;
 }
 
-.tag:hover{
+.tag:hover {
   color: #ddd;
 }
 
-.aside{
+.aside {
   position: absolute;
   width: 250px;
-  left: -250px;
+  left: -265px;
+  height: 100%;
+  top: 150px;
   display: flex;
   flex-direction: column;
   align-items: end;
-  padding-right: 10px;
+  letter-spacing: 1px;
 }
 
-.orderBy{
+.aside-wrapper {
+  position: sticky;
+  top: 15px;
+  left: 0;
+}
+
+.orderBy {
   display: flex;
   align-items: center;
   gap: 10px;
+  width: 100%;
+  margin-bottom: 50px;
 }
 
-select{
-  padding: 5px;  
+select {
+  padding: 5px;
+  flex: 1;
+}
+
+.aside-filters {
+  width: 250px;
+}
+
+.om-sliderrange-range::before {
+  height: 7px !important;
+}
+
+.om-sliderrange-range {
+  height: 7px !important;
+  margin: 20px 4px;
+}
+
+.om-sliderrange-range-indicator {
+  height: 7px !important;
+  background-color: #000;
+}
+
+.om-sliderrange-button-start,
+.om-sliderrange-button-end {
+  width: 15px;
+  height: 15px;
+}
+
+.om-sliderrange-display {
+  display: flex;
+  justify-content: space-around;
+  font-size: 14pt;
+  letter-spacing: 1px;
+}
+
+.range-slider {
+  margin-top: 20px;
+}
+
+.filter-desconto {
+  margin-top: 50px;
+}
+
+.apply-filters {
+  width: 100%;
+  background-color: #000;
+  color: white;
+  font-size: 18pt;
+  padding: 10px;
+  border: none;
+  font-family: "kaneda_gothic";
+  letter-spacing: 1px;
+  margin-top: 25px;
 }
