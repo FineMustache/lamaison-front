@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../font/kaneda/stylesheet.css" />
+    <link rel="stylesheet" href="../font/airwaves/stylesheet.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Pintura Abstrata Fria - La Maison</title>
+  </head>
+  <body onload="carregar()">
+    <header>
+      <div class="header-wrap">
+        <a href="#"
+          ><img src="../assets/logo/icon_white.png" alt="La Maison"
+        /></a>
+        <nav>
+          <ul>
+            <li><a href="#">Produtos</a></li>
+            <li><a href="#">Sobre Nós</a></li>
+            <li><a href="#">Contato</a></li>
+            <li class="cart">
+              <div class="cart-button" onclick="toggleCart()">
+                <button><i class="fa-solid fa-cart-shopping"></i></button>
+                <div class="cart-length">
+                  <span>3</span>
+                </div>
+              </div>
+              <div class="cart-container escondido">
+                <div class="cart-items">
+                  <div class="cart-item">
+                    <div class="cart-item-img">
+                      <img src="./img/prod1.png" alt="" />
+                    </div>
+                    <div class="cart-item-info">
+                      <p id="ciNome">Pintura Abstrata Fria</p>
+                      <div class="ci-preco">
+                        <span id="ciPrecoOr">R$ 300,00</span>
+                        <span id="ciPreco">R$ 260,00</span>
+                      </div>
+                      <div class="ci-qtde">
+                        <button id="ciQtdeMin">
+                          <i class="fa-sharp fa-solid fa-minus"></i>
+                        </button>
+                        <div id="ciQtde"><span>1</span></div>
+                        <button id="ciQtdePlus">
+                          <i class="fa-sharp fa-solid fa-plus"></i>
+                        </button>
+                      </div>
+                      <div class="ci-add-fav">
+                        <span>Adicionar à lista de desejos</span>
+                        <i
+                          onmouseenter="hoverFav(1, this)"
+                          onmouseleave="hoverFav(0, this)"
+                          onclick="setCartFav(this)"
+                          id="ciItemFav"
+                          class="fa-regular fa-heart"
+                        ></i>
+                      </div>
+                    </div>
+                    <div class="cart-item-right">
+                      <span><i class="fa-solid fa-trash"></i></span>
+                    </div>
+                  </div>
+                  <div class="cart-item">
+                    <div class="cart-item-img">
+                      <img src="./img/prod2.png" alt="" />
+                    </div>
+                    <div class="cart-item-info">
+                      <p id="ciNome">Vaso Dourado Moderno</p>
+                      <div class="ci-preco">
+                        <span id="ciPreco">R$ 260,00</span>
+                      </div>
+                      <div class="ci-qtde">
+                        <button id="ciQtdeMin">
+                          <i class="fa-sharp fa-solid fa-minus"></i>
+                        </button>
+                        <div id="ciQtde"><span>1</span></div>
+                        <button id="ciQtdePlus">
+                          <i class="fa-sharp fa-solid fa-plus"></i>
+                        </button>
+                      </div>
+                      <div class="ci-add-fav">
+                        <span>Adicionar à lista de desejos</span>
+                        <i
+                          onmouseenter="hoverFav(1, this)"
+                          onmouseleave="hoverFav(0, this)"
+                          onclick="setCartFav(this)"
+                          id="ciItemFav"
+                          class="fa-regular fa-heart"
+                        ></i>
+                      </div>
+                    </div>
+                    <div class="cart-item-right">
+                      <span><i class="fa-solid fa-trash"></i></span>
+                    </div>
+                  </div>
+                  <div class="cart-item">
+                    <div class="cart-item-img">
+                      <img src="./img/prod3.png" alt="" />
+                    </div>
+                    <div class="cart-item-info">
+                      <p id="ciNome">Vaso Texturizado Rochoso</p>
+                      <div class="ci-preco">
+                        <span id="ciPrecoOr">R$ 300,00</span>
+                        <span id="ciPreco">R$ 260,00</span>
+                      </div>
+                      <div class="ci-qtde">
+                        <button id="ciQtdeMin">
+                          <i class="fa-sharp fa-solid fa-minus"></i>
+                        </button>
+                        <div id="ciQtde"><span>1</span></div>
+                        <button id="ciQtdePlus">
+                          <i class="fa-sharp fa-solid fa-plus"></i>
+                        </button>
+                      </div>
+                      <div class="ci-add-fav">
+                        <span>Adicionar à lista de desejos</span>
+                        <i
+                          onmouseenter="hoverFav(1, this)"
+                          onmouseleave="hoverFav(0, this)"
+                          onclick="setCartFav(this)"
+                          id="ciItemFav"
+                          class="fa-regular fa-heart"
+                        ></i>
+                      </div>
+                    </div>
+                    <div class="cart-item-right">
+                      <span><i class="fa-solid fa-trash"></i></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="cart-total">
+                  <span>TOTAL:</span>
+                  <span>R$ <span id="cartTotal">780,00</span></span>
+                </div>
+                <button class="btn-finalizar">FINALIZAR COMPRA</button>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="card-container">
+        <div class="card-left">
+            <div class="cart-item">
+                <div class="cart-item-img">
+                  <img src="./img/prod2.png" alt="">
+                </div>
+                <div class="cart-item-info">
+                  <p id="ciNome">Vaso Dourado Moderno</p>
+                  <div class="ci-preco">
+                    <span id="ciPreco">R$ 260,00</span>
+                  </div>
+                  <div class="ci-qtde">
+                    <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
+                    <div id="ciQtde"><span>1</span></div>
+                    <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
+                  </div>
+                </div>
+                <div class="cart-item-right">
+                  <span><i class="fa-solid fa-trash"></i></span>
+                </div>
+              </div>
+              <div class="cart-item">
+                <div class="cart-item-img">
+                  <img src="./img/prod2.png" alt="">
+                </div>
+                <div class="cart-item-info">
+                  <p id="ciNome">Vaso Dourado Moderno</p>
+                  <div class="ci-preco">
+                    <span id="ciPreco">R$ 260,00</span>
+                  </div>
+                  <div class="ci-qtde">
+                    <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
+                    <div id="ciQtde"><span>1</span></div>
+                    <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
+                  </div>
+                </div>
+                <div class="cart-item-right">
+                  <span><i class="fa-solid fa-trash"></i></span>
+                </div>
+              </div>
+        </div>
+        <div class="card-right">
+            <span>Total:</span>
+            <span id="precTotal">R$ 520,00</span>
+            <button class="fin-compra">Finalizar Compra</button>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+    <div class='modal'>
+        <div class='modal-container'>
+            <span class='close' onclick='toggleModal()'>×</span>
+            <div class="pag-container">
+                <p>Pague por <span>PIX <i class="fa-brands fa-pix"></i></span></p>
+                <span>Escaneie o Código abaixo:</span>
+                <div class="scan-container">
+                    <div class="scan-zone">
+                        <img src="http://api.qrserver.com/v1/create-qr-code/?data=00020126570014br.gov.bcb.pix0111527007438900220Compra de X produtos52040000530398654045.005802BR5909La Maison6008Pedreira6268056462d86fbba5a055bc9ac7264d9ad71663cca2672b262c9f728c1c3a5d72d67189630487DD&size=350x350" alt="">
+                    </div>
+                </div>
+                <div class="copia-cola">
+                    <span>00020126570014br.gov.bcb.pix0111527007438900220Compra de X produtos52040000530398654045.005802BR5909La Maison6008Pedreira6268056462d86fbba5a055bc9ac7264d9ad71663cca2672b262c9f728c1c3a5d72d67189630487DD</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/c68ccb89e7.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="script.js"></script>
+  </body>
+</html>
