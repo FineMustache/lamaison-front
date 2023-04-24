@@ -145,54 +145,108 @@
     <main>
       <div class="card-container">
         <div class="card-left">
-            <div class="cart-item">
-                <div class="cart-item-img">
-                  <img src="./img/prod2.png" alt="">
-                </div>
-                <div class="cart-item-info">
-                  <p id="ciNome">Vaso Dourado Moderno</p>
-                  <div class="ci-preco">
-                    <span id="ciPreco">R$ 260,00</span>
-                  </div>
-                  <div class="ci-qtde">
-                    <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
-                    <div id="ciQtde"><span>1</span></div>
-                    <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
-                  </div>
-                </div>
-                <div class="cart-item-right">
-                  <span><i class="fa-solid fa-trash"></i></span>
-                </div>
+          <div class="cart-item">
+            <div class="cart-item-img">
+              <img src="./img/prod1.png" alt="" />
+            </div>
+            <div class="cart-item-info">
+              <p id="ciNome">Pintura Abstrata Fria</p>
+              <div class="ci-preco">
+                <span id="ciPreco">R$ 260,00</span>
               </div>
-              <div class="cart-item">
-                <div class="cart-item-img">
-                  <img src="./img/prod2.png" alt="">
-                </div>
-                <div class="cart-item-info">
-                  <p id="ciNome">Vaso Dourado Moderno</p>
-                  <div class="ci-preco">
-                    <span id="ciPreco">R$ 260,00</span>
-                  </div>
-                  <div class="ci-qtde">
-                    <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
-                    <div id="ciQtde"><span>1</span></div>
-                    <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
-                  </div>
-                </div>
-                <div class="cart-item-right">
-                  <span><i class="fa-solid fa-trash"></i></span>
-                </div>
+              <div class="ci-qtde">
+                <button id="ciQtdeMin">
+                  <i class="fa-sharp fa-solid fa-minus"></i>
+                </button>
+                <div id="ciQtde"><span>1</span></div>
+                <button id="ciQtdePlus">
+                  <i class="fa-sharp fa-solid fa-plus"></i>
+                </button>
               </div>
+            </div>
+            <div class="cart-item-right">
+              <span><i class="fa-solid fa-trash"></i></span>
+            </div>
+          </div>
+          <div class="cart-item">
+            <div class="cart-item-img">
+              <img src="./img/prod1.png" alt="" />
+            </div>
+            <div class="cart-item-info">
+              <p id="ciNome">Pintura Abstrata Fria</p>
+              <div class="ci-preco">
+                <span id="ciPreco">R$ 260,00</span>
+              </div>
+              <div class="ci-qtde">
+                <button id="ciQtdeMin">
+                  <i class="fa-sharp fa-solid fa-minus"></i>
+                </button>
+                <div id="ciQtde"><span>1</span></div>
+                <button id="ciQtdePlus">
+                  <i class="fa-sharp fa-solid fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="cart-item-right">
+              <span><i class="fa-solid fa-trash"></i></span>
+            </div>
+          </div>
+          <div class="cart-item">
+            <div class="cart-item-img">
+              <img src="./img/prod1.png" alt="" />
+            </div>
+            <div class="cart-item-info">
+              <p id="ciNome">Pintura Abstrata Fria</p>
+              <div class="ci-preco">
+                <span id="ciPreco">R$ 260,00</span>
+              </div>
+              <div class="ci-qtde">
+                <button id="ciQtdeMin">
+                  <i class="fa-sharp fa-solid fa-minus"></i>
+                </button>
+                <div id="ciQtde"><span>1</span></div>
+                <button id="ciQtdePlus">
+                  <i class="fa-sharp fa-solid fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="cart-item-right">
+              <span><i class="fa-solid fa-trash"></i></span>
+            </div>
+          </div>
+          <div class="cart-item">
+            <div class="cart-item-img">
+              <img src="./img/prod1.png" alt="" />
+            </div>
+            <div class="cart-item-info">
+              <p id="ciNome">Pintura Abstrata Fria</p>
+              <div class="ci-preco">
+                <span id="ciPreco">R$ 260,00</span>
+              </div>
+              <div class="ci-qtde">
+                <button id="ciQtdeMin">
+                  <i class="fa-sharp fa-solid fa-minus"></i>
+                </button>
+                <div id="ciQtde"><span>1</span></div>
+                <button id="ciQtdePlus">
+                  <i class="fa-sharp fa-solid fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="cart-item-right">
+              <span><i class="fa-solid fa-trash"></i></span>
+            </div>
+          </div>
         </div>
         <div class="card-right">
             <span>Total:</span>
             <span id="precTotal">R$ 520,00</span>
-            <button class="fin-compra">Finalizar Compra</button>
+            <button class="fin-compra" onclick="toggleModal()">Finalizar Compra</button>
         </div>
       </div>
     </main>
     <footer></footer>
-    <div class='modal'>
+    <div class='modal escondido'>
         <div class='modal-container'>
             <span class='close' onclick='toggleModal()'>×</span>
             <div class="pag-container">
@@ -200,11 +254,13 @@
                 <span>Escaneie o Código abaixo:</span>
                 <div class="scan-container">
                     <div class="scan-zone">
-                        <img src="http://api.qrserver.com/v1/create-qr-code/?data=00020126570014br.gov.bcb.pix0111527007438900220Compra de X produtos52040000530398654045.005802BR5909La Maison6008Pedreira6268056462d86fbba5a055bc9ac7264d9ad71663cca2672b262c9f728c1c3a5d72d67189630487DD&size=350x350" alt="">
+                        <img src="http://api.qrserver.com/v1/create-qr-code/?data=00020126570014br.gov.bcb.pix0111199880713140220Compra de X produtos520400005303986540510.005802BR5909La Maison6008Pedreira62680564ed7a1b82bad29eb6633b0ca9b2191fe1aa74528667fcd6579a7b5ed9e24b18276304DB4F&size=350x350" alt="">
                     </div>
                 </div>
+                <p class="pag-ou">OU COPIE E COLE</p>
                 <div class="copia-cola">
-                    <span>00020126570014br.gov.bcb.pix0111527007438900220Compra de X produtos52040000530398654045.005802BR5909La Maison6008Pedreira6268056462d86fbba5a055bc9ac7264d9ad71663cca2672b262c9f728c1c3a5d72d67189630487DD</span>
+                    <input readonly value="00020126570014br.gov.bcb.pix0111527007438900220Compra de X produtos5204000053039865406100.005802BR5909La Maison6008Pedreira626805647acab65fd2341cebc7938dfefeec88a7b9cc55e179b2525b9e8ba11649e2cdb36304E7BD" type="text" id="copy">
+                    <i class="fa-sharp fa-regular fa-copy" onclick="copy(this)"></i>
                 </div>
             </div>
         </div>

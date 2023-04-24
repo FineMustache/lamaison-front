@@ -1,742 +1,790 @@
 .section-items::-webkit-scrollbar {
-    height: 5px;
-  }
-  
-  .section-items::-webkit-scrollbar-track {
-    background: #979797;
-  }
-  
-  .section-items::-webkit-scrollbar-thumb {
-    background: #353535;
-  }
-  
-  .section-items::-webkit-scrollbar-thumb:hover {
-    background: black;
-  }
-  
-  
-  * {
-      box-sizing: border-box;
-    }
-  
-  body,
-  html {
-    margin: 0;
-    padding: 0;
-    font-family: 'kaneda_gothic';
-    background-color: #e0e0e0;
-  }
-  
-  p{
-    letter-spacing: 1px;
-  }
-  
-  body {
-    display: flex;
-    flex-direction: column;
-    height: min-content;
-  }
-  
-  button {
-    cursor: pointer;
-  }
-  
-  header {
-      background: rgb(0, 0, 0);
-      
-    }
-  
-    .header-wrap{
-      padding: 20px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-    
-    header img {
-      height: 50px;
-    }
-    
-    nav ul {
-      display: flex;
-      list-style: none;
-      align-items: center;
-    }
-    
-    nav li {
-      margin-right: 20px;
-    }
-    
-    nav a {
-      text-decoration: none;
-      color: white;
-      transition: color 0.3s ease;
-      font-family: "airwavesregular";
-      font-size: 18pt;
-      position: relative;
-      color: #fff;
-    }
-  
-  nav button{
-    font-size: 26pt;
-    background-color: black;
-    color: white;
-    border: none;
-  }
-  
-  .cart{
-    position: relative;
-  }
-  
-  .cart-length{
-    width: 30px;
-    height: 30px;
-    position: absolute;
-    color: white;
-    border-radius: 50%;
-    border: 2px solid white;
-    top: -10px;
-    right: -10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'kaneda_gothic_medium';
-    outline: 3px solid black;
-    background-color: #000;
-    font-size: 18pt;
-  }
-  
-  .cart-container{
-    position: absolute;
-    padding: 10px;
-    background-color: white;
-    box-shadow: 0 0 20px rgba(0, 0, 0, .5);
-    right: 0;
-    width: 600px;
-    z-index: 10;
-  }
-  
-  .escondido{
-    display: none!important;
-  }
-  
-  .cart-button{
-    cursor: pointer;
-  }
-  
-  .cart-items{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  
-  .cart-item{
-    display: flex;
-    gap: 10px;
-    font-size: 22pt;
-    height: 170px;
-    align-items: center;
-  }
-  
-  .cart-item-img{
-    display: flex;
-    align-items: center;
-  }
-  
-  .cart-item img{
-    width: 150px;
-    height: 170px;
-    object-fit: cover;
-  }
-  
-  .cart-item-info{
-    height: 100%;
-    flex: 1;
-  }
-  
-  .ci-preco{
-    display: flex;
-    flex-direction: column;
-  }
-  
-  #ciPrecoOr{
-    text-decoration: line-through;
-    text-decoration-thickness: 1px;
-    font-size: 22pt;
-  }
-  
-  #ciPreco{
-    font-size: 30pt;
-    font-family: 'kaneda_gothic_medium';
-  }
-  
-  #ciNome{
-    margin: 0;
-  }
-  
-  #ciItemFav{
-    font-size: 18pt;
-    margin-left: 5px;
-  }
-  
-  .ci-qtde{
-    display: flex;
-    font-size: 14pt!important;
-    align-items: center;
-    border: 1px solid black;
-    width: max-content;
-    height: 25px;
-    vertical-align: text-top;
-  }
-  
-  .ci-qtde button{
-    background-color: transparent;
-    color: black;
-    font-family: 'kaneda_gothic';
-    width: 30px;
-    text-align: center;
-  }
-  
-  .cart-item-right{
-    width: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  #ciQtdeMin{
-    border-width: 0 1px 0 0;
-    border-right: 1px solid black;
-    height: 25px;
-    font-size: 10pt;
-  }
-  
-  #ciQtdePlus{
-    border-width: 0 0 0 1px;
-    border-left: 1px solid black;
-    height: 25px;
-    font-size: 10pt;
-  }
-  
-  #ciQtde{
-    text-align: center;
-    width: 20px;
-    height: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .ci-add-fav{
-    margin-top: 10px;
-  }
-  
-  .ci-add-fav i{
-    cursor: pointer;
-  }
-  
-  .cart-total{
-    font-size: 32pt;
-  }
-  
-  .cart-total > span:nth-child(2){
-    font-family: 'kaneda_gothic_medium';
-  }
-  
-  .cart-item-right span{
-    cursor: pointer;
-  }
-  
-  .btn-finalizar{
-    font-family: 'kaneda_gothic';
-    width: 100%;
-    padding: 15px;
-    margin-top: 10px;
-  }
-  
-  main{
-      min-height: calc(100vh - 100px);
-      width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      padding-top: 50px;
-  }
-  
-  .prod-page{
-      min-height: 100%;
-      width: 100%;
-  }
-  
-  .prod-tags{
-      display: flex;
-      justify-content: start;
-      gap: 5px;
-    }
-    
-    .tag{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 10px 15px;
-      background-color: #000;
-      color: white;
-      font-size: 18pt;
-      text-transform: capitalize;
-      cursor: pointer;
-    }
-    
-    #prodNome{
-      font-family: 'kaneda_gothic_medium';
-      font-size: 26pt;
-    }
-  
-    .prod-section {
-      display: flex;
-      margin-top: 15px;
-      margin-bottom: 15px;
-    }
-  
-    .prod-preco{
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-    }
-    
-    #prodPrecoOr{
-      text-decoration: line-through;
-      text-decoration-thickness: 1px;
-      font-size: 22pt;
-    }
-    
-    #prodPreco{
-      font-size: 30pt;
-      font-family: 'kaneda_gothic_medium';
-    }
-  
-    .prod-preco > p > span{
-      font-family: 'kaneda_gothic_medium';
-      text-decoration: underline;
-    }
-  
-    .prod-image{
-      position: relative;
-      height: 600px;
-      width: 450px;
-    }
-  
-    .prod-image::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: #e1e1e1; /* Cor de fundo do esqueleto */
-      animation: pulse 1.5s infinite ease-in-out;
-    }
-    
-    @keyframes pulse {
-      0% {
-        opacity: 0.4;
-      }
-      50% {
-        opacity: 0.6;
-      }
-      100% {
-        opacity: 0.4;
-      }
-    }
-  
-    .prod-image > img{
-      height: 100%;
-      width: 450px;
-      display: none;
-      object-fit: cover;
-    }
-  
-    .prod-image img.loaded {
-      display: block;
-    }
-  
-    .prod-info{
-      display: flex;
-      flex-direction: column;
-    }
-  
-    .prod-image.loaded::before {
-      display: none;
-    }
-  
-  .prod-info-container{
-    display: flex;
-    flex-direction: column;
-    font-size: 20pt;
-    justify-content: space-between;
-    padding: 20px 0 20px 20px;
-  }
-  
-  .prod-med{
-    display: flex;
-    flex-direction: column;
-    letter-spacing: 1px;
-    font-size: 18pt;
-  }
-  
-  .prod-med > span{
-    font-family: 'kaneda_gothic_medium';
-    font-size: 22pt;
-  }
-  
-  .prod-med > div{
-    display: flex;
-    gap: 10px;
-  }
-  
-  .prod-med > div > span{
-    font-family: 'kaneda_gothic_medium';
-  }
-  
-  .prod-med > div > span > span{
-    font-family: 'kaneda_gothic';
-  }
-  
-  .btn-add-cart{
-    padding: 15px 20px;
-    font-size: 20pt;
-    font-family: 'kaneda_gothic';
-    letter-spacing: 1px;
-    color: white;
-    background-color: black;
-    border: none;
-  }
-  
-  .add-fav{
-    background-color: transparent;
-    border: 1px solid black;
-    font-size: 12pt;
-  }
-  
-  .buttons{
-    margin-top: 20px;
-    display: flex;
-  }
-  
-  .cur-item-fav-on{
-    color: red!important;
-    opacity: 1!important;
-  }
-  
-  .preview-3d-p{
-    text-decoration: underline;
-    font-family: 'kaneda_gothic_medium';
-    cursor: pointer;
-  }
-  
-  .prod-preco > p:last-child{
-    margin-top: 0;
-  }
-  
-  .scan-container{
-    display: flex;
-    width: 350px;
-    justify-content: space-between;
-    color: white;
-    align-items: center;
-    height: 350px;
-    font-size: 20pt;
-    margin-bottom: 50px;
-    /*Horizontal*/
-    background-image: linear-gradient(to right, black 33%, rgba(255,255,255,0) 0%);
-    background-position: bottom;
-    background-size: 3px 1px;
-    background-repeat: repeat-x;
+  height: 5px;
+}
 
-    /*Vertical*/
-    background-image: linear-gradient(black 33%, rgba(255,255,255,0) 0%);
-    background-position: right;
-    background-size: 1px 3px;
-    background-repeat: repeat-y;
-  }
-  
-  .scan-container img{
-    height: 100%;
-    aspect-ratio: 1/1;
-    border: 5px solid white;
-  }
-  
-  .scan-info{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 20px;
-  }
-  
-  .scan-info > p:nth-child(1){
-    font-size: 24pt;
-    margin-bottom: 0;
-    font-family: 'kaneda_gothic_medium';
-  }
-  
-  .scan-info a{
-    color: white;
-    font-family: 'kaneda_gothic_medium';
-  }
-  
-  .scan-zone{
-    height: 100%;
-  }
-  
-  .item-section .section-top{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 20pt;
-    font-family: 'kaneda_gothic_medium';
-    margin-bottom: 10px;
-  }
-  
-  .item-section .h-line{
-    flex: 1;
-    height: 1px;
-    background-color: black;
-  }
-  
-  .item-section .section-items{
-    display: flex;
-    justify-content: start;
-    gap: 15px;
-    overflow-x: auto;
-    position: relative;
-    padding-bottom: 10px;
-  }
-  
-  .item-section .item-card{
-    display: flex;
-    flex-direction: column;
-    min-width: calc(100% / 4 - 15px);
-    position: relative;
-  }
-  
-  .item-section .item-card-image{
-    height: 60%;
-    width: 100%;
-  }
-  
-  .item-section .item-card-image > img{
-    height: calc(500px * 60 / 100);
-    width: 100%;
-    object-fit: cover;
-    cursor: pointer;
-  }
-  
-  .item-section .item-card-info{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-top: 10px;
-  }
-  
-  .item-section #prodDesc{
-    margin: 0;
-  }
-  
-  .item-section #prodNome{
-    font-family: 'kaneda_gothic_medium';
-    font-size: 22pt;
-  }
-  
-  .item-section .prod-tags{
-    display: flex;
-    justify-content: start;
-    gap: 5px;
-    overflow-x: hidden;
-  }
-  
-  .item-section .tag{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 15px;
-    background-color: #000;
-    color: white;
-    font-size: 14pt;
-    text-transform: capitalize;
-    cursor: pointer;
-  }
-  
-  .item-section .prod-preco{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  
-  .item-section #prodPrecoOr{
-    text-decoration: line-through;
-    text-decoration-thickness: 1px;
-    font-size: 18pt;
-  }
-  
-  .item-section #prodPreco{
-    font-size: 20pt;
-    font-family: 'kaneda_gothic_medium';
-  }
-  
-  .item-section .btn-add-cart{
-    width: 100%;
-    background-color: #000;
-    color: white;
-    font-size: 18pt;
-    padding: 10px;
-    border: none;
-  }
-  
-  #itemFav{
-    position: absolute;
-    z-index: 2;
-    color: #000000;
-    opacity: 0;
-    right: 5px;
-    top: 5px;
-    cursor: pointer;
-  }
-  
-  .item-card:hover #itemFav{
-    opacity: .6;
-  }
-  
-  #itemFav:hover{
-    opacity: 1!important;
-  }
-  
-  .item-fav-on{
-    color: red!important;
-    opacity: 1!important;
-  }
-  
-  .section-top > span > span{
-    text-decoration: underline;
-    text-decoration-skip-ink: none;
-    cursor: pointer;
-  }
-  
-  .item-section{
-    margin-top: 50px;
-  }
-  
-  footer{
-    height: 150px;
-    background-color: black;
-    margin-top: 50px;
-  }
+.section-items::-webkit-scrollbar-track {
+  background: #979797;
+}
 
-  .card-container{
-    background-color: #fff;
-    width: 100%;
-    height: 600px;
-    display: flex;
-  }
+.section-items::-webkit-scrollbar-thumb {
+  background: #353535;
+}
 
-  .card-left{
-    width: 65%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    padding: 25px;
-  }
+.section-items::-webkit-scrollbar-thumb:hover {
+  background: black;
+}
 
-  .card-right{
-    width: 35%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background-color: #000;
-    color: white;
-    padding: 25px;
-    font-size: 28pt;
-    align-items: center;
-    position: relative;
-    justify-content: center;
-  }
+* {
+  box-sizing: border-box;
+}
 
-  .card-left img{
-    height: 110px;
-    width: 90px;
-  }
+body,
+html {
+  margin: 0;
+  padding: 0;
+  font-family: "kaneda_gothic";
+  background-color: #e0e0e0;
+}
 
-  .card-left .cart-item-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
+p {
+  letter-spacing: 1px;
+}
 
-  .card-left .cart-item{
-    border-bottom: 1px solid #c5c5c5;
-    height: 120px;
-  }
+body {
+  display: flex;
+  flex-direction: column;
+  height: min-content;
+}
 
-  .card-right > button{
-    position: absolute;
-    bottom: 25px;
-    width: calc(100% - 50px);
-    font-size: 28pt;
-    font-family: 'kaneda_gothic';
-    padding: 10px;
-    border: 2px solid white;
-    background-color: black;
-    color: white;
-  }
+button {
+  cursor: pointer;
+}
 
-  .card-right > button:hover{
-    background-color: white;
-    color: black;
-  }
+header {
+  background: rgb(0, 0, 0);
+}
 
+.header-wrap {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
 
-  #precTotal{
-    font-size: 38pt;
-    margin-top: 10px;
-  }
+header img {
+  height: 50px;
+}
 
-  .modal{
-    width: 100%;
-    height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0,0,0,.5);
-  }
-  
-  .modal-container{
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 10px;
-    position: relative;
-    width: 1200px;
-    height: 90vh;
-  }
-  
-  .close{
-    position: absolute;
-    top: 5px;
-    right: 15px;
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 35pt;
-  }
-  
-  .escondido{
-    display: none
-  }
+nav ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
 
-  .pag-container{
-    width: 100%;
-    height: 100%;
-    overflow-y: auto;
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s ease;
+  font-family: "airwavesregular";
+  font-size: 18pt;
+  position: relative;
+  color: #fff;
+}
+
+nav button {
+  font-size: 26pt;
+  background-color: black;
+  color: white;
+  border: none;
+}
+
+.cart {
+  position: relative;
+}
+
+.cart-length {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  color: white;
+  border-radius: 50%;
+  border: 2px solid white;
+  top: -10px;
+  right: -10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "kaneda_gothic_medium";
+  outline: 3px solid black;
+  background-color: #000;
+  font-size: 18pt;
+}
+
+.cart-container {
+  position: absolute;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  right: 0;
+  width: 600px;
+  z-index: 10;
+}
+
+.escondido {
+  display: none !important;
+}
+
+.cart-button {
+  cursor: pointer;
+}
+
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cart-item {
+  display: flex;
+  gap: 10px;
+  font-size: 22pt;
+  height: 170px;
+  align-items: center;
+}
+
+.cart-item-img {
+  display: flex;
+  align-items: center;
+}
+
+.cart-item img {
+  width: 150px;
+  height: 170px;
+  object-fit: cover;
+}
+
+.cart-item-info {
+  height: 100%;
+  flex: 1;
+}
+
+.ci-preco {
+  display: flex;
+  flex-direction: column;
+}
+
+#ciPrecoOr {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  font-size: 22pt;
+}
+
+#ciPreco {
+  font-size: 30pt;
+  font-family: "kaneda_gothic_medium";
+}
+
+#ciNome {
+  margin: 0;
+}
+
+#ciItemFav {
+  font-size: 18pt;
+  margin-left: 5px;
+}
+
+.ci-qtde {
+  display: flex;
+  font-size: 14pt !important;
+  align-items: center;
+  border: 1px solid black;
+  width: max-content;
+  height: 25px;
+  vertical-align: text-top;
+}
+
+.ci-qtde button {
+  background-color: transparent;
+  color: black;
+  font-family: "kaneda_gothic";
+  width: 30px;
+  text-align: center;
+}
+
+.cart-item-right {
+  width: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#ciQtdeMin {
+  border-width: 0 1px 0 0;
+  border-right: 1px solid black;
+  height: 25px;
+  font-size: 10pt;
+}
+
+#ciQtdePlus {
+  border-width: 0 0 0 1px;
+  border-left: 1px solid black;
+  height: 25px;
+  font-size: 10pt;
+}
+
+#ciQtde {
+  text-align: center;
+  width: 20px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ci-add-fav {
+  margin-top: 10px;
+}
+
+.ci-add-fav i {
+  cursor: pointer;
+}
+
+.cart-total {
+  font-size: 32pt;
+}
+
+.cart-total > span:nth-child(2) {
+  font-family: "kaneda_gothic_medium";
+}
+
+.cart-item-right span {
+  cursor: pointer;
+}
+
+.btn-finalizar {
+  font-family: "kaneda_gothic";
+  width: 100%;
+  padding: 15px;
+  margin-top: 10px;
+}
+
+main {
+  min-height: calc(100vh - 100px);
+  width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-top: 50px;
+}
+
+.prod-page {
+  min-height: 100%;
+  width: 100%;
+}
+
+.prod-tags {
+  display: flex;
+  justify-content: start;
+  gap: 5px;
+}
+
+.tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #000;
+  color: white;
+  font-size: 18pt;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+#prodNome {
+  font-family: "kaneda_gothic_medium";
+  font-size: 26pt;
+}
+
+.prod-section {
+  display: flex;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.prod-preco {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#prodPrecoOr {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  font-size: 22pt;
+}
+
+#prodPreco {
+  font-size: 30pt;
+  font-family: "kaneda_gothic_medium";
+}
+
+.prod-preco > p > span {
+  font-family: "kaneda_gothic_medium";
+  text-decoration: underline;
+}
+
+.prod-image {
+  position: relative;
+  height: 600px;
+  width: 450px;
+}
+
+.prod-image::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e1e1e1; /* Cor de fundo do esqueleto */
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.4;
   }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.prod-image > img {
+  height: 100%;
+  width: 450px;
+  display: none;
+  object-fit: cover;
+}
+
+.prod-image img.loaded {
+  display: block;
+}
+
+.prod-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.prod-image.loaded::before {
+  display: none;
+}
+
+.prod-info-container {
+  display: flex;
+  flex-direction: column;
+  font-size: 20pt;
+  justify-content: space-between;
+  padding: 20px 0 20px 20px;
+}
+
+.prod-med {
+  display: flex;
+  flex-direction: column;
+  letter-spacing: 1px;
+  font-size: 18pt;
+}
+
+.prod-med > span {
+  font-family: "kaneda_gothic_medium";
+  font-size: 22pt;
+}
+
+.prod-med > div {
+  display: flex;
+  gap: 10px;
+}
+
+.prod-med > div > span {
+  font-family: "kaneda_gothic_medium";
+}
+
+.prod-med > div > span > span {
+  font-family: "kaneda_gothic";
+}
+
+.btn-add-cart {
+  padding: 15px 20px;
+  font-size: 20pt;
+  font-family: "kaneda_gothic";
+  letter-spacing: 1px;
+  color: white;
+  background-color: black;
+  border: none;
+}
+
+.add-fav {
+  background-color: transparent;
+  border: 1px solid black;
+  font-size: 12pt;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+}
+
+.cur-item-fav-on {
+  color: red !important;
+  opacity: 1 !important;
+}
+
+.preview-3d-p {
+  text-decoration: underline;
+  font-family: "kaneda_gothic_medium";
+  cursor: pointer;
+}
+
+.prod-preco > p:last-child {
+  margin-top: 0;
+}
+
+.scan-container {
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  align-items: center;
+  font-size: 20pt;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.scan-container img {
+  height: 380px;
+  aspect-ratio: 1/1;
+  border: 5px solid white;
+}
+
+.scan-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+}
+
+.scan-info > p:nth-child(1) {
+  font-size: 24pt;
+  margin-bottom: 0;
+  font-family: "kaneda_gothic_medium";
+}
+
+.scan-info a {
+  color: white;
+  font-family: "kaneda_gothic_medium";
+}
+
+.scan-zone {
+  height: 390px;
+  width: 390px;
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23000000FF' stroke-width='9' stroke-dasharray='12%2c 28' stroke-dashoffset='31' stroke-linecap='square'/%3e%3c/svg%3e");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-section .section-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20pt;
+  font-family: "kaneda_gothic_medium";
+  margin-bottom: 10px;
+}
+
+.item-section .h-line {
+  flex: 1;
+  height: 1px;
+  background-color: black;
+}
+
+.item-section .section-items {
+  display: flex;
+  justify-content: start;
+  gap: 15px;
+  overflow-x: auto;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.item-section .item-card {
+  display: flex;
+  flex-direction: column;
+  min-width: calc(100% / 4 - 15px);
+  position: relative;
+}
+
+.item-section .item-card-image {
+  height: 60%;
+  width: 100%;
+}
+
+.item-section .item-card-image > img {
+  height: calc(500px * 60 / 100);
+  width: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.item-section .item-card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.item-section #prodDesc {
+  margin: 0;
+}
+
+.item-section #prodNome {
+  font-family: "kaneda_gothic_medium";
+  font-size: 22pt;
+}
+
+.item-section .prod-tags {
+  display: flex;
+  justify-content: start;
+  gap: 5px;
+  overflow-x: hidden;
+}
+
+.item-section .tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #000;
+  color: white;
+  font-size: 14pt;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.item-section .prod-preco {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.item-section #prodPrecoOr {
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  font-size: 18pt;
+}
+
+.item-section #prodPreco {
+  font-size: 20pt;
+  font-family: "kaneda_gothic_medium";
+}
+
+.item-section .btn-add-cart {
+  width: 100%;
+  background-color: #000;
+  color: white;
+  font-size: 18pt;
+  padding: 10px;
+  border: none;
+}
+
+#itemFav {
+  position: absolute;
+  z-index: 2;
+  color: #000000;
+  opacity: 0;
+  right: 5px;
+  top: 5px;
+  cursor: pointer;
+}
+
+.item-card:hover #itemFav {
+  opacity: 0.6;
+}
+
+#itemFav:hover {
+  opacity: 1 !important;
+}
+
+.item-fav-on {
+  color: red !important;
+  opacity: 1 !important;
+}
+
+.section-top > span > span {
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  cursor: pointer;
+}
+
+.item-section {
+  margin-top: 50px;
+}
+
+footer {
+  height: 150px;
+  background-color: black;
+  margin-top: 50px;
+}
+
+.card-container {
+  background-color: #fff;
+  width: 100%;
+  height: 600px;
+  display: flex;
+}
+
+.card-left {
+  width: 65%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+}
+
+.card-right {
+  width: 35%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #000;
+  color: white;
+  padding: 25px;
+  font-size: 28pt;
+  align-items: center;
+  position: relative;
+  justify-content: center;
+}
+
+.card-left img {
+  height: 110px;
+  width: 90px;
+}
+
+.card-left .cart-item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-left .cart-item {
+  border-bottom: 1px solid #c5c5c5;
+  height: 120px;
+}
+
+.card-right > button {
+  position: absolute;
+  bottom: 25px;
+  width: calc(100% - 50px);
+  font-size: 28pt;
+  font-family: "kaneda_gothic";
+  padding: 10px;
+  border: 2px solid white;
+  background-color: black;
+  color: white;
+}
+
+.card-right > button:hover {
+  background-color: white;
+  color: black;
+}
+
+#precTotal {
+  font-size: 38pt;
+  margin-top: 10px;
+}
+
+.modal {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-container {
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
+  position: relative;
+  width: 1200px;
+  height: 90vh;
+}
+
+.close {
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 35pt;
+}
+
+.escondido {
+  display: none;
+}
+
+.pag-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 20pt;
+}
+
+.pag-container > p {
+  font-size: 28pt;
+}
+
+.pag-container > p > span {
+  color: rgb(75, 184, 169);
+}
+
+.copia-cola {
+  width: 80%;
+  overflow: hidden;
+  padding: 10px;
+  border: 2px solid rgb(75, 184, 169);
+  position: relative;
+}
+
+.copia-cola::after {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 100%;
+  top: 0;
+  background: rgb(2,0,36);
+  background: linear-gradient(90deg, rgba(2,0,36,0) 0%, rgba(255,255,255,1) 66%);
+  right: 0;
+}
+
+.copia-cola input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  font-family: 'kaneda_gothic';
+  font-size: 20pt;
+  white-space: nowrap;
+  color: #96969A;
+}
+
+input:focus {
+  outline: none;
+}
+
+.copia-cola > i{
+  position: absolute;
+  top: calc(50% - 15px);
+  right: 10px;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.pag-ou{
+  font-size: 16pt!important;
+}

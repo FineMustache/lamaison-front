@@ -3,12 +3,23 @@
 //   window.location.href = '../main/index.html'
 // }
 
-var prod
+function copy(i) {
+  var copyText = document.getElementById("copy");
 
-fetch('http://10.87.207.16:5000/produto/' + idUrl, {method: 'GET'})
-  .then(response => response.json())
-  .then(response => prod = response)
-  .catch(err => console.error(err));
+  // Select the text field
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); // For mobile devices
+
+   // Copy the text inside the text field
+  navigator.clipboard.writeText(copyText.value);
+
+  i.setAttribute('class', 'fa-solid fa-check')
+  setTimeout(() => {
+    i.setAttribute('class', 'fa-sharp fa-regular fa-copy')
+  }, 3000)
+
+  copyText.setSelectionRange(0,0)
+}
 
 
 function carregar() {
@@ -56,5 +67,9 @@ function toggleCart() {
 
 function toggleModal(){
     document.querySelector('.modal').classList.toggle('escondido')
-    document.body.style.overflow = 'hidden'
+    if (!document.querySelector('.modal').classList.contains('escondido')) {
+      document.body.style.overflow = 'hidden' 
+    } else {
+      document.body.style.overflow = 'auto'
+    }
 }
