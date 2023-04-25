@@ -80,7 +80,8 @@ function carregarProdutos() {
           if (p.desconto > 0) {
             card.querySelector('#prodPrecoOr').innerHTML = 'R$ ' + Number(p.valor).toFixed(2).toString().replace('.', ',')
             card.querySelector('#prodPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')
-            card.querySelector('#prodPrecoOr').classList.remove('escondido')
+            card.querySelector('#desconto').innerHTML = p.desconto + '%'
+            card.querySelector('.desc-area').classList.remove('escondido')
           } else {
             card.querySelector('#prodPreco').innerHTML = 'R$ ' + Number(p.valor).toFixed(2).toString().replace('.', ',')
           }

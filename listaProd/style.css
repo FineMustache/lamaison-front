@@ -295,6 +295,33 @@ main {
   margin: 0 15px;
 }
 
+.prod-preco>div{
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.desc-indicator{
+  font-family: 'kaneda_gothic_medium';
+  position: relative;
+}
+
+.desc-indicator > i {
+  rotate: -45deg;
+  font-size: 50px;
+}
+
+#desconto{
+  position: absolute;
+  font-size: 20px;
+  top: calc(50% - 10px);
+  left: 2px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  letter-spacing: 1px;
+}
+
 .item-card-image {
   height: calc(500px * 60 / 100);
   width: 100%;
@@ -388,7 +415,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  height: 55px;
+  height: 81px;
   justify-content: center;
   flex: 1;
   padding-bottom: 48px;

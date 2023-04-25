@@ -14,10 +14,10 @@ function changeSlide(n) {
 }
 
 function showSlide(n) {
-let slideWidth = slides[0].clientWidth;
+  let slideWidth = slides[0].clientWidth;
   if (n > slides.length) {
     slideIndex = 1;
-  }    
+  }
   if (n < 1) {
     slideIndex = slides.length;
   }
@@ -25,8 +25,8 @@ let slideWidth = slides[0].clientWidth;
 
   }, 250)
   borrarse()
-  setTimeout(() => document.querySelector('#carouselText').innerHTML = textCarousel[slideIndex-1], 250)
-  
+  setTimeout(() => document.querySelector('#carouselText').innerHTML = textCarousel[slideIndex - 1], 250)
+
   slidesContainer.style.transform = `translateX(${-slideWidth * (slideIndex - 1)}px)`;
 }
 
@@ -35,29 +35,26 @@ function borrarse() {
   setTimeout(() => document.querySelector('#carouselText').classList.remove('borrouse'), 500)
 }
 
-function setFav(el){
+function setFav(el) {
   el.classList.toggle('fa-regular')
   el.classList.toggle('fa-solid')
   el.classList.toggle('item-fav-on')
 }
 
-
-
-
 function hoverFav(index, el) {
   if (!el.classList.contains('cur-item-fav-on')) {
-      if (index == 1) {
-          el.classList.remove('fa-regular')
-          el.classList.add('fa-solid')
-      } else {
-          el.classList.add('fa-regular')
-          el.classList.remove('fa-solid')
-      }
+    if (index == 1) {
+      el.classList.remove('fa-regular')
+      el.classList.add('fa-solid')
+    } else {
+      el.classList.add('fa-regular')
+      el.classList.remove('fa-solid')
+    }
   }
-  
+
 }
 
-function setCartFav(el){
+function setCartFav(el) {
   el.classList.remove('fa-regular')
   el.classList.add('fa-solid')
   el.classList.toggle('cur-item-fav-on')
@@ -65,4 +62,59 @@ function setCartFav(el){
 
 function toggleCart() {
   document.querySelector('.cart-container').classList.toggle('escondido')
+}
+
+function carregar() {
+  carregarProdutos()
+}
+
+function carregarProdutos() {
+
+  fetch("http://localhost:5000/produto/destaques", {
+    "method": "GET"
+  })
+    .then(response => response.json())
+    .then(response => {
+      response.forEach(p => {
+        let card = document.querySelector('.model-hl').cloneNode(true)
+        card.querySelector('#prodNome').innerHTML = p.nome
+        card.querySelector('#prodNome').addEventListener('click', () => {
+          window.location.href = "../prod/index.html?idProd=" + p.id
+        })
+        card.querySelector('#prodDesc').innerHTML = p.descricao
+        console.log(p)
+        card.querySelector('.prod-tags').innerHTML = ""
+        p.categorias.forEach(c => {
+          let span = document.createElement('span')
+          span.classList.add('tag')
+          span.innerHTML = c.categoria.nome
+          span.addEventListener('click', () => {
+            window.location.href = "../listaProd/index.html?tag=" + (c.categoria.nome)
+          })
+          card.querySelector('.prod-tags').appendChild(span)
+        })
+        card.querySelector('#prodPrecoOr').innerHTML = 'R$ ' + Number(p.valor).toFixed(2).toString().replace('.', ',')
+        card.querySelector('#prodPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')
+        card.querySelector('#desconto').innerHTML = p.desconto + '%'
+        fetch('http://localhost:5000/arquivos/' + p.imagem, {method: 'GET'})
+        .then(response => response.blob())
+        .then(img => {  
+          card.querySelector('img').src = montaImagem(img)
+          card.querySelector('img').classList.add('loaded')
+          card.querySelector('img').parentNode.classList.add('loaded')
+        })
+        .catch(err => {return "aiaiai"});
+        card.classList.remove('escondido')
+        document.querySelector('.section-items').appendChild(card)
+      });
+    })
+    .catch(err => {
+      console.error(err);
+    });
+}
+
+function montaImagem(file) {
+  var urlCreator = window.URL || window.webkitURL;
+    var imageUrl = urlCreator.createObjectURL(file);
+    return imageUrl
 }
