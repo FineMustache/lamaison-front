@@ -679,3 +679,26 @@ p{
   color: red!important;
   opacity: 1!important;
 }
+
+.empty{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 40px 0;
+  gap: 10px;
+}
+
+.empty p {
+  font-size: 25pt;
+  color: #353535;
+  margin: 0;
+}
+
+.empty a{
+  color: black;
+  font-family: 'kaneda_gothic_medium';
+  text-decoration: underline;
+  font-size: 20pt;
+}

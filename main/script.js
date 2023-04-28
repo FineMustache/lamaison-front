@@ -65,12 +65,13 @@ function toggleCart() {
 }
 
 function carregar() {
+  carregarCarrinho()
   carregarProdutos()
 }
 
 function carregarProdutos() {
 
-  fetch("http://localhost:5000/produto/destaques", {
+  fetch("http://10.87.207.16:5000/produto/destaques", {
     "method": "GET"
   })
     .then(response => response.json())
@@ -96,7 +97,7 @@ function carregarProdutos() {
         card.querySelector('#prodPrecoOr').innerHTML = 'R$ ' + Number(p.valor).toFixed(2).toString().replace('.', ',')
         card.querySelector('#prodPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')
         card.querySelector('#desconto').innerHTML = p.desconto + '%'
-        fetch('http://localhost:5000/arquivos/' + p.imagem, {method: 'GET'})
+        fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, {method: 'GET'})
         .then(response => response.blob())
         .then(img => {  
           card.querySelector('img').src = montaImagem(img)
@@ -113,8 +114,46 @@ function carregarProdutos() {
     });
 }
 
+function carregarCarrinho() {
+  var cart = getCart()
+  if (cart.produtos.length !== 0) {
+    document.querySelector('.cart-length').classList.remove('escondido')
+    document.querySelector('.cart-total').classList.remove('escondido')
+    document.querySelector('.btn-finalizar').classList.remove('escondido')
+    document.querySelector('.empty').classList.add('escondido')
+    document.querySelector('.cart-length').querySelector('span').innerHTML = cart.produtos.length
+  }
+
+  cart.produtos.forEach(p => {
+    let model = document.querySelector('.modelo-cart').cloneNode(true)
+    fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, {method: 'GET'})
+        .then(response => response.blob())
+        .then(img => {  
+          model.querySelector('img').src = montaImagem(img)
+          model.querySelector('img').classList.add('loaded')
+          model.querySelector('img').parentNode.classList.add('loaded')
+        })
+        .catch(err => console.log(err));
+  })
+}
+
 function montaImagem(file) {
   var urlCreator = window.URL || window.webkitURL;
     var imageUrl = urlCreator.createObjectURL(file);
     return imageUrl
+}
+
+function getCart() {
+  let cart = JSON.parse(window.localStorage.getItem('lm_cart'))
+
+  if (cart == null) {
+    cart = {
+      produtos: []
+    }
+  }
+
+  console.log(JSON.stringify({
+    produtos: ['a', 'b', 'c']
+  }))
+  return cart
 }
