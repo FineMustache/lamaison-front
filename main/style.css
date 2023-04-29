@@ -29,6 +29,7 @@ body {
   display: flex;
   flex-direction: column;
   height: min-content;
+  padding-top: 113px;
 }
 
 button {
@@ -42,6 +43,11 @@ main {
 
 header{
   background: rgb(0, 0, 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  width: 100%;
 }
 
 .header-wrap {
@@ -127,6 +133,7 @@ border: none;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 15px;
 }
 
 .cart-item{
@@ -156,6 +163,8 @@ border: none;
 .ci-preco{
   display: flex;
   flex-direction: column;
+  height: 69px;
+  justify-content: center;
 }
 
 #ciPrecoOr{
@@ -171,6 +180,7 @@ border: none;
 
 #ciNome{
   margin: 0;
+  cursor: pointer;
 }
 
 #ciItemFav{

@@ -127,6 +127,7 @@ nav button {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 15px;
 }
 
 .cart-item {
@@ -169,8 +170,9 @@ nav button {
   font-family: "kaneda_gothic_medium";
 }
 
-#ciNome {
+#ciNome{
   margin: 0;
+  cursor: pointer;
 }
 
 #ciItemFav {

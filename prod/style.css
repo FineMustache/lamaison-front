@@ -114,6 +114,7 @@ nav button{
   box-shadow: 0 0 20px rgba(0, 0, 0, .5);
   right: 0;
   width: 600px;
+  z-index: 5;
 }
 
 .escondido{
@@ -128,6 +129,7 @@ nav button{
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 15px;
 }
 
 .cart-item{
@@ -172,6 +174,7 @@ nav button{
 
 #ciNome{
   margin: 0;
+  cursor: pointer;
 }
 
 #ciItemFav{

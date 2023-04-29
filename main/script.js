@@ -71,7 +71,7 @@ function carregar() {
 
 function carregarProdutos() {
 
-  fetch("http://10.87.207.16:5000/produto/destaques", {
+  fetch("http://localhost:5000/produto/destaques", {
     "method": "GET"
   })
     .then(response => response.json())
@@ -97,7 +97,8 @@ function carregarProdutos() {
         card.querySelector('#prodPrecoOr').innerHTML = 'R$ ' + Number(p.valor).toFixed(2).toString().replace('.', ',')
         card.querySelector('#prodPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')
         card.querySelector('#desconto').innerHTML = p.desconto + '%'
-        fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, {method: 'GET'})
+        card.querySelector('.btn-add-cart').addEventListener('click', () => cartAddItem(p))
+        fetch('http://localhost:5000/arquivos/' + p.imagem, {method: 'GET'})
         .then(response => response.blob())
         .then(img => {  
           card.querySelector('img').src = montaImagem(img)
@@ -122,11 +123,20 @@ function carregarCarrinho() {
     document.querySelector('.btn-finalizar').classList.remove('escondido')
     document.querySelector('.empty').classList.add('escondido')
     document.querySelector('.cart-length').querySelector('span').innerHTML = cart.produtos.length
+  } else {
+    document.querySelector('.cart-length').classList.add('escondido')
+    document.querySelector('.cart-total').classList.add('escondido')
+    document.querySelector('.btn-finalizar').classList.add('escondido')
+    document.querySelector('.empty').classList.remove('escondido')
   }
-
+  
+  let modelReset = document.querySelector('.modelo-cart').cloneNode(true)
+  document.querySelector('.cart-items').innerHTML = ""
+  document.querySelector('.cart-items').appendChild(modelReset)
+  calcTotal()
   cart.produtos.forEach(p => {
     let model = document.querySelector('.modelo-cart').cloneNode(true)
-    fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, {method: 'GET'})
+    fetch('http://localhost:5000/arquivos/' + p.imagem, {method: 'GET'})
         .then(response => response.blob())
         .then(img => {  
           model.querySelector('img').src = montaImagem(img)
@@ -134,13 +144,22 @@ function carregarCarrinho() {
           model.querySelector('img').parentNode.classList.add('loaded')
         })
         .catch(err => console.log(err));
+    model.querySelector('#ciNome').innerHTML = p.nome
+    model.querySelector('#ciPrecoOr').innerHTML = 'R$ ' + Number(p.valor).toFixed(2).toString().replace('.', ',')
+    model.querySelector('#ciPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')
+    if(p.desconto > 0){
+      model.querySelector('#ciPrecoOr').classList.remove('escondido')
+    }
+    model.querySelector('#ciQtde').querySelector('span').innerHTML = p.qtde
+    model.querySelector('#ciQtdeMin').addEventListener('click', () => cartSub(p.id))
+    model.querySelector('#ciQtdePlus').addEventListener('click', () => cartPlus(p.id))
+    model.querySelector('.fa-trash').addEventListener('click', () => cartRemoveItem(p.id))
+    model.querySelector('#ciNome').addEventListener('click', () => location.href = '../prod/index.html?idProd=' + p.id)
+    model.id = "citem" + p.id
+    model.classList.remove('escondido')
+    document.querySelector('.cart-items').appendChild(model)
   })
-}
 
-function montaImagem(file) {
-  var urlCreator = window.URL || window.webkitURL;
-    var imageUrl = urlCreator.createObjectURL(file);
-    return imageUrl
 }
 
 function getCart() {
@@ -151,9 +170,65 @@ function getCart() {
       produtos: []
     }
   }
-
-  console.log(JSON.stringify({
-    produtos: ['a', 'b', 'c']
-  }))
   return cart
+}
+
+function cartAddItem(item) {
+  let curCart = getCart()
+  const indexProduto = curCart.produtos.findIndex((produto) => produto.id === item.id);
+  if (indexProduto === -1) {
+    item.qtde = 1
+    curCart.produtos.push(item)
+  } else {
+    curCart.produtos[indexProduto].qtde ++
+  }
+
+  window.localStorage.setItem('lm_cart', JSON.stringify(curCart))
+  carregarCarrinho()
+}
+
+function cartRemoveItem(id) {
+  let curCart = getCart()
+  const indexProduto = curCart.produtos.findIndex((produto) => produto.id === id);
+  curCart.produtos.splice(indexProduto, 1)
+
+  window.localStorage.setItem('lm_cart', JSON.stringify(curCart))
+  carregarCarrinho()
+}
+
+function cartSub(id) {
+  let curCart = getCart()
+  const indexProduto = curCart.produtos.findIndex((produto) => produto.id === id);
+  if (curCart.produtos[indexProduto].qtde > 1) {
+    curCart.produtos[indexProduto].qtde -- 
+    document.querySelector('#citem' + id).querySelector('#ciQtde').querySelector('span').innerHTML = curCart.produtos[indexProduto].qtde
+  }
+
+  window.localStorage.setItem('lm_cart', JSON.stringify(curCart))
+  calcTotal()
+}
+
+function cartPlus(id) {
+  let curCart = getCart()
+  const indexProduto = curCart.produtos.findIndex((produto) => produto.id === id);
+  if (curCart.produtos[indexProduto].qtde < 10) {
+    curCart.produtos[indexProduto].qtde ++
+    document.querySelector('#citem' + id).querySelector('#ciQtde').querySelector('span').innerHTML = curCart.produtos[indexProduto].qtde
+  }
+
+  window.localStorage.setItem('lm_cart', JSON.stringify(curCart))
+  calcTotal()
+}
+
+function calcTotal() {
+  let cart = getCart()
+  var prodSoma = 0
+  cart.produtos.forEach(p => prodSoma += parseFloat(p.valor - (p.valor * (p.desconto / 100)).toFixed(2)) * p.qtde)
+  document.querySelector('#cartTotal').innerHTML = prodSoma.toFixed(2).replace('.', ',')
+}
+
+function montaImagem(file) {
+  var urlCreator = window.URL || window.webkitURL;
+    var imageUrl = urlCreator.createObjectURL(file);
+    return imageUrl
 }
