@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../font/kaneda/stylesheet.css">
+    <link rel="stylesheet" href="../font/airwaves/stylesheet.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+<body>
+    <header>
+        <div class="header-wrap">
+          <a href="#"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
+          <nav>
+            <ul>
+              <li><a href="../listaProd/index.html">Produtos</a></li>
+              <li><a href="#">Sobre Nós</a></li>
+              <li><a href="#">Contato</a></li>
+            </ul>
+          </nav>
+        </div>
+    
+      </header>
+
+      <main>
+        <div class="login-card">
+            <p class="login-title">Entrar com a sua Conta</p>
+            <div class="form">
+                <div class="form-wrap">
+                    <input placeholder="EMAIL" type="email" name="email" id="inpEmail">
+                </div>
+                <div class="form-wrap">
+                    <input placeholder="SENHA" type="password" id="inpSenha">
+                    <i class="fa-regular fa-eye-slash" onclick="showPw(this)"></i>
+                </div>
+                <button>Entrar</button>
+            </div>
+            <p class="p-cad">Não possui uma conta ainda? <a href="../">Crie uma agora!</a></p>
+        </div>
+      </main>
+      <script src="https://kit.fontawesome.com/c68ccb89e7.js" crossorigin="anonymous"></script>
+      <script src="script.js"></script>
+</body>
+</html>
