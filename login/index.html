@@ -35,11 +35,15 @@
                     <input placeholder="SENHA" type="password" id="inpSenha">
                     <i class="fa-regular fa-eye-slash" onclick="showPw(this)"></i>
                 </div>
-                <button>Entrar</button>
+                <div class="error-message h0">
+                  <p id="error"></p>
+                </div>
+                <button disabled onclick="login()">Entrar</button>
             </div>
             <p class="p-cad">Não possui uma conta ainda? <a href="../">Crie uma agora!</a></p>
         </div>
       </main>
+      <footer></footer>
       <script src="https://kit.fontawesome.com/c68ccb89e7.js" crossorigin="anonymous"></script>
       <script src="script.js"></script>
 </body>

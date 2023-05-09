@@ -286,6 +286,15 @@
     letter-spacing: 1px;
   }
 
+  input:focus{
+    outline-style: none;
+    border: 2px solid black;
+  }
+
+  input.invalid{
+    border: 2px solid red;
+  }
+
   button{
     border: none;
     background-color: #000;
@@ -294,6 +303,11 @@
     font-size: 28pt;
     padding: 15px;
     width: 100%;
+  }
+
+  button:disabled{
+    opacity: .7;
+    cursor: not-allowed;
   }
 
   .form-wrap i{
@@ -307,6 +321,10 @@
     text-align: center;
   }
 
+  #inpSenha{
+    padding-right: 45px;
+  }
+
   .p-cad{
     font-size: 20pt;
   }
@@ -314,4 +332,25 @@
   .p-cad a{
     font-family: 'kaneda_gothic_medium';
     color: black;
+  }
+
+  .error-message{
+    background-color: rgb(255, 108, 108);
+    color: rgb(136, 0, 0);
+    margin-bottom: 20px;
+    font-size: 20pt;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+    overflow: hidden;
+  }
+
+  .h0{
+    height: 0!important;
+  }
+
+  #error{
+    margin: 0;
   }

@@ -252,14 +252,14 @@
     margin: 0 auto;
   }
 
-  .login-title{
+  .cad-title{
     font-size: 28pt;
   }
 
-  .login-card{
+  .cad-card{
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 100%;
     align-items: center;
     margin: 0 auto;
   }
@@ -267,6 +267,15 @@
   .form{
     font-size: 28pt;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: space-between;
+    height: 620px;
+    flex-wrap: wrap;
+  }
+
+  .form > div{
+    width: calc(50% - 25px);
   }
 
   .form-wrap{
@@ -277,7 +286,28 @@
     position: relative;
   }
 
+  .form-wrap > span{
+    color: red;
+    position: absolute;
+    top: 3px;
+    right: 4px;
+    font-size: 16pt;
+  }
+
+  .form-double > span{
+    right: calc(50% + 7px);
+  }
+
   input{
+    flex: 1;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-family: 'kaneda_gothic';
+    font-size: 16pt;
+    letter-spacing: 1px;
+  }
+
+  select{
     flex: 1;
     padding: 10px;
     margin-bottom: 20px;
@@ -314,4 +344,8 @@
   .p-cad a{
     font-family: 'kaneda_gothic_medium';
     color: black;
+  }
+
+  input.invalid{
+    border: 2px solid red;
   }

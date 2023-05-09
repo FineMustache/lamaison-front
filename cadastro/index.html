@@ -1,46 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../font/kaneda/stylesheet.css">
-    <link rel="stylesheet" href="../font/airwaves/stylesheet.css">
-    <link rel="stylesheet" href="style.css">
-    <title>Login</title>
-</head>
-<body>
-    <header>
-        <div class="header-wrap">
-          <a href="#"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
-          <nav>
-            <ul>
-              <li><a href="../listaProd/index.html">Produtos</a></li>
-              <li><a href="#">Sobre Nós</a></li>
-              <li><a href="#">Contato</a></li>
-            </ul>
-          </nav>
-        </div>
-    
-      </header>
 
-      <main>
-        <div class="login-card">
-            <p class="login-title">Entrar com a sua Conta</p>
-            <div class="form">
-                <div class="form-wrap">
-                    <input placeholder="EMAIL" type="email" name="email" id="inpEmail">
-                </div>
-                <div class="form-wrap">
-                    <input placeholder="SENHA" type="password" id="inpSenha">
-                    <i class="fa-regular fa-eye-slash" onclick="showPw(this)"></i>
-                </div>
-                <button>Entrar</button>
-            </div>
-            <p class="p-cad">Não possui uma conta ainda? <a href="">Crie uma agora!</a></p>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../font/kaneda/stylesheet.css">
+  <link rel="stylesheet" href="../font/airwaves/stylesheet.css">
+  <link rel="stylesheet" href="style.css">
+  <title>Cadastro</title>
+</head>
+
+<body>
+  <header>
+    <div class="header-wrap">
+      <a href="#"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
+      <nav>
+        <ul>
+          <li><a href="../listaProd/index.html">Produtos</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+
+  </header>
+
+  <main>
+    <div class="cad-card">
+      <p class="cad-title">Criar uma Conta</p>
+      <div class="form">
+        <div class="personal-info">
+          <p>Informações Pessoais:</p>
+          <div class="form-wrap">
+            <input placeholder="NOME" type="text" name="nome" id="inpNome">
+            <span>*</span>
+          </div>
+          <div class="form-wrap">
+            <input placeholder="CPF" type="text" name="cpf" id="inpCPF">
+            <span>*</span>
+          </div>
+          <div class="form-wrap">
+            <input placeholder="TELEFONE" type="text" id="inpTel">
+          </div>
         </div>
-      </main>
-      <script src="https://kit.fontawesome.com/c68ccb89e7.js" crossorigin="anonymous"></script>
-      <script src="script.js"></script>
+        <div class="session-info">
+          <p>Dados de Entrada:</p>
+          <div class="form-wrap">
+            <input placeholder="EMAIL" type="text" id="inpEmail">
+            <span>*</span>
+          </div>
+          <div class="form-wrap">
+            <input placeholder="SENHA" type="password" id="inpSenha">
+            <i class="fa-regular fa-eye-slash" onclick="showPw(this)"></i>
+            <span>*</span>
+          </div>
+          <div class="form-wrap">
+            <input placeholder="REPITA A SENHA" type="password" id="inpRepSenha">
+            <i class="fa-regular fa-eye-slash" onclick="showPw(this)"></i>
+            <span>*</span>
+          </div>
+        </div>
+        <div class="address-info">
+          <p>Dados de Endereço:</p>
+          <div class="form-wrap">
+            <input placeholder="CEP" type="text" id="inpCEP">
+            <span>*</span>
+          </div>
+          <div class="form-wrap">
+            <input placeholder="RUA" type="text" id="inpRua" disabled>
+            <span>*</span>
+          </div>
+          <div class="form-wrap form-double">
+            <input placeholder="NÚMERO" type="text" id="inpNum" disabled>
+            <input placeholder="COMPLEMENTO" type="text" id="inpComp" disabled>
+            <span>*</span>
+          </div>
+          <div class="form-wrap">
+            <input placeholder="BAIRRO" type="text" id="inpBairro" disabled>
+            <span>*</span>
+          </div>
+          <div class="form-wrap">
+            <input placeholder="CIDADE" type="text" id="inpCidade" disabled>
+            <span>*</span>
+          </div>
+          <div class="form-wrap">
+            <select id="inpEstado" disabled>
+              <option value="">Selecione um estado</option>
+              <option value="AC">AC</option>
+              <option value="AL">AL</option>
+              <option value="AP">AP</option>
+              <option value="AM">AM</option>
+              <option value="BA">BA</option>
+              <option value="CE">CE</option>
+              <option value="DF">DF</option>
+              <option value="ES">ES</option>
+              <option value="GO">GO</option>
+              <option value="MA">MA</option>
+              <option value="MT">MT</option>
+              <option value="MS">MS</option>
+              <option value="MG">MG</option>
+              <option value="PA">PA</option>
+              <option value="PB">PB</option>
+              <option value="PR">PR</option>
+              <option value="PE">PE</option>
+              <option value="PI">PI</option>
+              <option value="RJ">RJ</option>
+              <option value="RN">RN</option>
+              <option value="RS">RS</option>
+              <option value="RO">RO</option>
+              <option value="RR">RR</option>
+              <option value="SC">SC</option>
+              <option value="SP">SP</option>
+              <option value="SE">SE</option>
+              <option value="TO">TO</option>
+            </select>
+            <span>*</span>
+          </div>
+          <button>Cadastrar</button>
+        </div>
+      </div>
+      <p class="p-cad">Já possui uma conta? <a href="">Faça Login!</a></p>
+    </div>
+  </main>
+  <script src="https://kit.fontawesome.com/c68ccb89e7.js" crossorigin="anonymous"></script>
+  <script src="script.js"></script>
 </body>
+
 </html>
