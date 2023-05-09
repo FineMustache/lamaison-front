@@ -7,6 +7,34 @@ const inpCidade = document.getElementById('inpCidade');
 const inpEstado = document.getElementById('inpEstado');
 const inpComp = document.getElementById('inpComp');
 const inpTel = document.getElementById('inpTel');
+const inpNome = document.getElementById('inpNome');
+const inpEmail = document.getElementById('inpEmail')
+const inpSenha = document.getElementById('inpSenha')
+const inpRepSenha = document.getElementById('inpRepSenha')
+const dialog = document.querySelector('.dialog')
+document.querySelectorAll('input').forEach(i => i.addEventListener('keyup', checkInputs))
+var em = false
+
+inpEmail.addEventListener('input', () => {
+  if (!inpEmail.value.toLowerCase().match(
+    /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+  )) {
+    em = false
+    inpEmail.classList.add('invalid')
+} else {
+    em = true
+    inpEmail.classList.remove('invalid')
+}
+})
+
+var cepOn = false
+var samePw = false
+var cpfValid = false
+var pwValid = false
+
+inpSenha.addEventListener('focus', () => dialog.classList.remove('escondido'))
+inpSenha.addEventListener('blur', () => dialog.classList.add('escondido'))
+inpSenha.addEventListener('input', validarSenha)
 
   inpTel.addEventListener('input', () => {
     let telefone = inpTel.value;
@@ -35,8 +63,10 @@ const inpTel = document.getElementById('inpTel');
 
     if(validarCPF(cpf)){
         inpCPF.classList.remove('invalid')
+        cpfValid = true
     } else {
         inpCPF.classList.add('invalid')
+        cpfValid = false
     }
   });
 
@@ -123,7 +153,6 @@ function validarCPF(cpf) {
                 inpBairro.value = response.bairro
                 inpCidade.value = response.localidade
                 inpEstado.value = response.uf
-
                 inpRua.disabled = response.logradouro ? true : false
                 inpComp.disabled = response.complemento ? true : false
                 inpBairro.disabled = response.bairro ? true : false
@@ -142,4 +171,64 @@ function validarCPF(cpf) {
         .catch(err => console.error(err))
     }
     
+  }
+
+  function checkInputs(a) {
+    var allTyped = false
+    if (a.target.id == "inpSenha" || a.target.id == "inpRepSenha") {
+      if (inpSenha.value === inpRepSenha.value) {
+        inpRepSenha.classList.remove('invalid')
+        samePw = true
+      } else {
+        inpRepSenha.classList.add('invalid')
+        samePw = false
+      }
+    }
+    if (
+      inpBairro.value.length > 0 &&
+      inpCidade.value.length > 0 &&
+      inpRua.value.length > 0 &&
+      inpEstado.value.length > 0 &&
+      inpCEP.value.length > 0 &&
+      inpNum.value.length > 0 &&
+      inpNome.value.length > 0 &&
+      inpEmail.value.length > 0 &&
+      inpSenha.value.length > 0 &&
+      inpRepSenha.value.length > 0 &&
+      inpCPF.value.length > 0
+      ) {
+      allTyped = true
+    } else {
+      allTyped = false
+    }
+    document.querySelector('button').disabled = !(allTyped && samePw && em && cpfValid && pwValid)
+  }
+
+  
+
+  function validarSenha() {
+    const val = inpSenha.value
+    var test = []
+    test.push(/\d/.test(val))
+    test.push(/[A-Z]/.test(val))
+    test.push(/[a-z]/.test(val))
+    test.push(/[!@#$%^&*(),.?":{}|<>]/g.test(val))
+    test.push(val.length >= 8)
+
+    console.log(val)
+
+    dialog.querySelectorAll('p').forEach((p, index) => {
+      if (index !== 0) {
+        p.setAttribute('data-ok', test[index - 1])
+      }
+    })
+
+    if (test[0] && test[1] && test[2] && test[3] && test[4]) {
+      inpSenha.classList.remove('invalid')
+      pwValid = true
+    }else{
+      inpSenha.classList.add('invalid')
+      pwValid = false
+    }
+
   }

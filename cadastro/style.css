@@ -298,6 +298,10 @@
     right: calc(50% + 7px);
   }
 
+  .form > div > p{
+    font-size: 22pt;
+  }
+
   input{
     flex: 1;
     padding: 10px;
@@ -305,6 +309,11 @@
     font-family: 'kaneda_gothic';
     font-size: 16pt;
     letter-spacing: 1px;
+  }
+
+  input:focus{
+    outline-style: none;
+    border: 2px solid black;
   }
 
   select{
@@ -324,6 +333,11 @@
     font-size: 28pt;
     padding: 15px;
     width: 100%;
+  }
+
+  button:disabled{
+    opacity: .7;
+    cursor: not-allowed;
   }
 
   .form-wrap i{
@@ -348,4 +362,31 @@
 
   input.invalid{
     border: 2px solid red;
+  }
+
+  .dialog{
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    position: absolute;
+    z-index: 5;
+    font-size: 16pt;
+    left: -270px;
+    border: 1px solid rgb(100, 100, 100);
+    letter-spacing: 1px;
+    width: 250px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, .4);
+    gap: 10px;
+  }
+
+  .dialog > p{
+    margin: 0;
+  }
+
+  .dialog > p:first-child{
+    font-size: 20pt;
+  }
+
+  .dialog > p[data-ok="true"]{
+    text-decoration: line-through;
   }

@@ -54,6 +54,14 @@
             <input placeholder="SENHA" type="password" id="inpSenha">
             <i class="fa-regular fa-eye-slash" onclick="showPw(this)"></i>
             <span>*</span>
+            <div class="dialog escondido">
+              <p>A senha deve conter:</p>
+              <p data-ok="false">1 número</p>
+              <p data-ok="false">1 letra maiúscula</p>
+              <p data-ok="false">1 letra minúscula</p>
+              <p data-ok="false">1 caractere especial</p>
+              <p data-ok="false">8 caracteres pelo menos</p>
+            </div>
           </div>
           <div class="form-wrap">
             <input placeholder="REPITA A SENHA" type="password" id="inpRepSenha">
@@ -117,7 +125,7 @@
             </select>
             <span>*</span>
           </div>
-          <button>Cadastrar</button>
+          <button disabled>Cadastrar</button>
         </div>
       </div>
       <p class="p-cad">Já possui uma conta? <a href="">Faça Login!</a></p>

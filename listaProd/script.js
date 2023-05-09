@@ -54,7 +54,7 @@ function carregarProdutos() {
 
   document.querySelector('.prod-section').appendChild(model)
 
-  fetch(`http://localhost:5000/produto/page/${curPage}?minPrec=${minPrec}&maxPrec=${maxPrec}&sortPrec=${sortPrec}&desconto=${desconto}&tag=${urlTag}`, {method: 'GET'})
+  fetch(`http://10.87.207.16:5000/produto/page/${curPage}?minPrec=${minPrec}&maxPrec=${maxPrec}&sortPrec=${sortPrec}&desconto=${desconto}&tag=${urlTag}`, {method: 'GET'})
     .then(response => response.json())
     .then(response => {
       console.log(response)
@@ -62,7 +62,7 @@ function carregarProdutos() {
       response.produtos.forEach(async p => {
         console.log(p.nome, p.desconto)
         let card = document.querySelector('.prod-section').querySelector('.modelo').cloneNode(true)
-        fetch('http://localhost:5000/arquivos/' + p.imagem, {method: 'GET'})
+        fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, {method: 'GET'})
         .then(response => response.blob())
         .then(img => {  
           card.querySelector('img').src = montaImagem(img)
@@ -123,7 +123,7 @@ function carregarProdutos() {
 function carregarCategorias() {
   const options = {method: 'GET'};
 
-  fetch('http://localhost:5000/categoria', options)
+  fetch('http://10.87.207.16:5000/categoria', options)
     .then(response => response.json())
     .then(response => {
       response.forEach(c => {
@@ -229,7 +229,7 @@ function hoverFav(index, el) {
     calcTotal()
     cart.produtos.forEach(p => {
       let model = document.querySelector('.modelo-cart').cloneNode(true)
-      fetch('http://localhost:5000/arquivos/' + p.imagem, {method: 'GET'})
+      fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, {method: 'GET'})
           .then(response => response.blob())
           .then(img => {  
             model.querySelector('img').src = montaImagem(img)

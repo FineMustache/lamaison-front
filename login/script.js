@@ -54,7 +54,7 @@ function login() {
         })
       };
       
-      fetch('http://localhost:5000/usuarioLogin', options)
+      fetch('http://10.87.207.16:5000/usuarioLogin', options)
         .then(response => response.json())
         .then(response => {
             if (response.validacao) {
