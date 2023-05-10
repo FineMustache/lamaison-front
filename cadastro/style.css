@@ -390,3 +390,16 @@
   .dialog > p[data-ok="true"]{
     text-decoration: line-through;
   }
+
+  .sucesso{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 113px);
+    font-size: 20pt;
+  }
+
+  .sucesso > p:first-child{
+    font-size: 28pt;
+  }

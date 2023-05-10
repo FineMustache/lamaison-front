@@ -166,6 +166,7 @@ function validarCPF(cpf) {
                 inpCidade.value = ""
                 inpEstado.value = ""
             }
+            inpNum.value = ""
             
         })
         .catch(err => console.error(err))
@@ -231,4 +232,33 @@ function validarCPF(cpf) {
       pwValid = false
     }
 
+  }
+
+  function cadastrar() {
+    const options = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        nome: inpNome.value,
+        email: inpEmail.value,
+        cpf: inpCPF.value.replace(/\D/g, ''),
+        senha: inpSenha.value,
+        rua: inpRua.value,
+        numero: inpRua.value,
+        complemento: inpComp.value == "" ? null : inpComp.value,
+        bairro: inpBairro.value,
+        cep: inpCEP.value.replace(/\D/g, ''),
+        cidade: inpCidade.value,
+        estado: inpEstado.value,
+        telefone: inpTel.value.replace(/\D/g, '') == "" ? null : inpTel.value.replace(/\D/g, '')
+      })
+    };
+    
+    fetch('http://10.87.207.16:5000/usuario', options)
+      .then(response => response.json())
+      .then(response => {
+        document.querySelector('.cad-card').classList.add('escondido')
+        document.querySelector('.sucesso').classList.remove('escondido')
+      })
+      .catch(err => console.error(err));
   }
