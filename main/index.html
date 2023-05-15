@@ -8,6 +8,34 @@
   <link rel="stylesheet" href="../font/kaneda/stylesheet.css">
   <link rel="stylesheet" href="../font/airwaves/stylesheet.css">
   <link rel="stylesheet" href="style.css" />
+  <script>
+    var user = window.localStorage.getItem('lm_u')
+    if (user !== null) {
+      user = JSON.parse(user)
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: user.token
+        },
+        body: `{"userid":${user.userid}}`
+      };
+
+      fetch('http://10.87.207.16:5000/usuario/validar', options)
+        .then(response => response.json())
+        .then(response => {
+          if (!response.validar) {
+            window.localStorage.removeItem('lm_u')
+            window.location.href = "../login/index.html"
+          }
+        })
+        .catch(err => {
+          console.err(err)
+        });
+    } else {
+      window.location.href = "../login/index.html"
+    }
+  </script>
   <title>La Maison</title>
 </head>
 
@@ -63,6 +91,22 @@
                 <p>Seu carrinho está vazio :(</p>
                 <a href="../listaProd/index.html">Encontrar Produtos</a>
               </div>
+            </div>
+          </li>
+          <li class="user">
+            <div class="user-icon">
+              <button onclick="toggleUser()">
+                <i class="fa-solid fa-user"></i>
+              </button>
+            </div>
+            <div class="user-container escondido">
+              <span id="uname">Santiago Pinto Moles</span>
+              <span id="uemail">picamoles@gmail.com</span>
+              <ul>
+                <li onclick="location.href='../desejos/index.html'"><span>Lista de Desejos</span></li>
+                <li><span href="">Meus Pedidos</span></li>
+                <li onclick="sair()"><span href="">Sair</span></li>
+              </ul>
             </div>
           </li>
         </ul>
@@ -138,7 +182,8 @@
                 Nossos vasos, porta-retratos e outros acessórios decorativos vão adicionar personalidade e estilo ao seu
                 ambiente.
               </p>
-              <button class="cta" onclick="window.location.href = '../listaProd/index.html?tag=prateleiras'">Explorar</button>
+              <button class="cta"
+                onclick="window.location.href = '../listaProd/index.html?tag=prateleiras'">Explorar</button>
             </div>
           </div>
         </div>
@@ -153,7 +198,8 @@
                 Adicione personalidade e elegância aos seus espaços com nossas decorações de parede. Acesse agora e
                 confira nossas opções!
               </p>
-              <button class="cta" onclick="window.location.href = '../listaProd/index.html?tag=' + 'Enfeites de Parede'">Explorar</button>
+              <button class="cta"
+                onclick="window.location.href = '../listaProd/index.html?tag=' + 'Enfeites de Parede'">Explorar</button>
             </div>
           </div>
         </div>
@@ -166,20 +212,20 @@
   <!--
     Experimente o Amarelinho
     ⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠿⠿⠿⠿⠿⠿⠿⠿⠿⣿⣿⣿⣿⣿
-⣿⣿⣿⣿⣿⡿⠿⠟⠛⠋⠉⢉⡀⠀⠀⠀⣀⣀⣀⣀⣠⣤⡴⠾⠛⢋⣽⠟⢹⣿
-⣿⣿⣿⣿⣷⣦⣄⡀⠀⠀⠀⠉⠛⠛⠛⠛⠛⠋⠉⠉⠀⠀⠀⢀⣴⠟⠁⠀⣾⣿
-⣿⣿⣿⣿⣿⡿⠋⠛⠻⢶⣤⣄⣀⣀⠀⠀⠀⠀⢀⣀⣠⣴⠾⠛⠁⠀⠀⠀⣿⣿
-⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠉⠉⠛⠛⠛⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⢸⣿
-⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿
-⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿
-⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡇⢠⡇⢠⣿⣿
-⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠈⢀⡀⢀⣾⣿⣿
-⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡾⠋⣠⡿⠁⣼⣿⣿⣿
-⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⠶⠀⣀⠀⠉⢠⣾⣿⣿⣿⣿
-⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⠀⠰⠇⢀⡀⠐⠟⠋⣀⣴⣿⣿⣿⣿⣿⣿
-⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⣀⣉⠁⠀⠶⠞⠛⠀⣀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⡇⠀⠀⠀⠀⢀⣀⣀⣀⣉⣁⣤⣤⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
-⣿⣿⣷⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿  
+    ⣿⣿⣿⣿⣿⡿⠿⠟⠛⠋⠉⢉⡀⠀⠀⠀⣀⣀⣀⣀⣠⣤⡴⠾⠛⢋⣽⠟⢹⣿
+    ⣿⣿⣿⣿⣷⣦⣄⡀⠀⠀⠀⠉⠛⠛⠛⠛⠛⠋⠉⠉⠀⠀⠀⢀⣴⠟⠁⠀⣾⣿
+    ⣿⣿⣿⣿⣿⡿⠋⠛⠻⢶⣤⣄⣀⣀⠀⠀⠀⠀⢀⣀⣠⣴⠾⠛⠁⠀⠀⠀⣿⣿
+    ⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀⠀⠉⠉⠛⠛⠛⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⢸⣿
+    ⣿⣿⣿⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿
+    ⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣾⣿
+    ⣿⡿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣸⡇⢠⡇⢠⣿⣿
+    ⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⡀⠈⢀⡀⢀⣾⣿⣿
+    ⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢠⡾⠋⣠⡿⠁⣼⣿⣿⣿
+    ⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣤⠶⠀⣀⠀⠉⢠⣾⣿⣿⣿⣿
+    ⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣤⠀⠰⠇⢀⡀⠐⠟⠋⣀⣴⣿⣿⣿⣿⣿⣿
+    ⣿⣿⡇⠀⠀⠀⠀⠀⠀⠀⠀⣀⣉⠁⠀⠶⠞⠛⠀⣀⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⡇⠀⠀⠀⠀⢀⣀⣀⣀⣉⣁⣤⣤⣤⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
+    ⣿⣿⣷⣶⣶⣶⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿  
   -->
 </body>
 

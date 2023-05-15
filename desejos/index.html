@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../om-javascript-range-slider-main/src/om-javascript-range-slider.css" />
+  <script src="../om-javascript-range-slider-main/src/om-javascript-range-slider.js"></script>
+  <link rel="stylesheet" href="../font/kaneda/stylesheet.css">
+  <link rel="stylesheet" href="../font/airwaves/stylesheet.css">
+  <link rel="stylesheet" href="style.css" />
+  <script>
+    var user = window.localStorage.getItem('lm_u')
+    if (user !== null) {
+      user = JSON.parse(user)
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: user.token
+        },
+        body: `{"userid":${user.userid}}`
+      };
+
+      fetch('http://10.87.207.16:5000/usuario/validar', options)
+        .then(response => response.json())
+        .then(response => {
+          if (!response.validar) {
+            window.localStorage.removeItem('lm_u')
+            window.location.href = "../login/index.html"
+          }
+        })
+        .catch(err => {
+          console.err(err)
+        });
+    } else {
+      window.location.href = "../login/index.html"
+    }
+  </script>
+  <title>La Maison</title>
+</head>
+
+<body onload="carregar()">
+    <header>
+        <div class="header-wrap">
+          <a href="#"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
+          <nav>
+            <ul>
+              <li><a href="../listaProd/index.html">Produtos</a></li>
+              <li><a href="#">Sobre Nós</a></li>
+              <li><a href="#">Contato</a></li>
+              <li class="cart">
+                <div class="cart-button" onclick="toggleCart()">
+                  <button><i class="fa-solid fa-cart-shopping"></i></button>
+                  <div class="cart-length escondido">
+                    <span>1</span>
+                  </div>
+                </div>
+                <div class="cart-container escondido">
+                  <div class="cart-items">
+                    <div class="cart-item modelo-cart escondido">
+                      <div class="cart-item-img">
+                        <img src="" alt="">
+                      </div>
+                      <div class="cart-item-info">
+                        <p id="ciNome"></p>
+                        <div class="ci-preco">
+                          <span id="ciPrecoOr" class="escondido"></span>
+                          <span id="ciPreco"></span>
+                        </div>
+                        <div class="ci-qtde">
+                          <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
+                          <div id="ciQtde"><span></span></div>
+                          <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
+                        </div>
+                        <div class="ci-add-fav">
+                          <span>Adicionar à lista de desejos</span>
+                          <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)"
+                            id="ciItemFav" class="fa-regular fa-heart"></i>
+                        </div>
+                      </div>
+                      <div class="cart-item-right">
+                        <span><i class="fa-solid fa-trash"></i></span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="cart-total escondido">
+                    <span>TOTAL:</span> <span>R$ <span id="cartTotal"></span></span>
+                  </div>
+                  <button class="btn-finalizar escondido">FINALIZAR COMPRA</button>
+                  <div class="empty">
+                    <p>Seu carrinho está vazio :(</p>
+                    <a href="../listaProd/index.html">Encontrar Produtos</a>
+                  </div>
+                </div>
+              </li>
+              <li class="user">
+                <div class="user-icon">
+                  <button onclick="toggleUser()">
+                    <i class="fa-solid fa-user"></i>
+                  </button>
+                </div>
+                <div class="user-container escondido">
+                  <span id="uname">Santiago Pinto Moles</span>
+                  <span id="uemail">picamoles@gmail.com</span>
+                  <ul>
+                    <li><span href="">Lista de Desejos</span></li>
+                    <li><span href="">Meus Pedidos</span></li>
+                    <li onclick="sair()"><span href="">Sair</span></li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </nav>
+        </div>
+    
+      </header>
+
+  <main>
+    <p class="main-title">Lista de Desejos</p>
+    <div class="no-products escondido">
+      <p>Nenhum produto encontrado :(</p>
+    </div>
+    <div class="prod-section">
+      <div class="item-card modelo">
+        <i id="itemFav" class="fa-solid fa-heart item-fav-on"></i>
+        <div class="item-card-image">
+          <img src="" alt="">
+        </div>
+        <div class="item-card-info">
+          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
+          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
+          <div class="prod-tags">
+          </div>
+          <div class="prod-preco">
+            <div class="desc-area escondido">
+              <span id="prodPrecoOr">R$ 300,00</span>
+              <div class="desc-indicator">
+                <i class="fa-solid fa-tag"></i>
+                <span id="desconto">5%</span>
+              </div>
+            </div>
+            <span id="prodPreco">R$ 260,00</span>
+          </div>
+          <div class="button">
+            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pages">
+      <ul class="paginacao">
+
+      </ul>
+    </div>
+  </main>
+  <footer></footer>
+  <script src="https://kit.fontawesome.com/c68ccb89e7.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>

@@ -16,7 +16,7 @@
 <body onload="carregar()">
   <header>
     <div class="header-wrap">
-      <a href="../main/index.html"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
+      <a href="#"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
       <nav>
         <ul>
           <li><a href="../listaProd/index.html">Produtos</a></li>
@@ -67,9 +67,26 @@
               </div>
             </div>
           </li>
+          <li class="user">
+            <div class="user-icon">
+              <button onclick="toggleUser()">
+                <i class="fa-solid fa-user"></i>
+              </button>
+            </div>
+            <div class="user-container escondido">
+              <span id="uname">Santiago Pinto Moles</span>
+              <span id="uemail">picamoles@gmail.com</span>
+              <ul>
+                <li><span href="">Lista de Desejos</span></li>
+                <li><span href="">Meus Pedidos</span></li>
+                <li onclick="sair()"><span href="">Sair</span></li>
+              </ul>
+            </div>
+          </li>
         </ul>
       </nav>
     </div>
+
   </header>
 
   <main>

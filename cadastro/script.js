@@ -259,6 +259,7 @@ function validarCPF(cpf) {
       .then(response => {
         document.querySelector('.cad-card').classList.add('escondido')
         document.querySelector('.sucesso').classList.remove('escondido')
+        console.log(response)
       })
       .catch(err => console.error(err));
   }

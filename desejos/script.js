@@ -1,48 +1,3 @@
-let slideIndex = 1;
-let slides = document.querySelectorAll('.slide');
-let slidesContainer = document.querySelector('.slides');
-let textCarousel = [
-  'Transforme os ares da sua casa',
-  'Destaque o ambiente do seu negócio',
-  'Um novo visual para seu Escritório'
-]
-
-showSlide(slideIndex);
-
-var timer = setInterval(() => {
-  changeSlide(1)
-}, 5000)
-
-function changeSlide(n) {
-  clearInterval(timer)
-  timer = setInterval(() => {
-    changeSlide(1)
-  }, 5000)
-  showSlide(slideIndex += n);
-}
-
-function showSlide(n) {
-  let slideWidth = slides[0].clientWidth;
-  if (n > slides.length) {
-    slideIndex = 1;
-  }
-  if (n < 1) {
-    slideIndex = slides.length;
-  }
-  setTimeout(() => {
-
-  }, 250)
-  borrarse()
-  setTimeout(() => document.querySelector('#carouselText').innerHTML = textCarousel[slideIndex - 1], 250)
-
-  slidesContainer.style.transform = `translateX(${-slideWidth * (slideIndex - 1)}px)`;
-}
-
-function borrarse() {
-  document.querySelector('#carouselText').classList.add('borrouse')
-  setTimeout(() => document.querySelector('#carouselText').classList.remove('borrouse'), 500)
-}
-
 function setFav(el) {
   el.classList.toggle('fa-regular')
   el.classList.toggle('fa-solid')
@@ -90,14 +45,32 @@ function carregarUsuario() {
 }
 
 function carregarProdutos() {
-
-  fetch("http://10.87.207.16:5000/produto/destaques", {
+    let model = document.querySelector('.modelo').cloneNode(true)
+    document.querySelector('.prod-section').innerHTML = ""
+    document.querySelector('.prod-section').appendChild(model)
+  fetch("http://10.87.207.16:5000/desejo/" + user.userid, {
     "method": "GET"
   })
     .then(response => response.json())
     .then(response => {
-      response.forEach(p => {
-        let card = document.querySelector('.model-hl').cloneNode(true)
+        console.log(response)
+      response.forEach(d => {
+        const p = d.produto
+        let card = document.querySelector('.modelo').cloneNode(true)
+        card.querySelector('#itemFav').addEventListener('click', () => {
+            const options = {
+                method: 'DELETE',
+                headers: {'Content-Type': 'application/json'},
+                body: `{"id":${d.id}}`
+              };
+              
+              fetch('http://10.87.207.16:5000/desejo', options)
+                .then(response => response.json())
+                .then(response => {
+                    carregarProdutos()
+                })
+                .catch(err => console.error(err));
+        })
         card.querySelector('#prodNome').innerHTML = p.nome
         card.querySelector('#prodNome').addEventListener('click', () => {
           window.location.href = "../prod/index.html?idProd=" + p.id
@@ -125,8 +98,8 @@ function carregarProdutos() {
           card.querySelector('img').parentNode.classList.add('loaded')
         })
         .catch(err => {return "aiaiai"});
-        card.classList.remove('escondido')
-        document.querySelector('.section-items').appendChild(card)
+        card.classList.remove('modelo')
+        document.querySelector('.prod-section').appendChild(card)
       });
     })
     .catch(err => {
