@@ -1,3 +1,14 @@
+var desejo = []
+
+async function carregarDesejos() {
+  desejo = await fetch("http://10.87.207.16:5000/desejo/" + user.userid, {
+    "method": "GET"
+  }).then(response => response.json()).then(response => {
+    return response}
+    )
+
+}
+
 function setFav(el) {
   el.classList.toggle('fa-regular')
   el.classList.toggle('fa-solid')
@@ -18,9 +29,8 @@ function hoverFav(index, el) {
 }
 
 function setCartFav(el) {
-  el.classList.remove('fa-regular')
-  el.classList.add('fa-solid')
-  el.classList.toggle('cur-item-fav-on')
+  el.classList.toggle('fa-regular')
+  el.classList.toggle('fa-solid')
 }
 
 function toggleCart() {
@@ -33,7 +43,8 @@ function toggleUser() {
   document.querySelector('.cart-container').classList.add('escondido')
 }
 
-function carregar() {
+async function carregar() {
+  await carregarDesejos()
   carregarCarrinho()
   carregarProdutos()
   carregarUsuario()
@@ -53,7 +64,6 @@ function carregarProdutos() {
   })
     .then(response => response.json())
     .then(response => {
-        console.log(response)
       response.forEach(d => {
         const p = d.produto
         let card = document.querySelector('.modelo').cloneNode(true)
@@ -66,8 +76,10 @@ function carregarProdutos() {
               
               fetch('http://10.87.207.16:5000/desejo', options)
                 .then(response => response.json())
-                .then(response => {
+                .then(async response => {
+                    await carregarDesejos()
                     carregarProdutos()
+                    if(isInCart(p.id)) setCartFav(document.querySelector('.citem' + p.id).querySelector('#ciItemFav'))
                 })
                 .catch(err => console.error(err));
         })
@@ -86,6 +98,9 @@ function carregarProdutos() {
           })
           card.querySelector('.prod-tags').appendChild(span)
         })
+        if (p.desconto > 0) {
+          card.querySelector('.desc-area').classList.remove('escondido')
+        }
         card.querySelector('#prodPrecoOr').innerHTML = 'R$ ' + Number(p.valor).toFixed(2).toString().replace('.', ',')
         card.querySelector('#prodPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')
         card.querySelector('#desconto').innerHTML = p.desconto + '%'
@@ -121,25 +136,25 @@ function carregarCarrinho() {
     document.querySelector('.btn-finalizar').classList.add('escondido')
     document.querySelector('.empty').classList.remove('escondido')
   }
-  
+
   let modelReset = document.querySelector('.modelo-cart').cloneNode(true)
   document.querySelector('.cart-items').innerHTML = ""
   document.querySelector('.cart-items').appendChild(modelReset)
   calcTotal()
   cart.produtos.forEach(p => {
     let model = document.querySelector('.modelo-cart').cloneNode(true)
-    fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, {method: 'GET'})
-        .then(response => response.blob())
-        .then(img => {  
-          model.querySelector('img').src = montaImagem(img)
-          model.querySelector('img').classList.add('loaded')
-          model.querySelector('img').parentNode.classList.add('loaded')
-        })
-        .catch(err => console.log(err));
+    fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, { method: 'GET' })
+      .then(response => response.blob())
+      .then(img => {
+        model.querySelector('img').src = montaImagem(img)
+        model.querySelector('img').classList.add('loaded')
+        model.querySelector('img').parentNode.classList.add('loaded')
+      })
+      .catch(err => console.log(err));
     model.querySelector('#ciNome').innerHTML = p.nome
     model.querySelector('#ciPrecoOr').innerHTML = 'R$ ' + Number(p.valor).toFixed(2).toString().replace('.', ',')
     model.querySelector('#ciPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')
-    if(p.desconto > 0){
+    if (p.desconto > 0) {
       model.querySelector('#ciPrecoOr').classList.remove('escondido')
     }
     model.querySelector('#ciQtde').querySelector('span').innerHTML = p.qtde
@@ -147,7 +162,16 @@ function carregarCarrinho() {
     model.querySelector('#ciQtdePlus').addEventListener('click', () => cartPlus(p.id))
     model.querySelector('.fa-trash').addEventListener('click', () => cartRemoveItem(p.id))
     model.querySelector('#ciNome').addEventListener('click', () => location.href = '../prod/index.html?idProd=' + p.id)
-    model.id = "citem" + p.id
+    model.classList.add("citem" + p.id)
+    desejo.forEach(d => {
+      if (d.id_produto === p.id) {
+        setCartFav(model.querySelector('#ciItemFav'))
+      }
+    })
+    model.querySelector('#ciItemFav').addEventListener('click', () => {
+      setCartFav(document.querySelector('.citem' + p.id).querySelector('#ciItemFav'))
+      addFav(p.id, model.querySelector('#ciItemFav'))
+    })
     model.classList.remove('escondido')
     document.querySelector('.cart-items').appendChild(model)
   })
@@ -228,4 +252,66 @@ function montaImagem(file) {
 function sair() {
   window.localStorage.removeItem('lm_u')
   window.location.reload()
+}
+
+function addFav(pid) {
+  let fav = -1
+  desejo.forEach(d => {
+    if (d.id_produto === pid) {
+      fav = d.id
+    }
+  })
+
+  if (fav !== -1) {
+    const options = {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'},
+      body: `{"id":${fav}}`
+    };
+    
+    fetch('http://10.87.207.16:5000/desejo', options)
+      .then(response => response.json())
+      .then(async response => {
+        await carregarDesejos()
+        carregarProdutos()
+      })
+      .catch(err => {
+        console.error(err)
+        if(isInCart(pid)) setCartFav(document.querySelector('.citem' + pid).querySelector('#ciItemFav'))
+      });
+  } else {
+    const options = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: `{"id_usuario":${user.userid},"id_produto":${pid}}`
+    };
+    
+    fetch('http://10.87.207.16:5000/desejo', options)
+      .then(response => response.json())
+      .then(async response => {
+        if (response.count) {
+          await carregarDesejos()
+          carregarProdutos()
+        } else {
+          if(isInCart(pid)) setCartFav(document.querySelector('.citem' + pid).querySelector('#ciItemFav'))
+        }
+      })
+      .catch(err => {
+        console.error(err)
+        if(isInCart(pid)) setCartFav(document.querySelector('.citem' + pid).querySelector('#ciItemFav'))
+      });
+  }
+  
+}
+
+function isInCart(pid) {
+  var cart = getCart().produtos
+  let tem = false
+  cart.forEach(p => {
+    if (pid == p.id) {
+      tem = true
+    }
+  })
+
+  return tem
 }

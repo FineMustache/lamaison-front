@@ -30,7 +30,7 @@
           }
         })
         .catch(err => {
-          console.err(err)
+          console.error(err)
         });
     } else {
       window.location.href = "../login/index.html"
@@ -42,7 +42,7 @@
 <body onload="carregar()">
   <header>
     <div class="header-wrap">
-      <a href="#"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
+      <a href="../main/index.html"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
       <nav>
         <ul>
           <li><a href="../listaProd/index.html">Produtos</a></li>
@@ -74,8 +74,7 @@
                     </div>
                     <div class="ci-add-fav">
                       <span>Adicionar à lista de desejos</span>
-                      <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)"
-                        id="ciItemFav" class="fa-regular fa-heart"></i>
+                      <i id="ciItemFav" class="fa-regular fa-heart"></i>
                     </div>
                   </div>
                   <div class="cart-item-right">
@@ -100,8 +99,8 @@
               </button>
             </div>
             <div class="user-container escondido">
-              <span id="uname">Santiago Pinto Moles</span>
-              <span id="uemail">picamoles@gmail.com</span>
+              <span id="uname"></span>
+              <span id="uemail"></span>
               <ul>
                 <li onclick="location.href='../desejos/index.html'"><span>Lista de Desejos</span></li>
                 <li><span href="">Meus Pedidos</span></li>
@@ -144,7 +143,7 @@
         </div>
         <div class="section-items">
           <div class="item-card escondido model-hl">
-            <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
+            <i id="itemFav" class="fa-regular fa-heart"></i>
             <div class="item-card-image">
               <img src="" alt="">
             </div>

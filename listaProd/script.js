@@ -1,3 +1,4 @@
+var desejo = []
 var urlTag = new URLSearchParams(window.location.search).get('tag')
 var curPage = new URLSearchParams(window.location.search).get('page') ? new URLSearchParams(window.location.search).get('page') : 1
 var count
@@ -12,13 +13,25 @@ OmRangeSlider.init({
 
 carregarCategorias()
 
-function carregar(){
+function toggleUser() {
+  document.querySelector('.user-container').classList.toggle('escondido')
+  document.querySelector('.cart-container').classList.add('escondido')
+}
+
+async function carregar(){
   minPrec = document.querySelector('#inputPieces').value.split(',')[0]
   maxPrec = document.querySelector('#inputPieces').value.split(',')[1]
   sortPrec = document.querySelector('#selOrderBy').value
   desconto = document.querySelector('#cbDesc').checked
+  await carregarDesejos()
   carregarProdutos()
   carregarCarrinho()
+  carregarUsuario()
+}
+
+function carregarUsuario() {
+  document.querySelector('#uname').innerHTML = user.nome
+  document.querySelector('#uemail').innerHTML = user.email
 }
 
 function getCount(count){
@@ -108,6 +121,18 @@ function carregarProdutos() {
             })
             card.querySelector('.prod-tags').appendChild(tag)
           })
+          desejo.forEach(d => {
+            if (d.id_produto === p.id) {
+              setFav(card.querySelector('#itemFav'))
+            }
+          })
+          card.querySelector('#itemFav').addEventListener('click', () => {
+            if(isInCart(p.id)) setCartFav(document.querySelector('.citem' + p.id).querySelector('#ciItemFav'))
+            setFav(document.querySelector('.p' + p.id).querySelector('#itemFav'))
+            addFav(p.id, card.querySelector('#itemFav'))
+          })
+          card.querySelector('.btn-add-cart').addEventListener('click', () => cartAddItem(p))
+          card.classList.add('p' + p.id)
           document.querySelector('.prod-section').appendChild(card)
       })
       if (response.count !== 0) {
@@ -178,13 +203,8 @@ function hoverFav(index, el) {
     
   }
   
-  function setCartFav(el){
-    el.classList.remove('fa-regular')
-    el.classList.add('fa-solid')
-    el.classList.toggle('cur-item-fav-on')
-  }
-  
   function toggleCart() {
+    document.querySelector('.user-container').classList.toggle('escondido')
     document.querySelector('.cart-container').classList.toggle('escondido')
   }
 
@@ -222,36 +242,47 @@ function hoverFav(index, el) {
       document.querySelector('.btn-finalizar').classList.add('escondido')
       document.querySelector('.empty').classList.remove('escondido')
     }
-    
+  
     let modelReset = document.querySelector('.modelo-cart').cloneNode(true)
     document.querySelector('.cart-items').innerHTML = ""
     document.querySelector('.cart-items').appendChild(modelReset)
     calcTotal()
     cart.produtos.forEach(p => {
       let model = document.querySelector('.modelo-cart').cloneNode(true)
-      fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, {method: 'GET'})
-          .then(response => response.blob())
-          .then(img => {  
-            model.querySelector('img').src = montaImagem(img)
-            model.querySelector('img').classList.add('loaded')
-            model.querySelector('img').parentNode.classList.add('loaded')
-          })
-          .catch(err => console.log(err));
+      fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, { method: 'GET' })
+        .then(response => response.blob())
+        .then(img => {
+          model.querySelector('img').src = montaImagem(img)
+          model.querySelector('img').classList.add('loaded')
+          model.querySelector('img').parentNode.classList.add('loaded')
+        })
+        .catch(err => console.log(err));
       model.querySelector('#ciNome').innerHTML = p.nome
       model.querySelector('#ciPrecoOr').innerHTML = 'R$ ' + Number(p.valor).toFixed(2).toString().replace('.', ',')
       model.querySelector('#ciPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')
-      if(p.desconto > 0){
+      if (p.desconto > 0) {
         model.querySelector('#ciPrecoOr').classList.remove('escondido')
       }
       model.querySelector('#ciQtde').querySelector('span').innerHTML = p.qtde
       model.querySelector('#ciQtdeMin').addEventListener('click', () => cartSub(p.id))
       model.querySelector('#ciQtdePlus').addEventListener('click', () => cartPlus(p.id))
       model.querySelector('.fa-trash').addEventListener('click', () => cartRemoveItem(p.id))
-      model.id = "citem" + p.id
+      model.querySelector('#ciNome').addEventListener('click', () => location.href = '../prod/index.html?idProd=' + p.id)
+      model.classList.add("citem" + p.id)
+      desejo.forEach(d => {
+        if (d.id_produto === p.id) {
+          setCartFav(model.querySelector('#ciItemFav'))
+        }
+      })
+      model.querySelector('#ciItemFav').addEventListener('click', () => {
+        setCartFav(document.querySelector('.citem' + p.id).querySelector('#ciItemFav'))
+        setFav(document.querySelector('.p' + p.id).querySelector('#itemFav'))
+        addFav(p.id, model.querySelector('#ciItemFav'))
+      })
       model.classList.remove('escondido')
       document.querySelector('.cart-items').appendChild(model)
     })
-
+  
   }
   
   function getCart() {
@@ -323,4 +354,82 @@ function hoverFav(index, el) {
     var urlCreator = window.URL || window.webkitURL;
       var imageUrl = urlCreator.createObjectURL(file);
       return imageUrl
+  }
+
+async function carregarDesejos() {
+  desejo = await fetch("http://10.87.207.16:5000/desejo/" + user.userid, {
+    "method": "GET"
+  }).then(response => response.json()).then(response => {
+    return response}
+    )
+
+}
+
+function addFav(pid) {
+  let fav = -1
+  desejo.forEach(d => {
+    if (d.id_produto === pid) {
+      fav = d.id
+    }
+  })
+
+  if (fav !== -1) {
+    const options = {
+      method: 'DELETE',
+      headers: {'Content-Type': 'application/json'},
+      body: `{"id":${fav}}`
+    };
+    
+    fetch('http://10.87.207.16:5000/desejo', options)
+      .then(response => response.json())
+      .then(async response => {
+        await carregarDesejos()
+      })
+      .catch(err => {
+        console.error(err)
+        if(isInCart(pid)) setCartFav(document.querySelector('.citem' + pid).querySelector('#ciItemFav'))
+        setFav(document.querySelector('.p' + pid).querySelector('#itemFav'))
+      });
+  } else {
+    const options = {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: `{"id_usuario":${user.userid},"id_produto":${pid}}`
+    };
+    
+    fetch('http://10.87.207.16:5000/desejo', options)
+      .then(response => response.json())
+      .then(async response => {
+        if (response.count) {
+          await carregarDesejos()
+        } else {
+          if(isInCart(pid)) setCartFav(document.querySelector('.citem' + pid).querySelector('#ciItemFav'))
+          setFav(document.querySelector('.p' + pid).querySelector('#itemFav'))
+        }
+      })
+      .catch(err => {
+        console.error(err)
+        if(isInCart(pid)) setCartFav(document.querySelector('.citem' + pid).querySelector('#ciItemFav'))
+        setFav(document.querySelector('.p' + pid).querySelector('#itemFav'))
+      });
+  }
+  
+}
+
+  function setCartFav(el) {
+    el.classList.toggle('fa-regular')
+    el.classList.toggle('fa-solid')
+    el.classList.toggle('cur-item-fav-on')
+  }
+
+  function isInCart(pid) {
+    var cart = getCart().produtos
+    let tem = false
+    cart.forEach(p => {
+      if (pid == p.id) {
+        tem = true
+      }
+    })
+  
+    return tem
   }

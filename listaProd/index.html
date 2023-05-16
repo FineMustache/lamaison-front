@@ -10,13 +10,41 @@
   <link rel="stylesheet" href="../font/kaneda/stylesheet.css">
   <link rel="stylesheet" href="../font/airwaves/stylesheet.css">
   <link rel="stylesheet" href="style.css" />
+  <script>
+    var user = window.localStorage.getItem('lm_u')
+    if (user !== null) {
+      user = JSON.parse(user)
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: user.token
+        },
+        body: `{"userid":${user.userid}}`
+      };
+
+      fetch('http://10.87.207.16:5000/usuario/validar', options)
+        .then(response => response.json())
+        .then(response => {
+          if (!response.validar) {
+            window.localStorage.removeItem('lm_u')
+            window.location.href = "../login/index.html"
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        });
+    } else {
+      window.location.href = "../login/index.html"
+    }
+  </script> 
   <title>La Maison</title>
 </head>
 
 <body onload="carregar()">
   <header>
     <div class="header-wrap">
-      <a href="#"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
+      <a href="../main/index.html"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
       <nav>
         <ul>
           <li><a href="../listaProd/index.html">Produtos</a></li>
@@ -48,8 +76,7 @@
                     </div>
                     <div class="ci-add-fav">
                       <span>Adicionar à lista de desejos</span>
-                      <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)"
-                        id="ciItemFav" class="fa-regular fa-heart"></i>
+                      <i id="ciItemFav" class="fa-regular fa-heart"></i>
                     </div>
                   </div>
                   <div class="cart-item-right">
@@ -74,10 +101,10 @@
               </button>
             </div>
             <div class="user-container escondido">
-              <span id="uname">Santiago Pinto Moles</span>
-              <span id="uemail">picamoles@gmail.com</span>
+              <span id="uname"></span>
+              <span id="uemail"></span>
               <ul>
-                <li><span href="">Lista de Desejos</span></li>
+                <li onclick="location.href='../desejos/index.html'"><span>Lista de Desejos</span></li>
                 <li><span href="">Meus Pedidos</span></li>
                 <li onclick="sair()"><span href="">Sair</span></li>
               </ul>
@@ -124,7 +151,7 @@
     </div>
     <div class="prod-section">
       <div class="item-card modelo">
-        <i onclick="setFav(this)" id="itemFav" class="fa-regular fa-heart"></i>
+        <i id="itemFav" class="fa-regular fa-heart"></i>
         <div class="item-card-image">
           <img src="" alt="">
         </div>

@@ -33,15 +33,22 @@ body {
   display: flex;
   flex-direction: column;
   height: min-content;
+  padding-top: 113px;
 }
 
 button {
   cursor: pointer;
 }
 
-header {
-  background-color: #000;
+header{
+  background: rgb(0, 0, 0);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  width: 100%;
 }
+
 
 .header-wrap {
   padding: 20px 0;
@@ -537,7 +544,7 @@ footer {
 
 .aside-wrapper {
   position: sticky;
-  top: 15px;
+  top: calc(113px + 15px);
   left: 0;
 }
 
@@ -630,4 +637,74 @@ select {
   font-family: 'kaneda_gothic_medium';
   text-decoration: underline;
   font-size: 20pt;
+}
+
+.item-fav-on{
+  color: red!important;
+  opacity: 1!important;
+}
+
+.user{
+  position: relative;
+}
+
+.user-icon{
+  color: white;
+}
+
+.user-container{
+  position: absolute;
+  background-color: white;
+  width: 250px;
+  right: 0;
+  font-size: 24pt;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 0 10px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+#uemail{
+  color: #353535;
+  font-size: 20pt;
+}
+
+.user-container span{
+  color: black!important;
+  font-family: 'kaneda_gothic';
+  font-size: 22pt;
+  transition: none;
+}
+
+.user-container li:last-child span{
+  color: rgb(151, 0, 0)!important;
+}
+
+.user-container ul{
+  flex-direction: column;
+  padding: 0;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.user-container li{
+  margin: 0;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.user-container li:hover{
+  background-color: #d3d3d3;
+}
+
+.user-container li:last-child:hover{
+  background-color: rgb(151, 0, 0);
+}
+
+.user-container li:last-child:hover span{
+  color: white!important;
 }

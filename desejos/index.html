@@ -42,80 +42,79 @@
 </head>
 
 <body onload="carregar()">
-    <header>
-        <div class="header-wrap">
-          <a href="#"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
-          <nav>
-            <ul>
-              <li><a href="../listaProd/index.html">Produtos</a></li>
-              <li><a href="#">Sobre Nós</a></li>
-              <li><a href="#">Contato</a></li>
-              <li class="cart">
-                <div class="cart-button" onclick="toggleCart()">
-                  <button><i class="fa-solid fa-cart-shopping"></i></button>
-                  <div class="cart-length escondido">
-                    <span>1</span>
+  <header>
+    <div class="header-wrap">
+      <a href="../main/index.html"><img src="../assets/logo/icon_white.png" alt="La Maison" /></a>
+      <nav>
+        <ul>
+          <li><a href="../listaProd/index.html">Produtos</a></li>
+          <li><a href="#">Sobre Nós</a></li>
+          <li><a href="#">Contato</a></li>
+          <li class="cart">
+            <div class="cart-button" onclick="toggleCart()">
+              <button><i class="fa-solid fa-cart-shopping"></i></button>
+              <div class="cart-length escondido">
+                <span>1</span>
+              </div>
+            </div>
+            <div class="cart-container escondido">
+              <div class="cart-items">
+                <div class="cart-item modelo-cart escondido">
+                  <div class="cart-item-img">
+                    <img src="" alt="">
                   </div>
-                </div>
-                <div class="cart-container escondido">
-                  <div class="cart-items">
-                    <div class="cart-item modelo-cart escondido">
-                      <div class="cart-item-img">
-                        <img src="" alt="">
-                      </div>
-                      <div class="cart-item-info">
-                        <p id="ciNome"></p>
-                        <div class="ci-preco">
-                          <span id="ciPrecoOr" class="escondido"></span>
-                          <span id="ciPreco"></span>
-                        </div>
-                        <div class="ci-qtde">
-                          <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
-                          <div id="ciQtde"><span></span></div>
-                          <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
-                        </div>
-                        <div class="ci-add-fav">
-                          <span>Adicionar à lista de desejos</span>
-                          <i onmouseenter="hoverFav(1, this)" onmouseleave="hoverFav(0, this)" onclick="setCartFav(this)"
-                            id="ciItemFav" class="fa-regular fa-heart"></i>
-                        </div>
-                      </div>
-                      <div class="cart-item-right">
-                        <span><i class="fa-solid fa-trash"></i></span>
-                      </div>
+                  <div class="cart-item-info">
+                    <p id="ciNome"></p>
+                    <div class="ci-preco">
+                      <span id="ciPrecoOr" class="escondido"></span>
+                      <span id="ciPreco"></span>
+                    </div>
+                    <div class="ci-qtde">
+                      <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
+                      <div id="ciQtde"><span></span></div>
+                      <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
+                    </div>
+                    <div class="ci-add-fav">
+                      <span>Adicionar à lista de desejos</span>
+                      <i id="ciItemFav" class="fa-regular fa-heart"></i>
                     </div>
                   </div>
-                  <div class="cart-total escondido">
-                    <span>TOTAL:</span> <span>R$ <span id="cartTotal"></span></span>
-                  </div>
-                  <button class="btn-finalizar escondido">FINALIZAR COMPRA</button>
-                  <div class="empty">
-                    <p>Seu carrinho está vazio :(</p>
-                    <a href="../listaProd/index.html">Encontrar Produtos</a>
+                  <div class="cart-item-right">
+                    <span><i class="fa-solid fa-trash"></i></span>
                   </div>
                 </div>
-              </li>
-              <li class="user">
-                <div class="user-icon">
-                  <button onclick="toggleUser()">
-                    <i class="fa-solid fa-user"></i>
-                  </button>
-                </div>
-                <div class="user-container escondido">
-                  <span id="uname">Santiago Pinto Moles</span>
-                  <span id="uemail">picamoles@gmail.com</span>
-                  <ul>
-                    <li><span href="">Lista de Desejos</span></li>
-                    <li><span href="">Meus Pedidos</span></li>
-                    <li onclick="sair()"><span href="">Sair</span></li>
-                  </ul>
-                </div>
-              </li>
-            </ul>
-          </nav>
-        </div>
-    
-      </header>
+              </div>
+              <div class="cart-total escondido">
+                <span>TOTAL:</span> <span>R$ <span id="cartTotal"></span></span>
+              </div>
+              <button class="btn-finalizar escondido">FINALIZAR COMPRA</button>
+              <div class="empty">
+                <p>Seu carrinho está vazio :(</p>
+                <a href="../listaProd/index.html">Encontrar Produtos</a>
+              </div>
+            </div>
+          </li>
+          <li class="user">
+            <div class="user-icon">
+              <button onclick="toggleUser()">
+                <i class="fa-solid fa-user"></i>
+              </button>
+            </div>
+            <div class="user-container escondido">
+              <span id="uname"></span>
+              <span id="uemail"></span>
+              <ul>
+                <li onclick="location.href='../desejos/index.html'"><span>Lista de Desejos</span></li>
+                <li><span href="">Meus Pedidos</span></li>
+                <li onclick="sair()"><span href="">Sair</span></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+  </header>
 
   <main>
     <p class="main-title">Lista de Desejos</p>

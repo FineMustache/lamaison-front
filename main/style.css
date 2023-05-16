@@ -732,6 +732,7 @@ p{
   align-items: center;
   padding: 20px 0 10px 0;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  z-index: 10;
 }
 
 #uemail{
