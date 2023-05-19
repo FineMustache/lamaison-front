@@ -1,7 +1,7 @@
 var desejo = []
 
 async function carregarDesejos() {
-  desejo = await fetch("http://10.87.207.16:5000/desejo/" + user.userid, {
+  desejo = await fetch("https://gem-giant-cobbler.glitch.me/desejo/" + user.userid, {
     "method": "GET"
   }).then(response => response.json()).then(response => {
     return response}
@@ -103,7 +103,7 @@ function carregarUsuario() {
 
 function carregarProdutos() {
 
-  fetch("http://10.87.207.16:5000/produto/destaques", {
+  fetch("https://gem-giant-cobbler.glitch.me/produto/destaques", {
     "method": "GET"
   })
     .then(response => response.json())
@@ -129,14 +129,17 @@ function carregarProdutos() {
         card.querySelector('#prodPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')
         card.querySelector('#desconto').innerHTML = p.desconto + '%'
         card.querySelector('.btn-add-cart').addEventListener('click', () => cartAddItem(p))
-        fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, { method: 'GET' })
-          .then(response => response.blob())
-          .then(img => {
-            card.querySelector('img').src = montaImagem(img)
-            card.querySelector('img').classList.add('loaded')
-            card.querySelector('img').parentNode.classList.add('loaded')
-          })
-          .catch(err => { return "aiaiai" });
+        card.querySelector('img').src = "https://lamaisontest.blob.core.windows.net/arquivos/" + p.imagem
+        card.querySelector('img').classList.add('loaded')
+        card.querySelector('img').parentNode.classList.add('loaded')
+        // fetch('https://gem-giant-cobbler.glitch.me/arquivos/' + p.imagem, { method: 'GET' })
+        //   .then(response => response.blob())
+        //   .then(img => {
+        //     model.querySelector('img').src = montaImagem(img)
+        //     model.querySelector('img').classList.add('loaded')
+        //     model.querySelector('img').parentNode.classList.add('loaded')
+        //   })
+        //   .catch(err => console.log(err));
         desejo.forEach(d => {
           if (d.id_produto === p.id) {
             setFav(card.querySelector('#itemFav'))
@@ -178,14 +181,17 @@ function carregarCarrinho() {
   calcTotal()
   cart.produtos.forEach(p => {
     let model = document.querySelector('.modelo-cart').cloneNode(true)
-    fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, { method: 'GET' })
-      .then(response => response.blob())
-      .then(img => {
-        model.querySelector('img').src = montaImagem(img)
-        model.querySelector('img').classList.add('loaded')
-        model.querySelector('img').parentNode.classList.add('loaded')
-      })
-      .catch(err => console.log(err));
+    model.querySelector('img').src = "https://lamaisontest.blob.core.windows.net/arquivos/" + p.imagem
+    model.querySelector('img').classList.add('loaded')
+    model.querySelector('img').parentNode.classList.add('loaded')
+    // fetch('https://gem-giant-cobbler.glitch.me/arquivos/' + p.imagem, { method: 'GET' })
+    //   .then(response => response.blob())
+    //   .then(img => {
+    //     model.querySelector('img').src = montaImagem(img)
+    //     model.querySelector('img').classList.add('loaded')
+    //     model.querySelector('img').parentNode.classList.add('loaded')
+    //   })
+    //   .catch(err => console.log(err));
     model.querySelector('#ciNome').innerHTML = p.nome
     model.querySelector('#ciPrecoOr').innerHTML = 'R$ ' + Number(p.valor).toFixed(2).toString().replace('.', ',')
     model.querySelector('#ciPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')
@@ -305,7 +311,7 @@ function addFav(pid) {
       body: `{"id":${fav}}`
     };
     
-    fetch('http://10.87.207.16:5000/desejo', options)
+    fetch('https://gem-giant-cobbler.glitch.me/desejo', options)
       .then(response => response.json())
       .then(async response => {
         await carregarDesejos()
@@ -322,7 +328,7 @@ function addFav(pid) {
       body: `{"id_usuario":${user.userid},"id_produto":${pid}}`
     };
     
-    fetch('http://10.87.207.16:5000/desejo', options)
+    fetch('https://gem-giant-cobbler.glitch.me/desejo', options)
       .then(response => response.json())
       .then(async response => {
         if (response.count) {
