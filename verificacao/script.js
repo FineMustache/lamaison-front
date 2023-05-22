@@ -6,7 +6,7 @@ if (token !== null) {
         headers: {'Content-Type': 'application/json', Authorization: token},
         body: '{}'
       };
-      fetch('http://10.87.207.16:5000/usuario/verificar/', options)
+      fetch('https://gem-giant-cobbler.glitch.me/usuario/verificar/', options)
         .then(response => response.json())
         .then(response => { 
             if (response.validado) {

@@ -5,7 +5,7 @@ if (idUrl == null) {
 
 var prod
 
-fetch('http://10.87.207.16:5000/produto/' + idUrl, {method: 'GET'})
+fetch('https://gem-giant-cobbler.glitch.me/produto/' + idUrl, {method: 'GET'})
   .then(response => response.json())
   .then(response => prod = response)
   .catch(err => console.error(err));
@@ -17,16 +17,10 @@ function carregar() {
 }
 
 function carregarProduto() {
-  fetch('http://10.87.207.16:5000/arquivos/' + prod.imagem, {method: 'GET'})
-    .then(response => response.blob())
-    .then(response => {
-      var urlCreator = window.URL || window.webkitURL;
-      var imageUrl = urlCreator.createObjectURL(response);
-      document.querySelector('#curProdImage').src = imageUrl
-      document.querySelector('#curProdImage').classList.add('loaded')
-      document.querySelector('.prod-image').classList.add('loaded')
-    })
-    .catch(err => console.error(err));
+  
+    document.querySelector('#curProdImage').src = "https://lamaisontest.blob.core.windows.net/arquivos/" + prod.imagem
+    document.querySelector('#curProdImage').classList.add('loaded')
+    document.querySelector('.prod-image').classList.add('loaded')
 
     document.querySelector('#prodNome').innerHTML = prod.nome
     document.querySelector('#prodDesc').innerHTML = prod.descricao
@@ -114,7 +108,7 @@ function carregarCarrinho() {
   calcTotal()
   cart.produtos.forEach(p => {
     let model = document.querySelector('.modelo-cart').cloneNode(true)
-    fetch('http://10.87.207.16:5000/arquivos/' + p.imagem, {method: 'GET'})
+    fetch('https://gem-giant-cobbler.glitch.me/arquivos/' + p.imagem, {method: 'GET'})
         .then(response => response.blob())
         .then(img => {  
           model.querySelector('img').src = montaImagem(img)

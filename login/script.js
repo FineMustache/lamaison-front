@@ -54,7 +54,7 @@ function login() {
         })
       };
       
-      fetch('http://10.87.207.16:5000/usuarioLogin', options)
+      fetch('https://gem-giant-cobbler.glitch.me/usuarioLogin', options)
         .then(response => response.json())
         .then(response => {
             if (response.validacao) {
