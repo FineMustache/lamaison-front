@@ -32,7 +32,6 @@ async function carregar(){
 function carregarUsuario() {
   document.querySelector('#uname').innerHTML = user.nome
   document.querySelector('#uemail').innerHTML = user.email
-  console.log(user)
 }
 
 function getCount(count){
