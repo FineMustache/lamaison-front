@@ -32,6 +32,7 @@ async function carregar(){
 function carregarUsuario() {
   document.querySelector('#uname').innerHTML = user.nome
   document.querySelector('#uemail').innerHTML = user.email
+  console.log(user)
 }
 
 function getCount(count){
@@ -200,8 +201,13 @@ function hoverFav(index, el) {
   }
   
   function toggleCart() {
-    document.querySelector('.user-container').classList.toggle('escondido')
     document.querySelector('.cart-container').classList.toggle('escondido')
+    document.querySelector('.user-container').classList.add('escondido')
+  }
+  
+  function toggleUser() {
+    document.querySelector('.user-container').classList.toggle('escondido')
+    document.querySelector('.cart-container').classList.add('escondido')
   }
 
   function setFav(el){
@@ -245,9 +251,9 @@ function hoverFav(index, el) {
     calcTotal()
     cart.produtos.forEach(p => {
       let model = document.querySelector('.modelo-cart').cloneNode(true)
-      card.querySelector('img').src = "https://lamaisontest.blob.core.windows.net/arquivos/" + p.imagem
-      card.querySelector('img').classList.add('loaded')
-      card.querySelector('img').parentNode.classList.add('loaded')
+      model.querySelector('img').src = "https://lamaisontest.blob.core.windows.net/arquivos/" + p.imagem
+      model.querySelector('img').classList.add('loaded')
+      model.querySelector('img').parentNode.classList.add('loaded')
       model.querySelector('#ciNome').innerHTML = p.nome
       model.querySelector('#ciPrecoOr').innerHTML = 'R$ ' + Number(p.valor).toFixed(2).toString().replace('.', ',')
       model.querySelector('#ciPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')
