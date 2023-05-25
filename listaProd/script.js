@@ -67,7 +67,7 @@ function carregarProdutos() {
 
   document.querySelector('.prod-section').appendChild(model)
 
-  fetch(`https://gem-giant-cobbler.glitch.me/produto/page/${curPage}?minPrec=${minPrec}&maxPrec=${maxPrec}&sortPrec=${sortPrec}&desconto=${desconto}&tag=${urlTag}`, {method: 'GET'})
+  fetch(`https://lamaison.glitch.me/produto/page/${curPage}?minPrec=${minPrec}&maxPrec=${maxPrec}&sortPrec=${sortPrec}&desconto=${desconto}&tag=${urlTag}`, {method: 'GET'})
     .then(response => response.json())
     .then(response => {
       console.log(response)
@@ -144,7 +144,7 @@ function carregarProdutos() {
 function carregarCategorias() {
   const options = {method: 'GET'};
 
-  fetch('https://gem-giant-cobbler.glitch.me/categoria', options)
+  fetch('https://lamaison.glitch.me/categoria', options)
     .then(response => response.json())
     .then(response => {
       response.forEach(c => {
@@ -353,7 +353,7 @@ function hoverFav(index, el) {
   }
 
 async function carregarDesejos() {
-  desejo = await fetch("https://gem-giant-cobbler.glitch.me/desejo/" + user.userid, {
+  desejo = await fetch("https://lamaison.glitch.me/desejo/" + user.userid, {
     "method": "GET"
   }).then(response => response.json()).then(response => {
     return response}
@@ -376,7 +376,7 @@ function addFav(pid) {
       body: `{"id":${fav}}`
     };
     
-    fetch('https://gem-giant-cobbler.glitch.me/desejo', options)
+    fetch('https://lamaison.glitch.me/desejo', options)
       .then(response => response.json())
       .then(async response => {
         await carregarDesejos()
@@ -393,7 +393,7 @@ function addFav(pid) {
       body: `{"id_usuario":${user.userid},"id_produto":${pid}}`
     };
     
-    fetch('https://gem-giant-cobbler.glitch.me/desejo', options)
+    fetch('https://lamaison.glitch.me/desejo', options)
       .then(response => response.json())
       .then(async response => {
         if (response.count) {
