@@ -7,6 +7,33 @@
     <link rel="stylesheet" href="../font/kaneda/stylesheet.css">
     <link rel="stylesheet" href="../font/airwaves/stylesheet.css">
     <link rel="stylesheet" href="style.css">
+    <script>
+      var user = window.localStorage.getItem('lm_u')
+      if (user !== null) {
+        user = JSON.parse(user)
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: user.token
+          },
+          body: `{"userid":${user.userid}}`
+        };
+  
+        fetch('http://localhost:5000/usuario/validar', options)
+          .then(response => response.json())
+          .then(response => {
+            if (!response.validar) {
+              window.localStorage.removeItem('lm_u')
+            } else {
+              window.location.href = "../main/index.html"
+            }
+          })
+          .catch(err => {
+            console.error(err)
+          });
+      }
+    </script> 
     <title>Login</title>
 </head>
 <body>
@@ -40,7 +67,7 @@
                 </div>
                 <button disabled onclick="login()">Entrar</button>
             </div>
-            <p class="p-cad">Não possui uma conta ainda? <a href="../">Crie uma agora!</a></p>
+            <p class="p-cad">Não possui uma conta ainda? <a href="../cadastro/index.html">Crie uma agora!</a></p>
         </div>
       </main>
       <footer></footer>

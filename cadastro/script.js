@@ -254,7 +254,7 @@ function validarCPF(cpf) {
       })
     };
     
-    fetch('https://gem-giant-cobbler.glitch.me/usuario', options)
+    fetch('http://localhost:5000/usuario', options)
       .then(response => response.json())
       .then(response => {
         document.querySelector('.cad-card').classList.add('escondido')

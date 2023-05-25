@@ -3,12 +3,12 @@ var token = new URLSearchParams(window.location.search).get('token')
 if (token !== null) {
     const options = {
         method: 'POST',
-        headers: {'Content-Type': 'application/json', Authorization: token},
+        headers: { 'Content-Type': 'application/json', Authorization: token },
         body: '{}'
-      };
-      fetch('https://gem-giant-cobbler.glitch.me/usuario/verificar/', options)
+    };
+    fetch('http://localhost:5000/usuario/verificar/', options)
         .then(response => response.json())
-        .then(response => { 
+        .then(response => {
             if (response.validado) {
                 document.querySelector('.success').classList.remove('escondido')
             } else {
@@ -21,4 +21,6 @@ if (token !== null) {
         .finally(() => {
             document.querySelector('.loading-screen').classList.add('escondido')
         })
+} else {
+    window.location = "../login/index.html"
 }

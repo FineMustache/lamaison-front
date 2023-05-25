@@ -2,6 +2,8 @@
 // if (idUrl == null) {
 //   window.location.href = '../main/index.html'
 // }
+console.log(user)
+var prodSoma
 
 function copy(i) {
   var copyText = document.getElementById("copy");
@@ -22,12 +24,35 @@ function copy(i) {
 }
 
 
-function carregar() {
-  carregarProduto()
+function carregar() {  
+  carregarProdutos(); // Certifique-se de definir essa função corretamente
 }
 
-function carregarProduto() {
 
+function carregarProdutos() {
+  var cart = getCart()
+
+  let modelReset = document.querySelector('.modelo-cart').cloneNode(true)
+  document.querySelector('.card-left').innerHTML = ""
+  document.querySelector('.card-left').appendChild(modelReset)
+  calcTotal()
+  cart.produtos.forEach(p => {
+    let model = document.querySelector('.modelo-cart').cloneNode(true)
+    model.querySelector('img').src = "https://lamaisontest.blob.core.windows.net/arquivos/" + p.imagem
+    model.querySelector('img').classList.add('loaded')
+    model.querySelector('img').parentNode.classList.add('loaded')
+    model.querySelector('#ciNome').innerHTML = p.nome
+    model.querySelector('#ciPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')
+    model.querySelector('#ciQtde').querySelector('span').innerHTML = p.qtde
+    model.querySelector('#ciQtdeMin').addEventListener('click', () => cartSub(p.id))
+    model.querySelector('#ciQtdePlus').addEventListener('click', () => cartPlus(p.id))
+    model.querySelector('.fa-trash').addEventListener('click', () => cartRemoveItem(p.id))
+    model.querySelector('#ciNome').addEventListener('click', () => location.href = '../prod/index.html?idProd=' + p.id)
+    model.id = "citem" + p.id
+
+    model.classList.remove('escondido')
+    document.querySelector('.card-left').appendChild(model)
+  })
 }
 
 function setCurFav(el){
@@ -72,4 +97,90 @@ function toggleModal(){
     } else {
       document.body.style.overflow = 'auto'
     }
+}
+
+function getCart() {
+  let cart = JSON.parse(window.localStorage.getItem('lm_cart'))
+
+  if (cart == null) {
+    cart = {
+      produtos: []
+    }
+  }
+  return cart
+}
+
+function calcTotal() {
+  let cart = getCart()
+  prodSoma = 0
+  cart.produtos.forEach(p => prodSoma += parseFloat(p.valor - (p.valor * (p.desconto / 100)).toFixed(2)) * p.qtde)
+  document.querySelector('#precTotal').innerHTML = "R$ " + prodSoma.toFixed(2).replace('.', ',')
+}
+
+function cartRemoveItem(id) {
+  let curCart = getCart()
+  const indexProduto = curCart.produtos.findIndex((produto) => produto.id === id);
+  curCart.produtos.splice(indexProduto, 1)
+
+  window.localStorage.setItem('lm_cart', JSON.stringify(curCart))
+  carregarCarrinho()
+}
+
+function cartSub(id) {
+  let curCart = getCart()
+  const indexProduto = curCart.produtos.findIndex((produto) => produto.id === id);
+  if (curCart.produtos[indexProduto].qtde > 1) {
+    curCart.produtos[indexProduto].qtde -- 
+    document.querySelector('#citem' + id).querySelector('#ciQtde').querySelector('span').innerHTML = curCart.produtos[indexProduto].qtde
+  }
+
+  window.localStorage.setItem('lm_cart', JSON.stringify(curCart))
+  calcTotal()
+}
+
+function cartPlus(id) {
+  let curCart = getCart()
+  const indexProduto = curCart.produtos.findIndex((produto) => produto.id === id);
+  if (curCart.produtos[indexProduto].qtde < 10) {
+    curCart.produtos[indexProduto].qtde ++
+    document.querySelector('#citem' + id).querySelector('#ciQtde').querySelector('span').innerHTML = curCart.produtos[indexProduto].qtde
+  }
+
+  window.localStorage.setItem('lm_cart', JSON.stringify(curCart))
+  calcTotal()
+}
+
+function pagamento() {
+  paypal.Buttons({
+    createOrder: async function(data, actions) {
+      let negocio = await fetch("http://localhost:5000/compra", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({...getCart(), user})
+      }).then(function(res) {
+        return res.json();
+      }).then(function(data) {
+        return data
+      });
+      console.log(negocio)
+      return actions.order.create({
+        purchase_units: [{
+          amount: {
+            value: "1.00"
+          }
+        }]
+      });
+    },
+    onApprove: function(data, actions) {
+      console.log(data)
+      alert("DEU BOM")
+    },
+    onError: function(err) {
+      // Ocorreu um erro
+      // Exiba ou manipule o erro adequadamente
+      console.error(err);
+    }
+  }).render('#paypal-button-container');
 }

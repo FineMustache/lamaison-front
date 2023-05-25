@@ -21,7 +21,7 @@
         body: `{"userid":${user.userid}}`
       };
 
-      fetch('http://10.87.207.16:5000/usuario/validar', options)
+      fetch('https://gem-giant-cobbler.glitch.me/usuario/validar', options)
         .then(response => response.json())
         .then(response => {
           if (!response.validar) {
@@ -85,7 +85,7 @@
               <div class="cart-total escondido">
                 <span>TOTAL:</span> <span>R$ <span id="cartTotal"></span></span>
               </div>
-              <button class="btn-finalizar escondido">FINALIZAR COMPRA</button>
+              <button class="btn-finalizar escondido" onclick="window.location.href = '../compra/index.html'">FINALIZAR COMPRA</button>
               <div class="empty">
                 <p>Seu carrinho está vazio :(</p>
                 <a href="../listaProd/index.html">Encontrar Produtos</a>

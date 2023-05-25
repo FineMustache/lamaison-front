@@ -108,7 +108,6 @@ function carregarProdutos() {
         card.querySelector('img').src = "https://lamaisontest.blob.core.windows.net/arquivos/" + p.imagem
         card.querySelector('img').classList.add('loaded')
         card.querySelector('img').parentNode.classList.add('loaded')
-        .catch(err => {return "aiaiai"});
         card.classList.remove('modelo')
         document.querySelector('.prod-section').appendChild(card)
       });

@@ -7,6 +7,34 @@
     <link rel="stylesheet" href="../font/kaneda/stylesheet.css" />
     <link rel="stylesheet" href="../font/airwaves/stylesheet.css" />
     <link rel="stylesheet" href="style.css" />
+    <script>
+      var user = window.localStorage.getItem('lm_u')
+    if (user !== null) {
+      user = JSON.parse(user)
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: user.token
+        },
+        body: `{"userid":${user.userid}}`
+      };
+
+      fetch('https://gem-giant-cobbler.glitch.me/usuario/validar', options)
+        .then(response => response.json())
+        .then(response => {
+          if (!response.validar) {
+            window.localStorage.removeItem('lm_u')
+            window.location.href = "../login/index.html"
+          }
+        })
+        .catch(err => {
+          console.error(err)
+        });
+    } else {
+      window.location.href = "../login/index.html"
+    }
+    </script>
     <title>Pintura Abstrata Fria - La Maison</title>
   </head>
   <body onload="carregar()">
@@ -27,76 +55,7 @@
     <main>
       <div class="card-container">
         <div class="card-left">
-          <div class="cart-item">
-            <div class="cart-item-img">
-              <img src="./img/prod1.png" alt="" />
-            </div>
-            <div class="cart-item-info">
-              <p id="ciNome">Pintura Abstrata Fria</p>
-              <div class="ci-preco">
-                <span id="ciPreco">R$ 260,00</span>
-              </div>
-              <div class="ci-qtde">
-                <button id="ciQtdeMin">
-                  <i class="fa-sharp fa-solid fa-minus"></i>
-                </button>
-                <div id="ciQtde"><span>1</span></div>
-                <button id="ciQtdePlus">
-                  <i class="fa-sharp fa-solid fa-plus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="cart-item-right">
-              <span><i class="fa-solid fa-trash"></i></span>
-            </div>
-          </div>
-          <div class="cart-item">
-            <div class="cart-item-img">
-              <img src="./img/prod1.png" alt="" />
-            </div>
-            <div class="cart-item-info">
-              <p id="ciNome">Pintura Abstrata Fria</p>
-              <div class="ci-preco">
-                <span id="ciPreco">R$ 260,00</span>
-              </div>
-              <div class="ci-qtde">
-                <button id="ciQtdeMin">
-                  <i class="fa-sharp fa-solid fa-minus"></i>
-                </button>
-                <div id="ciQtde"><span>1</span></div>
-                <button id="ciQtdePlus">
-                  <i class="fa-sharp fa-solid fa-plus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="cart-item-right">
-              <span><i class="fa-solid fa-trash"></i></span>
-            </div>
-          </div>
-          <div class="cart-item">
-            <div class="cart-item-img">
-              <img src="./img/prod1.png" alt="" />
-            </div>
-            <div class="cart-item-info">
-              <p id="ciNome">Pintura Abstrata Fria</p>
-              <div class="ci-preco">
-                <span id="ciPreco">R$ 260,00</span>
-              </div>
-              <div class="ci-qtde">
-                <button id="ciQtdeMin">
-                  <i class="fa-sharp fa-solid fa-minus"></i>
-                </button>
-                <div id="ciQtde"><span>1</span></div>
-                <button id="ciQtdePlus">
-                  <i class="fa-sharp fa-solid fa-plus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="cart-item-right">
-              <span><i class="fa-solid fa-trash"></i></span>
-            </div>
-          </div>
-          <div class="cart-item">
+          <div class="cart-item modelo-cart escondido">
             <div class="cart-item-img">
               <img src="./img/prod1.png" alt="" />
             </div>
@@ -123,7 +82,7 @@
         <div class="card-right">
             <span>Total:</span>
             <span id="precTotal">R$ 520,00</span>
-            <button class="fin-compra" onclick="toggleModal()">Finalizar Compra</button>
+            <button class="fin-compra" onclick="toggleModal(); pagamento()">Finalizar Compra</button>
         </div>
       </div>
     </main>
@@ -144,6 +103,7 @@
                     <input readonly value="00020126570014br.gov.bcb.pix0111527007438900220Compra de X produtos5204000053039865406100.005802BR5909La Maison6008Pedreira626805647acab65fd2341cebc7938dfefeec88a7b9cc55e179b2525b9e8ba11649e2cdb36304E7BD" type="text" id="copy">
                     <i class="fa-sharp fa-regular fa-copy" onclick="copy(this)"></i>
                 </div>
+                <div class="" id="paypal-button-container"></div>
             </div>
         </div>
     </div>
@@ -151,6 +111,7 @@
       src="https://kit.fontawesome.com/c68ccb89e7.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=ARTZE6xmA6x7gy4VnwQALYMt9h2_R4_lYz0ORfVeEfwxIFrO1NR8_Dmut8O8sqrBjkDREOCNI5RJnJfS&currency=BRL"></script>
     <script src="script.js"></script>
   </body>
 </html>
