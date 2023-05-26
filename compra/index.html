@@ -20,7 +20,7 @@
         body: `{"userid":${user.userid}}`
       };
 
-      fetch('https://gem-giant-cobbler.glitch.me/usuario/validar', options)
+      fetch('https://lamaison.glitch.me/usuario/validar', options)
         .then(response => response.json())
         .then(response => {
           if (!response.validar) {
@@ -84,6 +84,10 @@
             <span id="precTotal">R$ 520,00</span>
             <button class="fin-compra" onclick="toggleModal(); pagamento()">Finalizar Compra</button>
         </div>
+      </div>
+      <div class="success escondido">
+        <p>Seu pedido for confirmado!</p>
+        <a href="../pedidos/index.html"><button>Meus Pedidos</button></a>
       </div>
     </main>
     <footer></footer>

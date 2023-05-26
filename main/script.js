@@ -1,7 +1,7 @@
 var desejo = []
 
 async function carregarDesejos() {
-  desejo = await fetch("https://gem-giant-cobbler.glitch.me/desejo/" + user.userid, {
+  desejo = await fetch("https://lamaison.glitch.me/desejo/" + user.userid, {
     "method": "GET"
   }).then(response => response.json()).then(response => {
     return response}
@@ -103,7 +103,7 @@ function carregarUsuario() {
 
 function carregarProdutos() {
 
-  fetch("https://gem-giant-cobbler.glitch.me/produto/destaques", {
+  fetch("https://lamaison.glitch.me/produto/destaques", {
     "method": "GET"
   })
     .then(response => response.json())
@@ -132,7 +132,7 @@ function carregarProdutos() {
         card.querySelector('img').src = "https://lamaisontest.blob.core.windows.net/arquivos/" + p.imagem
         card.querySelector('img').classList.add('loaded')
         card.querySelector('img').parentNode.classList.add('loaded')
-        // fetch('https://gem-giant-cobbler.glitch.me/arquivos/' + p.imagem, { method: 'GET' })
+        // fetch('https://lamaison.glitch.me/arquivos/' + p.imagem, { method: 'GET' })
         //   .then(response => response.blob())
         //   .then(img => {
         //     model.querySelector('img').src = montaImagem(img)
@@ -184,7 +184,7 @@ function carregarCarrinho() {
     model.querySelector('img').src = "https://lamaisontest.blob.core.windows.net/arquivos/" + p.imagem
     model.querySelector('img').classList.add('loaded')
     model.querySelector('img').parentNode.classList.add('loaded')
-    // fetch('https://gem-giant-cobbler.glitch.me/arquivos/' + p.imagem, { method: 'GET' })
+    // fetch('https://lamaison.glitch.me/arquivos/' + p.imagem, { method: 'GET' })
     //   .then(response => response.blob())
     //   .then(img => {
     //     model.querySelector('img').src = montaImagem(img)
@@ -311,7 +311,7 @@ function addFav(pid) {
       body: `{"id":${fav}}`
     };
     
-    fetch('https://gem-giant-cobbler.glitch.me/desejo', options)
+    fetch('https://lamaison.glitch.me/desejo', options)
       .then(response => response.json())
       .then(async response => {
         await carregarDesejos()
@@ -328,7 +328,7 @@ function addFav(pid) {
       body: `{"id_usuario":${user.userid},"id_produto":${pid}}`
     };
     
-    fetch('https://gem-giant-cobbler.glitch.me/desejo', options)
+    fetch('https://lamaison.glitch.me/desejo', options)
       .then(response => response.json())
       .then(async response => {
         if (response.count) {

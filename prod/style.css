@@ -315,7 +315,7 @@ main{
     font-family: 'kaneda_gothic_medium';
   }
 
-  .prod-preco > p > span{
+  .prod-preco > p span{
     font-family: 'kaneda_gothic_medium';
     text-decoration: underline;
   }

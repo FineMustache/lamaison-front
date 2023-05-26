@@ -5,19 +5,22 @@ if (idUrl == null) {
 
 var prod
 
-fetch('https://gem-giant-cobbler.glitch.me/produto/' + idUrl, {method: 'GET'})
-  .then(response => response.json())
-  .then(response => prod = response)
-  .catch(err => console.error(err));
-
-
 function carregar() {
   carregarCarrinho()
   carregarProduto()
 }
 
-function carregarProduto() {
+async function carregarProduto() {
+  await fetch('https://lamaison.glitch.me/produto/' + idUrl, {method: 'GET'})
+  .then(response => response.json())
+  .then(response => prod = response)
+  .catch(err => console.error(err));
   
+  if (prod === null) {
+    window.location.href = "../../listaProd/index.html"
+  } else {
+
+    document.querySelector('.scan-zone').querySelector('img').src = `http://api.qrserver.com/v1/create-qr-code/?data=lmscan://lmscan?id=${prod.id}&size=500x500`
     document.querySelector('#curProdImage').src = "https://lamaisontest.blob.core.windows.net/arquivos/" + prod.imagem
     document.querySelector('#curProdImage').classList.add('loaded')
     document.querySelector('.prod-image').classList.add('loaded')
@@ -50,6 +53,7 @@ function carregarProduto() {
       })
       document.querySelector('.prod-tags').appendChild(tag)
     })
+  }
 }
 
 function setCurFav(el){
@@ -108,14 +112,9 @@ function carregarCarrinho() {
   calcTotal()
   cart.produtos.forEach(p => {
     let model = document.querySelector('.modelo-cart').cloneNode(true)
-    fetch('https://gem-giant-cobbler.glitch.me/arquivos/' + p.imagem, {method: 'GET'})
-        .then(response => response.blob())
-        .then(img => {  
-          model.querySelector('img').src = montaImagem(img)
-          model.querySelector('img').classList.add('loaded')
-          model.querySelector('img').parentNode.classList.add('loaded')
-        })
-        .catch(err => console.log(err));
+    model.querySelector('img').src = "https://lamaisontest.blob.core.windows.net/arquivos/" + p.imagem
+    model.querySelector('img').classList.add('loaded')
+    model.querySelector('img').parentNode.classList.add('loaded')
     model.querySelector('#ciNome').innerHTML = p.nome
     model.querySelector('#ciPrecoOr').innerHTML = 'R$ ' + Number(p.valor).toFixed(2).toString().replace('.', ',')
     model.querySelector('#ciPreco').innerHTML = 'R$ ' + (p.valor - (p.valor * (p.desconto / 100))).toFixed(2).toString().replace('.', ',')

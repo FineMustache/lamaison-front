@@ -153,7 +153,8 @@ function cartPlus(id) {
 function pagamento() {
   paypal.Buttons({
     createOrder: async function(data, actions) {
-      let negocio = await fetch("http://localhost:5000/compra", {
+      let negocio
+      await fetch("https://lamaison.glitch.me/compra", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -162,7 +163,7 @@ function pagamento() {
       }).then(function(res) {
         return res.json();
       }).then(function(data) {
-        return data
+        negocio = data
       });
       console.log(negocio)
       return actions.order.create({
@@ -174,7 +175,6 @@ function pagamento() {
       });
     },
     onApprove: function(data, actions) {
-      console.log(data)
       alert("DEU BOM")
     },
     onError: function(err) {

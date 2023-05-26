@@ -255,7 +255,7 @@ nav button {
 }
 
 main {
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 300px);
   width: 900px;
   margin: 0 auto;
   display: flex;
@@ -815,4 +815,20 @@ input:focus {
 
 #paypal-button-container{
   margin-top: 5px;
+}
+
+.success{
+  font-size: 30pt;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.success button{
+  font-family: 'kaneda_gothic';
+  font-size: 36pt;
+  padding: 10px 30px;
+  color: white;
+  background-color: black;
 }

@@ -254,7 +254,7 @@ function validarCPF(cpf) {
       })
     };
     
-    fetch('http://localhost:5000/usuario', options)
+    fetch('https://lamaison.glitch.me/usuario', options)
       .then(response => response.json())
       .then(response => {
         document.querySelector('.cad-card').classList.add('escondido')

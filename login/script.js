@@ -54,7 +54,7 @@ function login() {
         })
       };
       
-      fetch('https://gem-giant-cobbler.glitch.me/usuarioLogin', options)
+      fetch('https://lamaison.glitch.me/usuarioLogin', options)
         .then(response => response.json())
         .then(response => {
             if (response.validacao) {
