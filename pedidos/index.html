@@ -2,12 +2,14 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../om-javascript-range-slider-main/src/om-javascript-range-slider.css" />
+  <script src="../om-javascript-range-slider-main/src/om-javascript-range-slider.js"></script>
   <link rel="stylesheet" href="../font/kaneda/stylesheet.css">
   <link rel="stylesheet" href="../font/airwaves/stylesheet.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
   <script>
     var user = window.localStorage.getItem('lm_u')
     if (user !== null) {
@@ -21,7 +23,7 @@
         body: `{"userid":${user.userid}}`
       };
 
-      fetch('https://lamaison.glitch.me/usuario/validar', options)
+      fetch('http://10.87.207.16:5000/usuario/validar', options)
         .then(response => response.json())
         .then(response => {
           if (!response.validar) {
@@ -30,13 +32,13 @@
           }
         })
         .catch(err => {
-          console.error(err)
+          console.err(err)
         });
     } else {
       window.location.href = "../login/index.html"
     }
   </script>
-  <title>Pintura Abstrata Fria - La Maison</title>
+  <title>La Maison</title>
 </head>
 
 <body onload="carregar()">
@@ -85,8 +87,7 @@
               <div class="cart-total escondido">
                 <span>TOTAL:</span> <span>R$ <span id="cartTotal"></span></span>
               </div>
-              <button class="btn-finalizar escondido" onclick="window.location.href = '../compra/index.html'">FINALIZAR
-                COMPRA</button>
+              <button class="btn-finalizar escondido" onclick="window.location.href = '../compra/index.html'">FINALIZAR COMPRA</button>
               <div class="empty">
                 <p>Seu carrinho está vazio :(</p>
                 <a href="../listaProd/index.html">Encontrar Produtos</a>
@@ -114,91 +115,49 @@
     </div>
 
   </header>
+
   <main>
-    <div class="prod-page">
-      <div class="prod-tags">
-      </div>
-      <div class="prod-section">
-        <div class="prod-image">
-          <img id="curProdImage" src="" alt="">
-        </div>
-        <div class="prod-info-container">
-          <div class="prod-info">
-            <span id="prodNome"></span>
-            <p id="prodDesc"></p>
-          </div>
-          <div class="prod-preco">
-            <span id="prodPrecoOr"></span>
-            <span id="prodPreco"></span>
-            <p>Pagamento à vista no <span>PIX</span> <i class="fa-brands fa-pix"></i> ou <span>PAYPAL</span> <i
-                class="fa-brands fa-paypal"></i></p>
-            <p>Frete <span>GRÁTIS</span> para todo o Brasil</p>
-          </div>
-          <div class="prod-med">
-            <span>Medidas:</span>
-            <div>
-              <span>X: <span id="curX"></span></span>
-              <span>Y: <span id="curY"></span></span>
-              <span>Z: <span id="curZ"></span></span>
-            </div>
-
-          </div>
-          <div class="buttons">
-            <button class="btn-add-cart">ADICIONAR AO CARRINHO</button>
-            <button class="add-fav" onmouseenter="hoverFav(1, this.querySelector('i'))"
-              onmouseleave="hoverFav(0, this.querySelector('i'))" onclick="setCurFav(this.querySelector('i'))"><i
-                id="curItemFav" class="fa-regular fa-heart"></i></button>
-          </div>
-        </div>
-
-      </div>
-      <div class="scan-container">
-        <div class="scan-info">
-          <p>Ainda não tem certeza? Veja como ficará na sua casa!</p>
-          <p>Use nosso aplicativo para Android e visualize o produto na sua casa antes de comprá-lo.<br>Basta <a
-              target="_blank" href="https://youtube.com">baixá-lo</a> e apontar a câmera para usar esse recurso.</p>
-        </div>
-        <div class="scan-zone">
+    <p class="main-title">Lista de Desejos</p>
+    <div class="no-products escondido">
+      <p>Nenhum produto encontrado :(</p>
+    </div>
+    <div class="prod-section">
+      <div class="item-card modelo">
+        <i id="itemFav" class="fa-solid fa-heart item-fav-on"></i>
+        <div class="item-card-image">
           <img src="" alt="">
         </div>
-      </div>
-      <div class="item-section itens-destaque escondido">
-        <div class="section-top">
-          <span>Mais de <span id="secTag">Quadro</span></span>
-          <div class="h-line"></div>
-        </div>
-        <div class="section-items">
-          <div class="item-card escondido model-hl">
-            <i id="itemFav" class="fa-regular fa-heart"></i>
-            <div class="item-card-image">
-              <img src="" alt="">
-            </div>
-            <div class="item-card-info">
-              <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-              <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-              <div class="prod-tags">
-              </div>
-              <div class="prod-preco">
-                <div class="escondido">
-                  <span id="prodPrecoOr">R$ 300,00</span>
-                  <div class="desc-indicator">
-                    <i class="fa-solid fa-tag"></i>
-                    <span id="desconto">5%</span>
-                  </div>
-                </div>
-                <span id="prodPreco">R$ 260,00</span>
-              </div>
-              <div class="button">
-                <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
+        <div class="item-card-info">
+          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
+          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
+          <div class="prod-tags">
+          </div>
+          <div class="prod-preco">
+            <div class="desc-area escondido">
+              <span id="prodPrecoOr">R$ 300,00</span>
+              <div class="desc-indicator">
+                <i class="fa-solid fa-tag"></i>
+                <span id="desconto">5%</span>
               </div>
             </div>
+            <span id="prodPreco">R$ 260,00</span>
+          </div>
+          <div class="button">
+            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
           </div>
         </div>
       </div>
     </div>
+    <div class="pages">
+      <ul class="paginacao">
+
+      </ul>
+    </div>
   </main>
   <footer></footer>
   <script src="https://kit.fontawesome.com/c68ccb89e7.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
   <script src="script.js"></script>
 </body>
 

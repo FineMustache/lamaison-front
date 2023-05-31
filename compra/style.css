@@ -2,15 +2,19 @@
   height: 5px;
 }
 
-.section-items::-webkit-scrollbar-track {
+.card-left::-webkit-scrollbar{
+  width: 5px;
+}
+
+.section-items::-webkit-scrollbar-track, .card-left::-webkit-scrollbar-track {
   background: #979797;
 }
 
-.section-items::-webkit-scrollbar-thumb {
+.section-items::-webkit-scrollbar-thumb, .card-left::-webkit-scrollbar-thumb {
   background: #353535;
 }
 
-.section-items::-webkit-scrollbar-thumb:hover {
+.section-items::-webkit-scrollbar-thumb:hover, .card-left::-webkit-scrollbar-thumb:hover {
   background: black;
 }
 
@@ -289,6 +293,7 @@ main {
 #prodNome {
   font-family: "kaneda_gothic_medium";
   font-size: 26pt;
+  cursor: pointer;
 }
 
 .prod-section {
@@ -620,7 +625,7 @@ main {
 footer {
   height: 150px;
   background-color: black;
-  margin-top: 50px;
+  margin-top: 39px;
 }
 
 .card-container {
@@ -628,14 +633,18 @@ footer {
   width: 100%;
   height: 600px;
   display: flex;
+  align-items: center;
 }
 
 .card-left {
   width: 65%;
-  height: 100%;
+  max-height: calc(100% - 50px);
   display: flex;
   flex-direction: column;
-  padding: 25px;
+  padding: 0 25px;
+  overflow-y: scroll;
+  margin-right: 10px;
+  gap: 5px;
 }
 
 .card-right {

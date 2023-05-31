@@ -2,15 +2,19 @@
   height: 5px;
 }
 
-.section-items::-webkit-scrollbar-track {
+.cart-items::-webkit-scrollbar{
+  width: 5px;
+}
+
+.section-items::-webkit-scrollbar-track, .cart-items::-webkit-scrollbar-track {
   background: #979797;
 }
 
-.section-items::-webkit-scrollbar-thumb {
+.section-items::-webkit-scrollbar-thumb, .cart-items::-webkit-scrollbar-thumb {
   background: #353535;
 }
 
-.section-items::-webkit-scrollbar-thumb:hover {
+.section-items::-webkit-scrollbar-thumb:hover, .cart-items::-webkit-scrollbar-thumb:hover {
   background: black;
 }
 
@@ -130,11 +134,13 @@ nav button {
   cursor: pointer;
 }
 
-.cart-items {
+.cart-items{
   display: flex;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 15px;
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
 .cart-item {
@@ -400,6 +406,7 @@ main {
 #prodNome {
   font-family: "kaneda_gothic_medium";
   font-size: 22pt;
+  cursor: pointer;
 }
 
 .prod-tags {
