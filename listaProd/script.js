@@ -320,7 +320,7 @@ function hoverFav(index, el) {
     const indexProduto = curCart.produtos.findIndex((produto) => produto.id === id);
     if (curCart.produtos[indexProduto].qtde > 1) {
       curCart.produtos[indexProduto].qtde -- 
-      document.querySelector('#citem' + id).querySelector('#ciQtde').querySelector('span').innerHTML = curCart.produtos[indexProduto].qtde
+      document.querySelector('.citem' + id).querySelector('#ciQtde').querySelector('span').innerHTML = curCart.produtos[indexProduto].qtde
     }
   
     window.localStorage.setItem('lm_cart', JSON.stringify(curCart))
@@ -332,7 +332,7 @@ function hoverFav(index, el) {
     const indexProduto = curCart.produtos.findIndex((produto) => produto.id === id);
     if (curCart.produtos[indexProduto].qtde < 10) {
       curCart.produtos[indexProduto].qtde ++
-      document.querySelector('#citem' + id).querySelector('#ciQtde').querySelector('span').innerHTML = curCart.produtos[indexProduto].qtde
+      document.querySelector('.citem' + id).querySelector('#ciQtde').querySelector('span').innerHTML = curCart.produtos[indexProduto].qtde
     }
   
     window.localStorage.setItem('lm_cart', JSON.stringify(curCart))

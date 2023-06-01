@@ -59,7 +59,8 @@ header{
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 900px;
+  margin: 0 auto;
 }
 
 header img {
@@ -782,4 +783,9 @@ p{
 
 .user-container li:last-child:hover span{
   color: white!important;
+}
+
+.cur-item-fav-on {
+  color: red !important;
+  opacity: 1 !important;
 }

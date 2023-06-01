@@ -625,7 +625,7 @@ main {
 footer {
   height: 150px;
   background-color: black;
-  margin-top: 39px;
+  margin-top: 50px;
 }
 
 .card-container {
@@ -638,7 +638,7 @@ footer {
 
 .card-left {
   width: 65%;
-  max-height: calc(100% - 50px);
+  height: calc(100% - 50px);
   display: flex;
   flex-direction: column;
   padding: 0 25px;

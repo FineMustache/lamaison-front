@@ -23,7 +23,7 @@
         body: `{"userid":${user.userid}}`
       };
 
-      fetch('http://10.87.207.16:5000/usuario/validar', options)
+      fetch('https://lamaison.glitch.me/usuario/validar', options)
         .then(response => response.json())
         .then(response => {
           if (!response.validar) {

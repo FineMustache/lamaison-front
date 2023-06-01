@@ -32,6 +32,10 @@ function carregar() {
 function carregarProdutos() {
   var cart = getCart()
 
+  if (cart.produtos.length < 1) {
+    window.location.href = "../../main/index.html"
+  }
+
   let modelReset = document.querySelector('.modelo-cart').cloneNode(true)
   document.querySelector('.card-left').innerHTML = ""
   document.querySelector('.card-left').appendChild(modelReset)
@@ -123,7 +127,7 @@ function cartRemoveItem(id) {
   curCart.produtos.splice(indexProduto, 1)
 
   window.localStorage.setItem('lm_cart', JSON.stringify(curCart))
-  carregarCarrinho()
+  carregarProdutos()
 }
 
 function cartSub(id) {
@@ -153,19 +157,6 @@ function cartPlus(id) {
 function pagamento() {
   paypal.Buttons({
     createOrder: async function(data, actions) {
-      let negocio
-      await fetch("https://lamaison.glitch.me/compra", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({...getCart(), user})
-      }).then(function(res) {
-        return res.json();
-      }).then(function(data) {
-        negocio = data
-      });
-      console.log(negocio)
       return actions.order.create({
         purchase_units: [{
           amount: {
@@ -174,8 +165,21 @@ function pagamento() {
         }]
       });
     },
-    onApprove: function(data, actions) {
-      alert("DEU BOM")
+    onApprove: async function(data, actions) {
+      fetch("https://lamaison.glitch.me/compra", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({...getCart(), user, "id_usuario": user.userid})
+      }).then(function(res) {
+        return res.json();
+      }).then(function(data) {
+        window.localStorage.removeItem('lm_cart')
+        window.location.href = "../../pedidos/index.html"
+      }).catch(err => console.error(err));
+      
+      
     },
     onError: function(err) {
       // Ocorreu um erro

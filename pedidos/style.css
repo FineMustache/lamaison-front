@@ -261,7 +261,7 @@
   
   main {
     min-height: calc(100vh - 100px);
-    max-width: 900px;
+    width: 900px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -397,7 +397,7 @@
   }
   
   #prodNome {
-    font-family: "kaneda_gothic_medium";
+    font-family: "kaneda_gothic";
     font-size: 22pt;
     cursor: pointer;
   }
@@ -650,7 +650,7 @@
   .user-container{
     position: absolute;
     background-color: white;
-    width: 250px;
+    width: 400px;
     right: 0;
     font-size: 24pt;
     display: flex;
@@ -709,3 +709,66 @@
     opacity: 1!important;
   }
   
+  .pedidos{
+    width: 60%;
+    margin: 0 auto;
+    gap: 30px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .pedido{
+    border: 1px solid black;
+    padding: 10px;
+    position: relative;
+  }
+
+  .pedido-prod{
+    display: flex;
+    height: 70px;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .pedido-prod:first-child{
+    margin-top: 0;
+  }
+
+  .pedido-prod img{
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+  }
+
+  .prod-info{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    flex: 1;
+  }
+
+  .prod-right{
+    display: flex;
+    height: 100%;
+    align-items: center;
+    font-size: 22pt;
+  }
+
+  .pedido-title{
+    font-size: 22pt;
+    position: absolute;
+    background-color: white;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
+    top: -15px;
+  }
+
+  .ped-info{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20pt;
+    margin-top: 10px;
+  }

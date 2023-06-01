@@ -23,7 +23,7 @@
         body: `{"userid":${user.userid}}`
       };
 
-      fetch('http://10.87.207.16:5000/usuario/validar', options)
+      fetch('https://lamaison.glitch.me/usuario/validar', options)
         .then(response => response.json())
         .then(response => {
           if (!response.validar) {
@@ -50,50 +50,6 @@
           <li><a href="../listaProd/index.html">Produtos</a></li>
           <li><a href="#">Sobre Nós</a></li>
           <li><a href="#">Contato</a></li>
-          <li class="cart">
-            <div class="cart-button" onclick="toggleCart()">
-              <button><i class="fa-solid fa-cart-shopping"></i></button>
-              <div class="cart-length escondido">
-                <span>1</span>
-              </div>
-            </div>
-            <div class="cart-container escondido">
-              <div class="cart-items">
-                <div class="cart-item modelo-cart escondido">
-                  <div class="cart-item-img">
-                    <img src="" alt="">
-                  </div>
-                  <div class="cart-item-info">
-                    <p id="ciNome"></p>
-                    <div class="ci-preco">
-                      <span id="ciPrecoOr" class="escondido"></span>
-                      <span id="ciPreco"></span>
-                    </div>
-                    <div class="ci-qtde">
-                      <button id="ciQtdeMin"><i class="fa-sharp fa-solid fa-minus"></i></button>
-                      <div id="ciQtde"><span></span></div>
-                      <button id="ciQtdePlus"><i class="fa-sharp fa-solid fa-plus"></i></button>
-                    </div>
-                    <div class="ci-add-fav">
-                      <span>Adicionar à lista de desejos</span>
-                      <i id="ciItemFav" class="fa-regular fa-heart"></i>
-                    </div>
-                  </div>
-                  <div class="cart-item-right">
-                    <span><i class="fa-solid fa-trash"></i></span>
-                  </div>
-                </div>
-              </div>
-              <div class="cart-total escondido">
-                <span>TOTAL:</span> <span>R$ <span id="cartTotal"></span></span>
-              </div>
-              <button class="btn-finalizar escondido" onclick="window.location.href = '../compra/index.html'">FINALIZAR COMPRA</button>
-              <div class="empty">
-                <p>Seu carrinho está vazio :(</p>
-                <a href="../listaProd/index.html">Encontrar Produtos</a>
-              </div>
-            </div>
-          </li>
           <li class="user">
             <div class="user-icon">
               <button onclick="toggleUser()">
@@ -117,34 +73,30 @@
   </header>
 
   <main>
-    <p class="main-title">Lista de Desejos</p>
+    <p class="main-title">Meus Pedidos</p>
     <div class="no-products escondido">
-      <p>Nenhum produto encontrado :(</p>
+      <p>Nenhum pedido encontrado :(</p>
     </div>
-    <div class="prod-section">
-      <div class="item-card modelo">
-        <i id="itemFav" class="fa-solid fa-heart item-fav-on"></i>
-        <div class="item-card-image">
-          <img src="" alt="">
+    <div class="pedidos">
+      <div class="pedido escondido">
+        <div class="pedido-title">
+          <span>ID do Pedido: <span id="idPed">1</span></span>
         </div>
-        <div class="item-card-info">
-          <span onclick="window.location.href='../prod/index.html'" id="prodNome">Pintura Abstrata Fria</span>
-          <p id="prodDesc">Quadro moderno ótimo para tornar paredes vazias em espaços vibrantes.</p>
-          <div class="prod-tags">
-          </div>
-          <div class="prod-preco">
-            <div class="desc-area escondido">
-              <span id="prodPrecoOr">R$ 300,00</span>
-              <div class="desc-indicator">
-                <i class="fa-solid fa-tag"></i>
-                <span id="desconto">5%</span>
-              </div>
+        <div class="prod-wrap">
+          <div class="pedido-prod escondido">
+            <img src="https://lamaisontest.blob.core.windows.net/arquivos/prod1.png" alt="">
+            <div class="prod-info">
+              <span id="prodNome">Pintura Abstrata Fria</span>
+              <span id="prodPreco">R$ 220,00</span>
             </div>
-            <span id="prodPreco">R$ 260,00</span>
+            <div class="prod-right">
+              <span id="prodQtde">X 2</span>
+            </div>
           </div>
-          <div class="button">
-            <button class="btn-add-cart"><i class="fa-solid fa-cart-plus"></i></button>
-          </div>
+        </div>        
+        <div class="ped-info">
+          <span>Status: <span id="pedStatus">Pago</span></span>
+          <span id="pedPreco">R$ 220,00</span>
         </div>
       </div>
     </div>
