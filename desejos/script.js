@@ -111,6 +111,12 @@ function carregarProdutos() {
         card.classList.remove('modelo')
         document.querySelector('.prod-section').appendChild(card)
       });
+
+      if (response.length < 1) {
+        document.querySelector('.no-products').classList.remove('escondido')
+      } else {
+        document.querySelector('.no-products').classList.add('escondido')
+      }
     })
     .catch(err => {
       console.error(err);

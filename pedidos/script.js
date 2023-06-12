@@ -67,6 +67,12 @@ function carregarPedidos() {
         modelPed.querySelector('#pedPreco').innerHTML = "R$ " + ped.valor.toFixed(2).replace('.',',')
         document.querySelector('.pedidos').appendChild(modelPed)
       })
+
+      if (response.length < 1) {
+        document.querySelector('.no-products').classList.remove('escondido')
+      } else {
+        document.querySelector('.no-products').classList.add('escondido')
+      }
     })
     .catch(err => console.error(err));
 }
